@@ -1,0 +1,13 @@
+package com.adtec.framework.ide.abstractutil;
+/**
+ * @类名 AbstractCstGeneratorUtil.java
+ * @描述: 关于cst编辑器的抽象
+ * @作者 陈应龙
+ * @创建时间 2016-02-26
+ * @版本 v1.0
+ */
+public abstract class AbstractCstGeneratorUtil {
+
+	public abstract void cstGeneratorUtil();
+	
+}

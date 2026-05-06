@@ -1,0 +1,14 @@
+{"total":2,"rows":[
+	{"name":"对齐","group":"私有属性","editor":{
+		"type":"combobox",
+		"options":{
+		  "data":
+		   		[{"value":"","text":"默认"},
+		   		{"value":"text-left","text":"靠左"},
+		   		{"value":"text-right","text":"靠右"},
+		   		{"value":"dl-horizontal","text":"竖向对齐"}],
+       	   		"panelHeight":"auto"
+		}
+	}},
+	{"name":"style","value":"","group":"私有属性","editor":"text"}
+]}

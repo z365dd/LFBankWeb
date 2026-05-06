@@ -1,0 +1,110 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.preBigBox {
+	width: 1100px;
+	border: solid 1px gainsboro;
+	margin: 0 auto;
+	box-sizing: border-box;
+	padding: 0 0 100px 0;
+}
+/*标题总div*/
+.preTitle {
+	height: 80px;
+	background: url(../image/1.png) no-repeat -41px center;
+	background-size: 1160px;
+	position: relative;
+}
+/*标题图表*/
+.priview {
+	width: 49px;
+	position: absolute;
+	top: 16px;
+	left: 28px;
+}
+
+.preTitle h4 {
+	/*font:30px "微软雅黑" ;*/
+	letter-spacing: 5px;
+	color: #32ADEE;
+	position: absolute;
+	top: 20px;
+	left: 96px;
+}
+/*详情小块*/
+.preSmallBox {
+	padding: 10px 20px 0;
+	width: 100%;
+}
+/*详情小块短*/
+.preWidth5 {
+	width: 70%;
+}
+/*小标题总div*/
+.preTitle1 {
+	height: 58px;
+	border: solid 2px #C3DEF0;
+	border-radius: 19px 10px;
+	background: white;
+	position: relative;
+	/*z-index: 10;
+	top:18px;*/
+}
+/*小标题外发光样式*/
+.preTitle2 {
+	border-color: white;
+	box-shadow: 0 0 5px 0px #6CBBED, 0 0 2px 0 #32ADEE inset;
+}
+/*内容总div*/
+.preContent1 {
+	/* border-bottom: solid 2px #B8D6E1;
+	border-left: solid 2px #B8D6E1;
+	border-right: solid 2px #B8D6E1;
+	border-radius: 0 0 10px 10px;  */
+	/*position: relative;*/
+	/*top: -16px;*/
+	/*z-index: 9;*/
+	overflow:hidden;
+	margin-top: 5px;
+	box-sizing:border-box;
+	padding:15px 0 12px 0;
+}
+/*内容大div隐藏*/
+.preHeight0 {
+	 height: 0; 
+	/* display:none; */
+	border-width:0px;
+	visibility:hidden;
+}
+/*十字星样式*/
+.preCross {
+	position: absolute;
+	height: 30px;
+	top: 14px;
+	left: 23px;
+}
+/*下拉箭头样式*/
+.preDown {
+	position: absolute;
+	height: 30px;
+	top: 14px;
+	left: 23px;
+}
+/*隐藏*/
+.preDisNone {
+	display: none;
+}
+
+
+.preTitle1 h5 {
+	color: #32ADEE;
+	line-height: 57px;
+	margin: 0 0 0 68px;
+}
+
+/*十字星初始旋转位置*/
+.preRotate180 {
+	transform: rotate(-180deg);
+}

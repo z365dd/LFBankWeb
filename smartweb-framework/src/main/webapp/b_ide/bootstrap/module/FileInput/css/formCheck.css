@@ -1,0 +1,72 @@
+@CHARSET "UTF-8";
+input+p{
+	visibility:hidden;
+	font-size:10px;
+	line-height:30px;
+}
+
+.warnBlock{
+	visibility:hidden;
+	color:#B14442;
+	font-size:10px;
+	line-height:30px;
+	background: url(../img/warn.png) no-repeat left 8px;
+	background-size: 12px;
+	padding-left:15px;
+}
+.warnBlock1{
+	visibility:hidden;
+	color:#B14442;
+	font-size:10px;
+	//line-height:30px;
+	background: url(../img/warn.png) no-repeat left 0px;
+	background-size: 12px;
+	padding-left:15px;
+	margin-left:31px;
+	vertical-align:-2px;
+}
+.warnBlock2{
+	vertical-align:-6px;
+}
+
+.promptScript{
+	color:#999999;
+	visibility:visible;
+	background:none;
+}
+
+
+.warnScript{
+	color:#B14442;
+	visibility:visible;
+	background:none;
+}
+
+.trueScript{
+	color:#3C763D;
+	visibility:visible;
+}
+
+.warnInput{
+	background: url(../img/warn.png) no-repeat 95% center;
+	background-size: 12px;
+}
+.trueInput{
+	background: url(../img/true.png) no-repeat 95% center;
+	background-size: 12px;
+}
+
+.disabledInput{
+	display:none;
+}
+
+.disabledInput1{
+	display:none;
+}
+
+.hidden{
+	visibility:hidden;
+}
+.visible{
+	visibility:visible;
+}

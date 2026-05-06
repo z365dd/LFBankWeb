@@ -1,0 +1,12 @@
+{"total":12,"rows":[
+    {"name":"id","value":"","group":"基本属性","editor":"text"},
+    {"name":"name","value":"","group":"基本属性","editor":"text"},
+	{"name":"style","value":"","group":"基本属性","editor":"text"},
+	{"name":"well","group":"特有属性","editor":{
+		"type":"checkbox",
+		 "options":{
+             "on":"well",
+             "off":""
+         }
+	}}
+]}

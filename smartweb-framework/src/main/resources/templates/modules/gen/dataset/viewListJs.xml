@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template>
+	<name>viewListJs</name>
+	<filePath>${jsPath}/${modlName}/${subModlName}</filePath>
+	<fileName>${procClssName}List.js</fileName>
+	<content><![CDATA[
+
+$(document).ready(function(){
+	parent.window.$("#iframe_list").show();
+
+	$("#listBtn").click(function(){
+		/*重置搜索下标，跳转到第一页*/
+		var $preClick = $("#${procClssName}Table").parent().parent().find(".page-pre");
+		if($preClick.siblings().length>1){
+			$preClick.next().click();
+		}
+        $("#${procClssName}Table").bootstrapTable('refresh');
+	});
+
+	/*初始化表格显示列长度20*/
+	$("#${procClssName}Table").on('load-success.bs.table', function (data) {
+		SmartWeb.swJS.index.init({id:'${procClssName}Table'},{dftlen:20});
+	});
+});
+
+/*分页查询传参方法*/
+function queryParams(params){
+	var formData = $("#listForm").serializeObject();
+    var paramList = {
+    	<#list table.columnList as c>
+		<#if c.qryFlg?? && c.qryFlg == "1">
+		<#if c.qryTp == "between">
+		${c.javaFieldId}Begin: (formData.${c.javaFieldId}Begin==undefined)?'':formData.${c.javaFieldId}Begin,
+		${c.javaFieldId}End: (formData.${c.javaFieldId}End==undefined)?'':formData.${c.javaFieldId}End,
+		<#else>
+		${c.javaFieldId}: (formData.${c.javaFieldId}==undefined)?'':formData.${c.javaFieldId},
+		</#if>
+		</#if>
+		</#list>
+        pgside: 'server',/*服务器分页*/
+        pageSize: params.limit,
+        start: params.offset + 1,
+        pageNo: getPage(params),
+        sort: params.sort,
+        order: params.order
+	};
+	return paramList;
+}
+
+function getPage(params) {
+	if (!isNaN(params.offset) || !isNaN(params.limit)) {
+		 return params.offset / params.limit + 1;
+	}
+}
+
+/*跳转更新页面*/
+function update(<#if table.pkList?? && (table.pkList?size>0)><#assign count=0><#list table.columnList as c><#if c.mainKeyFlg?? && c.mainKeyFlg == "1"><#assign count=count+1>${c.simpleJavaField}<#if (count<table.pkList?size)>, </#if></#if></#list><#else>id</#if>){
+	console.info("open Update tab");
+	var para = "";
+	<#if table.pkList?? && (table.pkList?size>0)>
+	para = para + "?";
+	<#list table.columnList as c>
+	<#if c.mainKeyFlg?? && c.mainKeyFlg == "1">
+	$.session.set('HID_${c.javaFieldId}',${c.javaFieldId});
+	para = para + "${c.javaFieldId}="+${c.javaFieldId};
+	</#if>
+	</#list>
+	<#else>
+	$.session.set('HID_id',id);
+	para = para + "id="+id;
+	</#if>
+	parent.window.$("a[href^='#tab_update']").attr("url", ctx + "/${urlPrefix}/${procClssName}Update" + para);
+	parent.window.$("a[href^='#tab_update']").click();
+}
+
+/*跳转明细页面*/
+function detail(<#if table.pkList?? && (table.pkList?size>0)><#assign count=0><#list table.columnList as c><#if c.mainKeyFlg?? && c.mainKeyFlg == "1"><#assign count=count+1>${c.simpleJavaField}<#if (count<table.pkList?size)>, </#if></#if></#list><#else>id</#if>){
+	console.info("open detail tab");
+	var para = "";
+	<#if table.pkList?? && (table.pkList?size>0)>
+	para = para + "?";
+	<#list table.columnList as c>
+	<#if c.mainKeyFlg?? && c.mainKeyFlg == "1">
+	$.session.set('HID_${c.javaFieldId}',${c.javaFieldId});
+	para = para + "${c.javaFieldId}="+${c.javaFieldId};
+	</#if>
+	</#list>
+	<#else>
+	$.session.set('HID_id',id);
+	para = para + "id="+id;
+	</#if>
+	parent.window.$("a[href^='#tab_detail']").attr("url", ctx + "/${urlPrefix}/${procClssName}Detail" + para);
+	parent.window.$("a[href^='#tab_detail']").click();
+}
+
+/*删除操作*/
+function del(<#if table.pkList?? && (table.pkList?size>0)><#assign count=0><#list table.columnList as c><#if c.mainKeyFlg?? && c.mainKeyFlg == "1"><#assign count=count+1>${c.simpleJavaField}<#if (count<table.pkList?size)>, </#if></#if></#list><#else>id</#if>){
+	confirmx("是否确定删除该${funcName}信息", function(){
+		var url = ctx + "/${urlPrefix}/delete";
+		//向后台发送参数
+		$.post(url,
+				{ 
+					<#if table.pkList?? && (table.pkList?size>0)>
+					<#assign count=0>
+					<#list table.columnList as c>
+					<#if c.mainKeyFlg?? && c.mainKeyFlg == "1">
+					<#assign count=count+1>
+					${c.javaFieldId}:${c.javaFieldId}<#if (count<table.pkList?size)>, </#if>
+					</#if>
+					</#list>
+					<#else>
+					id : id
+					</#if>
+
+				},
+				function(data){ 
+					if(data.returnCode!==undefined && "0000"!=data.returnCode){ 
+						var errMsg = "错误信息["+data.message+"]"; 
+						showContent(errMsg,"error");
+						return '0';
+					}else if(data.msg_type == "success"){
+						var successMsg = "删除信息["+data.message+"]"; 
+						showContent(successMsg,"success");
+						$("#listBtn").click();
+					}
+				}, "json");
+	});
+}
+
+]]>
+	</content>
+</template>

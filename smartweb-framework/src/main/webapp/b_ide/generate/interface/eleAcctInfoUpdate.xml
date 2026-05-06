@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- desc 按钮名字   url 服务路径   type 接口类型  【form 表单】 【query 查询表格】 【tree 树】...-->
+<trans desc="修改" url="in/core/eleAcctInfoUpdate" type="form">
+	<snd>
+		<!--c_readonly 不可更改项 -->
+		<field ID="1" c_label="体彩账户号"   a_data_name="tcNo" a_data_type="varchar" a_data_length="64" a_data_dictionary="CD01990001 10100-居民身份证" c_readonly="true" />
+	</snd>
+	<rcv>
+		<field ID="1" c_label="体彩账户号" a_data_name="tcNo" a_data_type="varchar" a_data_length="64" a_data_dictionary="CD01990001 10100-居民身份证" />
+		<field ID="2" c_label="账户名" a_data_name="tcName" a_data_type="varchar" a_data_length="64" a_data_dictionary="" />
+		<field ID="3" c_label="账户余额" a_data_name="tcAmt" a_data_type="varchar" a_data_length="64" a_data_dictionary="" />
+		<field ID="3" c_label="充值金额" a_data_name="czAmt" a_data_type="varchar" a_data_length="64" a_data_dictionary="" />
+	</rcv>
+</trans>
+
+

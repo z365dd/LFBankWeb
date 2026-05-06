@@ -1,0 +1,153 @@
+.message-notification {
+    height: 0;
+    box-sizing: content-box;
+    margin: 0 0 20px 0;
+    transition: padding .7s cubic-bezier(0, .5, 0, 1), height .7s cubic-bezier(0, .5, 0, 1);
+}
+
+.message-notification * {
+    box-sizing: border-box;
+}
+
+.message-notification .message-info {
+    background-image: url("bg.png");
+    height: 214px;
+    width: 396px;
+}
+
+.message-notification .message-info button {
+    border: 1px solid #D2D2D2;
+    background-color: white
+}
+
+.message-notification .message-info button:first-of-type {
+    color: #0099E5
+}
+
+.message-notification .message-notification-body {
+    animation: .4s fadeUpIn 1 cubic-bezier(0, .5, 0, 1);
+    position: relative;
+    width: 396px;
+    height: 214px;
+    border-radius: 4px;
+    opacity: 1;
+    transition: opacity .15s ease, marginTop .3s ease, marginBottom .3s ease, padding .3s ease;
+}
+
+.message-notification .message-notification-body:hover .message-notification-close-icon {
+    opacity: .7
+}
+
+.message-notification .message-notification-body:hover .message-notification-close-icon:hover {
+    opacity: 1
+}
+
+.message-notification .message-notification-body > div {
+    /*display: inline-flex;
+    justify-content: center;
+    align-items: center*/
+}
+
+.message-notification .message-notification-body .message-content {
+    margin: 15px 0 0 0;
+    padding-left: 15px;
+}
+
+.message-notification .message-notification-body .message-content > p {
+    margin: 0 5px 0 5px;
+    text-indent: 2em;
+    height: 84px;
+    word-wrap: break-word;
+    word-break: break-all;
+    overflow: hidden;
+}
+
+.message-notification .message-notification-body .message-content > div {
+    width: 100%
+}
+
+.message-notification .message-notification-body .message-content .message-buttons-container {
+    text-align: center;
+}
+
+.message-notification .message-notification-body .message-content > div button {
+    margin-left: 6px;
+    margin-top: 10px;
+    margin-bottom: 2px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    border-radius: 3px;
+    padding: 2px 11px;
+    font-size: 14px;
+    text-align: center;
+    outline: none;
+    border-width: 1px;
+    box-shadow: 0 2px 4px -2px rgba(0, 0, 0, 0.2);
+    cursor: pointer
+}
+
+.message-notification .message-notification-body .message-content > div button:active {
+    opacity: .7
+}
+
+.message-notification .message-notification-body .message-title {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.message-notification .message-notification-body > h3 {
+    width: 396px;
+    font-size: 20px;
+    color: #ffffff;
+    font-weight: bold;
+    text-indent: 5em;
+    line-height: 60px;
+}
+
+.message-notification .message-notification-body .message-paragraph {
+    font-size: 14px;
+    padding-right: 30px;
+    font-family: "微软雅黑", "宋体", Arial, sans-serif;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    overflow: hidden;
+}
+
+.message-notification-close-icon {
+    position: absolute;
+    right: 7px;
+    top: 7px;
+    opacity: 0;
+    cursor: pointer;
+    transition: opacity .25s ease
+}
+
+.message-notification-box {
+    box-sizing: content-box;
+    display: flex;
+    flex-direction: column-reverse;
+    position: fixed;
+    bottom: 0;
+    right: 20px;
+    width: 396px;
+    height: auto;
+    max-height: 100vh;
+    overflow: auto;
+    padding: 8px;
+}
+
+.message-notification-box .message-notification-advice {
+    position: fixed;
+    right: 138px;
+    top: -39px;
+    transform: translateY(0);
+    cursor: pointer;
+    transition: transform .3s ease;
+}
+
+.message-notification-box .message-notification-advice.active {
+    transform: translateY(60px)
+}

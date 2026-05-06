@@ -1,0 +1,14 @@
+{"total":12,"rows":[
+    {"name":"id","value":"","group":"选择框属性","editor":"text"},
+    {"name":"name","value":"","group":"选择框属性","editor":{
+		"type":"combobox",
+			"options":{
+				   "data":
+			   		[],
+			   		"panelHeight":"auto"
+			}
+	}},
+    {"name":"value","value":"","group":"选择框属性","editor":"text"},
+    {"name":"style","value":"","group":"选择框属性","editor":"text"},
+    {"name":"文本","value":"","group":"选择框属性","editor":"text"}
+]}

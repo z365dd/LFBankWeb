@@ -1,0 +1,13 @@
+{"total":1,"rows":[
+	{"name":"折叠展示样式","group":"手风琴属性","editor":{
+		"type":"combobox",
+		"options":{
+			   "data":
+		   		[{"value":"true","text":"只允许打开一个"},
+		   		{"value":"false","text":"允许打开多个"}],
+       	   		"panelHeight":"auto"
+		}
+	}},
+	{"name":"新增面板","value":" ","group":"手风琴属性","editor":"numberbox"},
+	{"name":"删除面板","value":" ","group":"手风琴属性","editor":"numberbox"}
+]}

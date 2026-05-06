@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template>
+	<name>viewDetailFormCst</name>
+	<filePath>${jspPath}/${modlName}/${subModlName}</filePath>
+	<fileName>${procClssName}DetailForm.cst</fileName>
+	<content><![CDATA[
+
+]]>
+	</content>
+</template>

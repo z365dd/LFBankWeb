@@ -1,0 +1,245 @@
+@charset "utf-8";
+/* CSS Document */
+body{ margin:0; padding:0;/* overflow:hidden; */ background:#FFF;}
+input{margin:0; padding:0; outline:none;}
+li{list-style-type:none;}
+ul{ margin:0; padding:0;overflow:hidden;}
+input::-webkit-input-placeholder{
+            color:#ccc;
+        }
+        input::-moz-placeholder{   /* Mozilla Firefox 19+ */
+            color:#ccc;
+        }
+        input:-moz-placeholder{    /* Mozilla Firefox 4 to 18 */
+            color:#ccc;
+        }
+        input:-ms-input-placeholder{  /* Internet Explorer 10-11 */ 
+            color:#ccc;
+        }
+        input:focus{
+            　　　　border-color: #129ed5 !important;
+            　　　　outline: 0;
+            　　　　-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(18,158,213,.6);
+            　　　　box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(18,158,213,.6);
+            　　}
+input.inputbox{
+     width:150px; 
+     height:23px;
+      border:1px solid #ebe9ea !important;
+       text-indent:8px;
+       font-size:14px; 
+       font-family:"微软雅黑"; 
+       color:#666;
+
+    }
+.Confirmationbutton{
+    width: 49px;
+    height: 30px;
+    border: 1px solid #32c4c0;
+    background: #e9f6ff;
+    font-family: "微软雅黑";
+    font-size: 12px;
+    color: #32c4c0;
+    outline: none;
+    line-height: 15px;
+    border-radius: 3px;
+}
+.Confirmationbutton:hover{
+    background:#c8fbf3;
+}
+.Confirmationbutton:active{
+    background:#8ae9da;
+}
+.searchbutton{
+    width: 49px;
+    height: 30px;
+    border: 1px solid #72dfff;
+    background: #dbffff;
+    font-family: "微软雅黑";
+    font-size: 12px;
+    color: #72dfff;
+    outline: none;
+    line-height: 15px;
+    border-radius: 3px;
+}
+.searchbutton:hover{
+    background:#bcfcfc;
+}
+.searchbutton:active{
+    background:#a5f2f2;
+}
+.clearbutton{
+    width: 49px;
+    height: 30px;
+    border: 1px solid #f9b65d;
+    background: #fff6e6;
+    font-family: "微软雅黑";
+    font-size: 12px;
+    color: #f9b65d;
+    outline: none;
+    line-height: 15px;
+    border-radius: 3px;
+}
+.clearbutton:hover{
+    background:#fcedd2;
+}
+.clearbutton:active{
+    background:#fbce7d;
+}
+.closebutton{
+    width: 49px;
+    height: 30px;
+    border: 1px solid #ebe9ea;
+    background: #f3f3f3;
+    font-family: "微软雅黑";
+    font-size: 12px;
+    color: #666;
+    outline: none;
+    line-height: 15px;
+    border-radius: 3px;
+}
+.closebutton:hover{
+    background:#eee;
+}
+.closebutton:active{
+    background:#e0dfdf;
+}
+
+.Error {
+    font-size:14px;
+    color: #fb6041;;
+    padding-left: 24px;
+    position: relative;
+}
+.Error span{
+    background: #fb6041;
+    color: white;
+    border-radius: 100%;
+    line-height: 14px;
+    text-align: center;
+    height: 14px;
+    width: 14px;
+    font-size: 14px;
+    padding: 2px;
+    top: 4px;
+    left: 4px;
+    position: absolute;
+}
+.Error span::before {
+    content: "\2716";
+}
+
+.input-normal input, .input-forbidden input, .input-haveto input {
+    width:160px;
+    height:23px;
+    font-family: "微软雅黑";
+    font-size: 14px;
+    color:#666;
+    border:1px solid  #ebe9ea !important;
+    border-radius: 0;
+}
+.input-normal input::-webkit-input-placeholder, .input-haveto input::-webkit-input-placeholder{
+    color:#ccc;
+}
+.input-normal input::-moz-placeholder, .input-haveto input::-moz-placeholder{   /* Mozilla Firefox */
+    color:#ccc;
+}
+.input-normal input:-ms-input-placeholder, .input-haveto input:-ms-input-placeholder{  /* Internet Explorer 10-11 */ 
+    color:#ccc;
+}
+.input-normal input:focus, .input-haveto input:focus{
+    border-color: #129ed5 !important;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(18,158,213,.6);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(18,158,213,.6);
+    　　}
+
+.input-forbidden input {
+    background:#f3f3f3;
+}
+
+.input-haveto span {
+    font-size:8px;
+    color:#fb6041;
+    margin-right:4px;
+    line-height: 23px;
+    vertical-align: top;
+}
+
+.Dropdown {
+    width:160px;
+    position: relative;
+}
+
+.Dropdown button {
+    font-size: 14px;
+    background: #fff;
+    border:1px solid #ebe9ea;
+    width:160px;
+    z-index: 1;
+}
+
+.Dropdown ul li{
+    text-indent: 18px;
+    width:160px;
+    box-sizing: border-box;
+    background: #FFF;
+}
+.Dropdown ul li, .Dropdown ul li a {
+    font-size:12px;
+    color:#000;
+    line-height: 28px;
+}
+.DropdownCT {
+    position: absolute;
+    display: none;
+
+}
+.Dropdown:hover .DropdownCT{
+    display: block;
+}
+.Dropdown ul li a:hover {
+    text-decoration: none;
+}
+.Dropdown ul li:hover {
+    background:#f3f3f3;
+}
+.Dropdown .DropdownBTN {
+    width:160px;
+    border:1px solid #ebe9ea;
+    color:#666;
+    font-size:14px; 
+    font-family:"微软雅黑"; 
+    background: #FFF;
+    text-align: center;
+}
+.Dropdown .DrodownCT {
+    display: none;
+    vertical-align: middle;
+}
+.Dropdown #selected {
+    border-left:2px solid #0a83be;
+    background: #d4effa;
+}
+
+.Dropdown input{
+    width:9px;
+    height:9px;
+    margin-right: 4px;
+    vertical-align: middle;
+}
+.arrow {
+    position: absolute;
+    right:10px;
+    top:12px;
+    z-index: 2;
+    width: 0;
+    height: 0;
+    border-width: 6px;
+    border-style: solid;
+    border-color: #29597c transparent transparent transparent;
+}
+.Dropdown:hover .arrow{
+    top:6px;
+    border-color: transparent transparent #29597c transparent;
+}

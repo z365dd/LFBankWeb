@@ -1,0 +1,23 @@
+{"total": 5,"rows": 
+[{"name":"自动轮播","group":"幻灯片属性",
+       "editor":{"type":"checkbox",
+                "options":{
+                "on":"true",
+                "off":"false"
+                }}},
+{"name":"循环播放","group":"幻灯片属性",
+       "editor":{"type":"checkbox",
+                "options":{
+                "on":"true",
+                "off":"false"
+                }}},
+{"name":"鼠标悬停","group":"幻灯片属性",
+		"editor":{"type":"checkbox",
+		                "options":{
+		                "on":"true",
+		                "off":"false"
+		                }}},
+{"name":"style","value":"","group":"幻灯片属性","editor":"text"},
+{"name":"间隔时间","value":"","group":"幻灯片属性","editor":"numberbox"},
+{"name":"增加","value":"","group":"幻灯片属性","editor":"numberbox"},
+{"name":"删除","value":"","group":"幻灯片属性","editor": "numberbox"}]}

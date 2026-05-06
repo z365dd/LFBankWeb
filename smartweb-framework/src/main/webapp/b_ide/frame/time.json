@@ -1,0 +1,119 @@
+{"total":7,"rows":[
+    {"name":"左占","value":"","group":"控件属性","editor":{
+		"type":"combobox",
+		"options":{
+			   "data":
+		   		[{"value":"col-sm-1 control-label","text":"col-sm-1"},
+		   		{"value":"col-sm-2 control-label","text":"col-sm-2"},
+		   		{"value":"col-sm-3 control-label","text":"col-sm-3"},
+		   		{"value":"col-sm-4 control-label","text":"col-sm-4"},
+		   		{"value":"col-sm-5 control-label","text":"col-sm-5"},
+		   		{"value":"col-sm-6 control-label","text":"col-sm-6"},
+		   		{"value":"col-sm-7 control-label","text":"col-sm-7"},
+		   		{"value":"col-sm-8 control-label","text":"col-sm-8"},
+		   		{"value":"col-sm-9 control-label","text":"col-sm-9"},
+		   		{"value":"col-sm-10 control-label","text":"col-sm-10"},
+		   		{"value":"col-sm-11 control-label","text":"col-sm-11"},
+		   		{"value":"col-sm-12 control-label","text":"col-sm-12"}],
+		   		"panelHeight":"auto"
+		}
+	}},
+	{"name":"右占","value":"","group":"控件属性","editor": {
+		"type":"combobox",
+		"options":{
+			   "data":
+		   		[{"value":"col-sm-1","text":"col-sm-1"},
+		   		{"value":"col-sm-2","text":"col-sm-2"},
+		   		{"value":"col-sm-3","text":"col-sm-3"},
+		   		{"value":"col-sm-4","text":"col-sm-4"},
+		   		{"value":"col-sm-5","text":"col-sm-5"},
+		   		{"value":"col-sm-6","text":"col-sm-6"},
+		   		{"value":"col-sm-7","text":"col-sm-7"},
+		   		{"value":"col-sm-8","text":"col-sm-8"},
+		   		{"value":"col-sm-9","text":"col-sm-9"},
+		   		{"value":"col-sm-10","text":"col-sm-10"},
+		   		{"value":"col-sm-11","text":"col-sm-11"},
+		   		{"value":"col-sm-12","text":"col-sm-12"}],
+		   		"panelHeight":"auto"
+		}
+	}},
+	{"name":"尺寸","value":"","group":"控件属性","editor": {
+		"type":"combobox",
+		"options":{
+			   "data":
+		   		[{"value":"","text":"默认"},
+		   		{"value":"form-group-lg","text":"大"},
+		   		{"value":"form-group-sm","text":"小"}],
+		   		"panelHeight":"auto"
+		}
+	}},
+	{"name":"隐藏label","value":"","group":"控件属性","editor":{
+         "type":"checkbox",
+		 "options":{
+             "on":"visibility:hidden",
+             "off":"visibility:visible"
+         }
+	}},
+	{"name":"id","value":"","group":"时间选择器属性","editor":"text"},
+	{"name":"name","value":"","group":"时间选择器属性","editor":{
+		"type":"combobox",
+			"options":{
+				   "data":
+			   		[],
+			   		"panelHeight":"auto"
+			}
+	}},
+	{"name":"style","value":"","group":"时间选择器属性","editor":"text"},
+	{"name":"校验","value":"","group":"选择框属性校验","editor":{
+		"type":"combobox",
+			"options":{
+				   "data":
+			   		[],
+			   		"panelHeight":"auto"
+			}
+	}},
+	{"name":"时间类型","value":"","group":"时间选择器属性","editor":{    
+        "type":"combobox",    
+        "options":{    
+            "data":
+             [{"value":"datetime","text":"日期时间"},
+             {"value":"date","text":"日期"},
+            {"value":"time","text":"时间"}],
+            "panelHeight":"auto"   
+        }    
+    }},
+    {"name":"日期时间格式","value":"","group":"时间选择器属性","editor":{    
+        "type":"combobox",    
+        "options":{    
+            "data":
+             [{"value":"yyyy-mm-dd - HH:ii p","text":"20xx-xx-xx - 0x:xx 上午/下午"},
+             {"value":"yyyy-mm-dd - hh:ii ","text":"20xx-xx-xx - xx:xx "},
+             {"value":"yyyy/mm/dd - HH:ii p","text":"20xx/xx/xx - 0x:xx 上午/下午"},
+             {"value":"yyyy/mm/dd - hh:ii ","text":"20xx/xx/xx - xx:xx"},
+            {"value":"yyyy年mm月dd日 - HH:ii p","text":"20xx年xx月xx日 - 0x:xx 上午/下午"},
+            {"value":"yyyy年mm月dd日 - hh:ii ","text":"20xx年xx月xx日 - xx:xx "}],
+            "panelHeight":"auto"   
+        }    
+    }},
+    {"name":"日期格式","value":"","group":"时间选择器属性","editor":{    
+        "type":"combobox",    
+        "options":{    
+            "data":
+             [{"value":"yyyy-mm-dd","text":"20xx-xx-xx"},
+             {"value":"yyyy/mm/dd","text":"20xx/xx/xx"},
+             {"value":"yyyy年mm月dd日","text":"20xx年xx月xx日"}],
+            "panelHeight":"auto"   
+        }    
+    }},
+    {"name":"时间格式","value":"","group":"时间选择器属性","editor":{    
+		"type":"combobox",    
+		"options":{    
+		    "data":
+		     [{"value":"HH:ii p","text":"0x:xx 上午/下午"},
+		    {"value":"hh:ii ","text":"xx:xx"}],
+		    "panelHeight":"auto"   
+		}    
+    }},
+    {"name":"设置最大时间","value":"","group":"时间选择器属性","editor":"text"},
+    {"name":"设置最小时间","value":"","group":"时间选择器属性","editor":"text"}
+]}

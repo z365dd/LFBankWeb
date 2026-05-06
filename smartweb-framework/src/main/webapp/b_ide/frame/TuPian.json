@@ -1,0 +1,33 @@
+{"total":1,"rows":[
+	{"name":"src","value":"./file/default.jpg","group":"私有属性","editor":"text"},
+	{"name":"样式","group":"私有属性","editor":{
+		"type":"combobox",
+		"options":{
+			   "data":
+		   		[{"value":"","text":"默认"},
+		   		{"value":"img-rounded","text":"圆角"},
+		   		{"value":"img-circle","text":"圆圈"},
+		   		{"value":"img-thumbnail","text":"相框"}],
+       	   		"panelHeight":"auto"
+		}
+	}},{"name":"浮动","group":"私有属性","editor":{
+		"type":"combobox",
+		"options":{
+			   "data":
+		   		[{"value":"","text":"默认"},
+		   		{"value":"pull-left","text":"靠左"},
+		   		{"value":"center-block","text":"居中"},
+		   		{"value":"pull-right","text":"靠右"}],
+       	   		"panelHeight":"auto"
+		}
+	}},
+	{"name":"响应式","group":"私有属性","editor":{
+		"type":"combobox",
+		"options":{
+			   "data":
+		   		[{"value":"","text":"默认"},
+		   		{"value":"img-responsive","text":"响应式图片"}],
+       	   		"panelHeight":"auto"}
+	}},
+	{"name":"style","value":" ","group":"私有属性","editor":"text"}
+]}

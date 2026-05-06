@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+    
+    <!-- 设置控制台日志 -->
+    <appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+                value="%-d{yyyy-MM-dd HH\:mm\:ss.SSS} [%p]-[%c-%L] %m%n"/>
+        </layout>
+    </appender>
+
+    <!-- 设置文件输出日志 -->
+    <appender name="File" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="file" value="log/CacheAgent.log"/>
+        <param name="append" value="true"/>
+        <param name="immediateFlush" value="true"/>  
+        <param name="encoding" value="UTF-8"/>
+        <param name="datePattern" value="'.'yyyy-MM-dd" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%-d{yyyy-MM-dd HH:mm:ss.SSS} [%p]-[%c-%L] %m%n" />
+        </layout>
+    </appender>
+    
+    <logger name="com.adtec.cache.cacheagent">
+        <level value="INFO" />
+    </logger>
+    
+    <logger name="com.adtec.cache.cacheagent.service">
+        <level value="INFO" />
+    </logger>
+    
+    <logger name="com.adtec.cache.cacheagent.controller">
+        <level value="INFO" />
+    </logger>
+    <logger name="com.adtec.cache">
+        <level value="INFO" />
+    </logger>
+    <!-- 设置接收所有日志输出的通道 --> 
+    <root>         
+        <level value="WARN" />  
+        <appender-ref ref="CONSOLE"/>   
+        <appender-ref ref="File"/>        
+    </root>
+    
+</log4j:configuration>

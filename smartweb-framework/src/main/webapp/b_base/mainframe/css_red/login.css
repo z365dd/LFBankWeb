@@ -1,0 +1,302 @@
+@CHARSET "UTF-8";
+	body{ margin:0; padding:0;}
+	
+	a{color:#333333;text-decoration:none;outline:none;}
+	a:hover{color:#FF9900; text-decoration:none;outline:none;}
+	
+	input{margin:0; padding:0; outline:none;}
+	
+	.back{	width:100%; 
+			/* height:900px; */
+			height:100%;
+			/* 背景图垂直、水平均居中	 */			
+			background-position: center center;
+			/* 背景图不平铺 */
+			background-repeat: no-repeat;
+			/* 让背景图基于容器大小伸缩 */
+			background-size: cover; 
+			position:relative;}
+			
+	*{
+            margin: 0px;
+            padding: 0px;
+        }
+    .back-img1{
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        overflow: hidden;
+        background: url(../img/red/login-bg1.png) no-repeat;
+        background-size:cover;
+        opacity: 1;
+    }
+    .back-img2{
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        overflow: hidden;
+        background: url(../img/red/login-bg1.png) no-repeat;
+        background-size:cover;
+        opacity: 0;
+        animation: myfirst 6s infinite linear;
+    }
+	
+
+    @keyframes myfirst
+    {
+    50% {opacity:1;}
+    100% {opacity:0;}
+	
+    }
+	
+			
+	.k1{	width:36%; 
+			height:62%;  
+			float: right; 
+			margin-right:7%; 
+			margin-top:12.62%;}
+	
+	.k1-1{ 
+			width:80%; 
+			height:12%; 
+			background:url(../img/red/login-logo.png) no-repeat;
+			background-size: 100% 95%;
+			}
+			
+			
+	.k1-2{ 
+			width:80%; 
+			 height:90%;
+			/* min-height:271px; */
+			background: url(../img/red/login-form-bg.png) no-repeat;
+			background-size: 98% 89%;
+			overflow: hidden;
+			}
+			
+	
+	.k2-2{	width:98%;
+			/* float:left;  */
+			/* height:34%; */
+			
+			margin-top:10%;}
+	
+	.k2-2-1{
+			width:65% !important; 
+			min-height:38px; 
+			/* float:left !important;  */
+			margin-left:17% !important; 
+			border-bottom:1px solid #fff !important;
+		}
+		
+	.login-user-icon{
+		width:16%; 
+		height:100%; 
+		background:url(../img/red/login-user.png) 0px center no-repeat !important;
+		margin-bottom:10px;
+		padding-bottom:0px;
+		float:left;
+	}
+		
+	.login-user{
+		width:84% !important;
+		height:100% !important;
+		border:none !important;
+		outline:medium ;
+		margin-bottom:0px ;
+		padding:0 0 0 20px;
+		font-size:18px !important;
+		color:#FFF !important;
+		font-family:"微软雅黑" !important;
+		margin-left:0;
+		background-color:transparent !important;
+		line-height:30px !important;
+	}
+	
+	.k2-2-2{ 
+		width:65%; 
+		min-height:38px;/* 36%; */ 
+		/* float:left;  */
+		margin-left:17%; 
+		border-bottom:1px solid #fff;
+		margin-top:18px;
+	}
+	
+	.login-password-icon{
+		width:16%; 
+		height:100%; 
+		background:url(../img/red/login-psw.png) 0px center no-repeat !important;
+		margin-bottom:0px;
+		padding-bottom:0px;
+		float:left;
+	}
+	
+	.login-pw{
+		width:84% !important;
+		height:100% !important;
+		outline:medium ;
+		margin-bottom:0px !important;
+		padding:0 0 0 20px !important;
+		font-size:18px !important;
+		color:#FFF !important;
+		font-family:"微软雅黑" !important;
+		margin-left:0px;
+		background-color:transparent !important;
+		line-height:30px !important;
+		border:none !important;
+	}
+	
+	
+	.yzm{
+		width:65% !important; 
+		min-height:/* 36% */ 38px; 
+		float:left !important; 
+		margin-left:17%; 
+		border-bottom:1px solid #fff !important;
+		ransition: border linear 0.2s, box-shadow linear 0.2s;
+		margin-top:2% !important;
+	}
+	
+	.yzm li.yzm-left{
+		width:70% !important;
+		height:100% !important;
+		display:inline-block;
+		overflow: hidden;
+	}
+	
+	.yzm li.yzm-right{
+		width:14%;
+		height:100%;
+		display:inline-block;
+		text-align:center;
+		margin-left:0;
+}
+	
+	.yzm li.yzm-right img{
+		margin-bottom:3%;
+		margin-left:0;
+		height: 98%;
+		width: 194%;
+		
+	}
+	
+	.login-yzm{
+		width:100% !important;
+		height:100% !important;
+		border:none !important;
+		background:url(../img/red/login-validateCode.png) 0px 0px no-repeat;
+		margin-bottom:0px;
+		padding:0 0 0 60px !important;
+		font-size:18px !important;
+		color:#FFF;
+		font-family:"微软雅黑";
+		margin-left:0px !important;
+		outline:none !important;
+		background-color:transparent !important;
+		line-height:30px;
+		background-position: 1px,10px;
+	} 
+	
+	.k1-3{ 
+		width:97%; 
+		height:/* 6% */ 18.13px; !important; 
+		/* float:left;  */
+		margin-top:2%; 
+	}
+	
+	.remember{
+		width:72% !important; 
+		height:100% !important; 
+		font-size:14px !important; 
+		font-family:"微软雅黑" !important; 
+		color:#eaeaec !important; 
+		float:left !important; 
+		margin-left:18% !important; 
+		line-height:15px !important;
+		margin-top:10px;
+	}
+	
+	#rememberMe{
+		width:6.13% !important; 
+		height:82.8% !important;  
+		border:1px solid #ccc !important;
+		background-color:transparent !important;
+		vertical-align: bottom;
+	}
+	
+	.k1-4{
+		width:97% !important; 
+		min-height:/* 11% !important; */  77.23px;
+		float:left !important; 
+		margin-top:/* 2%; */ 15px;
+	}
+	.k1-4-1{
+		width:44% !important; 
+		height:100% !important; 
+		margin:0 auto !important; 
+	}
+	
+	.login-btn{
+		color:#ffffff;
+		background: #D22B2D;
+		width:100%;
+		display: inline-block;
+		padding: 5px 0;
+		text-align: center;
+		border-radius: 20px;
+		cursor: pointer;
+		border: none;
+		height:25%;
+	}
+	
+	
+	.bt1{
+		width:160% !important; 
+		height:100% !important; 
+		border:none !important; 
+		background: url(../img/red/login-bt.png) no-repeat !important;
+		outline:none !important;
+		cursor:pointer !important;
+	}
+	
+	
+	
+	.error-message{
+		margin-top:0;
+		margin-bottom: 3%;
+		margin-left: 2%;
+		color:red;
+	}
+	
+	.login-error{
+		width:97% !important;
+		min-height:1% !important;
+		line-height:30px !important;
+		text-align:left !important;
+		font-size:18px !important;
+		color:#FF7F00 !important;
+	}
+	
+	
+	.k2{ 
+		width:100%; 
+		height:58px; 
+		background:url(../img/red/login-buttom.png) repeat;
+		position:fixed; 
+		bottom:0; 
+		line-height:58px;
+		font-size:14px; 
+		font-family:"微软雅黑"; 
+		color:#fff; 
+		text-align:center;
+		margin-left: 0px;
+	}
+	
+	input:-webkit-autofill{
+		background: none !important;
+		-webkit-text-fill-color: #fff !important;
+		transition: background-color 99999s ease-in-out 0s;
+		-webkit-transition-delay: 99999s;
+		}
+	
+	.clear{clear:both;}
+	

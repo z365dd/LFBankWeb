@@ -1,0 +1,19 @@
+{"total":5,"rows":[
+	{"name":"id","value":"","group":"模态框-基本属性","editor":"text"},
+	{"name":"宽度","value":"","group":"模态框-基本属性","editor":"text"},
+	{"name":"标题","value":"显示","group":"模态框-标题","editor":{
+		"type":"checkbox",
+		 "options":{
+             "on":"显示",
+             "off":"隐藏"
+         }
+	}},
+	{"name":"关闭","value":"显示","group":"模态框-标题","editor":{
+		"type":"checkbox",
+		 "options":{
+             "on":"显示",
+             "off":"隐藏"
+         }
+	}},
+	{"name":"标题内容","group":"模态框-标题","editor":"text"}
+]}

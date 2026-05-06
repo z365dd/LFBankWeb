@@ -1,0 +1,213 @@
+/* Global Reset */
+html,body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote{ 
+	margin:0;
+	padding:0;	
+}
+html,body{
+    width:100%;
+	color:#333333;
+	font-size:12px;
+	font-family:MicroSoft Yahei;  
+	background:#D3EEF7 url(../img/pub/login-bg.jpg) center top no-repeat; 
+	padding-top:1px;
+}
+input,textarea,select{color:#666666;font-size:12px;}
+td, th{font-size:12px;padding:0;}
+table {
+	border-collapse:collapse;
+	/*border-spacing:0;*/
+}
+fieldset,img { 
+	border:none;
+}
+
+a{color:#333333;text-decoration:none;outline:none;}
+a:hover{color:#FF9900; text-decoration:none;outline:none;}
+strong{
+	font-weight:bold;
+}
+ul, ol, li {
+	list-style:none;
+}
+
+.font1{
+	font-size:22px;
+	color:#999999;
+}
+.font2{
+	font-size:26px;
+	color:#FE6307;
+}
+.font3{
+	font-size:12px;
+	color:#999999;
+}
+.font4{
+	font-size:16px;
+	color:#F79041;
+}
+.font5{
+	font-size:16px;
+	color:#999999;
+}
+/* End Global Reset*/
+
+.login-logo{
+	width:100%;
+	min-width:1280px;
+	height:70px;
+	margin-top:68px;
+}
+.login-logo ul{
+	margin:0 auto;
+	width:646px;
+}
+
+.login-logo li{
+	display:inline-block;
+	height:67px;
+	text-align:center;
+}
+.login-line-left{
+	width:165px;
+	background:url(../img/pub/login-line-left.png) right center no-repeat;
+}
+.login-line-right{
+	width:165px;
+	background:url(../img/pub/login-line-right.png) left center no-repeat;
+}
+.login-logo-icon{
+	width:90px;
+	background:url(../img/pub/logo.png) center center no-repeat;
+}
+.login-txt{
+	width:200px;
+	background:url(../img/pub/login-txt.png) center center no-repeat;
+}
+.login{
+	width:1280px;
+	margin:70px auto 0 auto;
+	clear:both;
+}
+.login-form{
+	width:310px;
+	background:#fff;
+	border-radius:5px;
+	-webkit-box-shadow:1px 1px 20px rgba(151, 168, 200, .9);  
+	-moz-box-shadow:1px 1px 20px rgba(151, 168, 200, .9);  
+	box-shadow:1px 1px 20px rgba(151, 168, 200, .9);
+	float:right;
+	margin-right:160px;
+	padding:0 30px 10px 30px;
+}
+.login-title{
+	width:310px;
+	height:90px;
+	line-height:68px;
+	text-align:center;
+	font-size:24px;
+	color:#fff;
+	background:url(../img/pub/login-form-title.png) center top no-repeat;
+	margin-top:-23px;
+}
+.login-user{
+	width:260px !important;
+	height:50px !important;
+	border:#ccc solid 1px;
+	background:url(../img/pub/login-icon-user.png) 8px center no-repeat;
+	margin-bottom:15px;
+	padding:0 0 0 50px !important;
+	font-size:20px !important;
+}
+.login-pw{
+	width:260px !important;
+	height:50px !important;
+	border:#ccc solid 1px;
+	background:url(../img/pub/login-icon-pw.png) 8px center no-repeat;
+	margin-bottom:15px;
+	padding:0 0 0 50px !important;
+	font-size:20px !important;
+}
+.yzm{
+	width:310px !important;
+	height:50px !important;
+	border:#ccc solid 1px;
+	margin-bottom:15px;
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+	transition: border linear 0.2s, box-shadow linear 0.2s;
+	border-radius: 4px;
+}
+
+.yzm li.yzm-left{
+	width:220px;
+	height:50px;
+	display:inline-block;
+}
+.yzm li.yzm-right{
+	width:80px;
+	height:50px;
+	display:inline-block;
+	text-align:center;
+}
+.yzm li.yzm-right img{
+	margin-top:-10px !important;
+}
+
+
+.login-yzm{
+	width:150px !important;
+	height:50px !important;
+	border:none !important;
+	/*border-right:#ccc solid 1px;*/
+	background:url(../img/pub/login-icon-yzm.png) 8px center no-repeat;
+	padding:0 0 0 50px !important;
+	font-size:20px !important;
+}
+.login-button{
+	width:310px !important;
+	height:50px;
+	line-height:50px;
+	border:none;
+	background:url(../img/pub/login-button.png) left top repeat-x;
+	border-radius:5px;
+	cursor:pointer;
+	text-align:center;
+	font-size:20px;
+	color:#fff;
+	margin-top:20px;
+}
+.login-button:hover{
+	background:url(../img/pub/login-button.png) left bottom repeat-x;
+}
+.login-error{
+	width:310px;
+	min-height:20px;
+	line-height:30px;
+	text-align:center;
+	font-size:18px;
+	color:#FF7F00;
+}
+.login_footer{
+	width: 100%;
+    min-width:1280px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 14px;
+    color: #333;
+    margin: 0 auto 0 auto;
+    position: absolute;
+    bottom: 0;
+	
+}
+.login_foot{
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 14px;
+    color: #333;
+    position: absolute;
+    bottom: 0;
+	left: 50%;
+}
+.clear{clear:both;}

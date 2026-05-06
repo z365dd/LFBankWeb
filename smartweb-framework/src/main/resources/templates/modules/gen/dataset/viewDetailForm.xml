@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template>
+	<name>viewDetailForm</name>
+	<filePath>${jspPath}/${modlName}/${subModlName}</filePath>
+	<fileName>${procClssName}DetailForm.jsp</fileName>
+	<content><![CDATA[
+${JSPBEG}
+
+<div class="">
+	<div ravo="rainbow_fx_layout" class="row clearfix">
+		<div class="col-md-12 column">
+			<form ravo="rainbow_fx_layout_bd" class="form-horizontal breadcrumb" pourl=""
+			id="${procClssName}Form" style="margin-top:10px;">
+				<#if table.pkList?? && (table.pkList?size>0)>
+				<#list table.columnList as c>
+					<#if c.mainKeyFlg?? && c.mainKeyFlg == "1">
+				<input type="hidden" value="" name="${c.javaFieldId}" id="HID_${c.javaFieldId}"/>
+				</#if>
+				</#list>
+				<#else>
+				<input type="hidden" value="" name="id" id="HID_id"/>
+				</#if>
+				
+				<#assign colIdx = 0>
+				<#list table.columnList as c>
+				<#if c.insertFlg?? && c.insertFlg == "1" && (c.isNotBaseField || c.simpleJavaField == 'rmrk')>
+				<#if colIdx%2==0>
+				<div ravo="rainbow_fx_layout" class="row clearfix">
+				</#if>
+					<div class="col-md-6 column">
+						<div ravo="rainbow_fx" class="form-group">
+							<label for="inputEmail3" class="col-sm-3 control-label">
+								${c.tabDesc}
+							</label>
+							<#if c.dpyTp == "input">
+							<div class="col-sm-4">
+								<input id="${c.javaFieldId}" name="${c.javaFieldId}" class="form-control <#if c.javaTp == "Long" || c.javaTp == "Integer"> digits</#if><#if c.javaTp == "Double"> number</#if>" <#if c.dataLength != "0"> maxlength="${c.dataLength}"</#if> readonly="readonly" >
+								</input>
+							</div>
+							<#elseif c.dpyTp == "textarea">
+							<div class="col-sm-4">
+								<textarea id="${c.javaFieldId}" name="${c.javaFieldId}" rows="3" class="form-control " <#if c.dataLength != "0"> maxlength="${c.dataLength}"</#if> readonly="readonly" >
+								</textarea>
+							</div>
+							<#elseif c.dpyTp == "select">
+							<div class="col-sm-4">
+								<select id="${c.javaFieldId}" name="${c.javaFieldId}" data-role="multiselect" data-url="${r"${ctx}"}/sys/dict/selectData?type=${c.dictTp}" data-async="true" blank-item="true" blank-text="--请选择--" readonly="readonly" >
+								</select>
+							</div>
+							<#elseif c.dpyTp == "checkbox">
+							<div class="col-sm-4">
+								<div class="checkbox checkbox-info checkbox-inline">
+									<input id="${c.javaFieldId}0" name="${c.javaFieldId}" type="checkbox" readonly="readonly" value="java">
+									<label for="${c.javaFieldId}0" class="">
+										java
+									</label>
+								</div>
+							</div>
+							<#elseif c.dpyTp == "radiobox">
+							<div class="col-sm-4">
+								<div class="radio radio-info radio-inline">
+									<input id="${c.javaFieldId}0" name="${c.javaFieldId}" type="radio" class="" value="15989143887" readonly="readonly" >
+									<label for="${c.javaFieldId}0">
+										15989143887
+									</label>
+								</div>
+								<div class="radio radio-info radio-inline">
+									<input id="${c.javaFieldId}" name="${c.javaFieldId}" type="radio" class="" value="18124255081" readonly="readonly" >
+									<label for="${c.javaFieldId}">
+										18124255081
+									</label>
+								</div>
+							</div>
+							<#elseif c.dpyTp == "dateselect">
+							<div class="input-group-sm col-sm-4">
+								<input type="text" readonly="readonly" maxlength="20" class="form-control input-mini Wdate"
+								value="" datetime-skin="twoer" datetime-date-fmt="yyyy-MM-dd" datetime-min-date=""
+								datetime-max-date="" datetime-is-show-clear="true" datetime-is-show-week="true"
+								datetime-is-show-today="true" datetime-default-value="" datetime-value-fmt="yyyyMMdd"
+								data-link-field="val_${c.javaFieldId}" id="${c.javaFieldId}" onclick="WdatePicker({skin: 'twoer',dateFmt: 'yyyy-MM-dd',minDate: '1900-01-01 00:00:00',maxDate: '2099-12-31 23:59:59',isShowClear: true,isShowWeek: true,isShowToday: true,onpicked:function(dp){	var newVal = dp.cal.getNewDateStr();  console.info(newVal);	writeDateValue('${c.javaFieldId}');}});"
+								onchange="writeDateValue('${c.javaFieldId}');" readonly="readonly" >
+								<input type="hidden" id="val_${c.javaFieldId}" value="" name="${c.javaFieldId}" >
+							</div>
+							<#elseif c.dpyTp == "userselect" || c.dpyTp == "officeselect" || c.dpyTp == "areaselect" || c.dpyTp == "roleselect">
+							<div class="col-sm-4">
+								<input id="${c.javaFieldId}Name" name="${c.javaFieldId}" class="form-control <#if c.javaTp == "Long" || c.javaTp == "Integer"> digits</#if><#if c.javaTp == "Double"> number</#if>" <#if c.dataLength != "0"> maxlength="${c.dataLength}"</#if> readonly="readonly" >
+								</input>
+							</div>
+							<#elseif c.dpyTp == "iconselect">
+							<div class=" col-sm-4" id="iconselect">
+								<sys:iconselect id="${c.javaFieldId}" name="${c.javaFieldId}" value="" url="${ctx}/tag/iconselect"
+									icon_css="iconfont" icon_required="false">
+								</sys:iconselect>
+							</div>
+							<#elseif c.dpyTp == "fileselect">
+							<div class=" col-sm-4" id="ckfinder">
+								<sys:ckfinder input="${c.javaFieldId}" name="${c.javaFieldId}" value="" type="images" upload_path="//${modlName}/${subModlName}"
+									is_all_user="true" select_multiple="false" readonly="readonly"
+									max_width="500" max_height="200" ckfinder_required="false">
+								</sys:ckfinder>
+							</div>
+							<#elseif c.dpyTp == "ueditor">
+							<div class="col-sm-6" id="ueditor">
+								<script type="text/plain" id="${c.javaFieldId}" name="${c.javaFieldId}" style="height:300px;" check-empty="false">
+								</script>
+							</div>
+							<#elseif c.dpyTp == "fileinput">
+							<div class=" col-sm-4" id="ckfinder">
+								<sys:ckfinder input="${c.javaFieldId}" name="${c.javaFieldId}" value="" type="files" upload_path="//${modlName}/${subModlName}"
+									is_all_user="true" select_multiple="false" readonly="readonly"
+									max_width="500" max_height="200" ckfinder_required="false">
+								</sys:ckfinder>
+							</div>
+							</#if>
+						</div>
+					</div>
+					<#assign colIdx = colIdx+1>
+					<#if colIdx%2==0>
+				</div>
+					</#if>	
+					</#if>
+				</#list>
+				<#if colIdx%2!=0>
+					<#assign loop = 2-colIdx%2>
+					<#list 1..2 as t>
+						<#if (t>loop)>
+						<#break>
+						<#else>
+					<div class="col-md-6 column"></div>
+						</#if>
+					</#list>
+				</div>
+				</#if>				
+				
+				<div ravo="rainbow_fx_layout" class="row clearfix">
+					<div class="col-md-2 column">
+					</div>
+					<div class="col-md-2 column">
+						<shiro:haspermission name="anno">
+							<button ravo="rainbow_fx" type="button" class="btn btn-default" contenteditable="false"
+							id="cancleBtn">
+								返回
+							</button>
+						</shiro:haspermission>
+					</div>
+					<div class="col-md-2 column">
+					</div>
+					<div class="col-md-2 column">
+					</div>
+					<div class="col-md-2 column">
+					</div>
+					<div class="col-md-2 column">
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<!--customer_code_beg-->
+
+<!--customer_code_end-->
+
+${JSPEND}
+]]>
+	</content>
+</template>

@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd
+    http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.1.xsd"
+       default-autowire="byName">
+
+    <!-- 引入agent.properties配置文件 -->
+    <bean
+            class="com.adtec.ms.msagent.util.ParamUtil">
+        <property
+                name="locations"> <!-- PropertyPlaceholderConfigurer类中有个locations属性，接收的是一个数组，即我们可以在下面配好多个properties文件 -->
+            <array>
+                <!-- <value>classpath:/agent.properties</value> -->
+                <!-- <value>file:${user.dir}/config/agent.properties</value> -->
+                <value>file:${JAVAWORKDIR}/config/agent.properties</value>
+            </array>
+        </property>
+    </bean>
+    <!-- 自动扫描(自动注入)，扫描com.adtec.ms.msagent.service这个包以及它的子包的所有使用@Service注解标注的类 -->
+    <context:component-scan base-package="com.adtec.ms.msagent.service,com.adtec.ms.msagent.algorithm"/>
+    
+    <bean id="msagentSpringContextHolder" class="com.adtec.ms.msagent.util.SpringContextHolder" lazy-init="false"></bean>
+    
+    <!-- redis集群配置 -->
+	<!-- 连接池配置 -->
+	<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+		<!-- 最大连接数 -->
+		<property name="maxTotal" value="${redis.maxTotal}" />
+		<!-- 最大空闲连接数 -->
+		<property name="maxIdle" value="${redis.maxIdle}" />
+		<!-- 最小空闲连接数 -->
+        <property name="minIdle" value="${redis.minIdle}" />
+		<!-- 每次释放连接的最大数目 -->
+		<property name="numTestsPerEvictionRun" value="${redis.numTestsPerEvictionRun}" />
+		<!-- 释放连接的扫描间隔（毫秒） -->
+		<property name="timeBetweenEvictionRunsMillis" value="${redis.timeBetweenEvictionRunsMillis}" />
+		<!-- 连接最小空闲时间 -->
+		<property name="minEvictableIdleTimeMillis" value="${redis.minEvictableIdleTimeMillis}" />
+		<!-- 连接空闲多久后释放, 当空闲时间>该值 且 空闲连接>最大空闲连接数 时直接释放 -->
+		<property name="softMinEvictableIdleTimeMillis" value="${redis.softMinEvictableIdleTimeMillis}" />
+		<!-- 获取连接时的最大等待毫秒数,小于零:阻塞不确定的时间,默认-1 -->
+		<property name="maxWaitMillis" value="${redis.maxWaitMillis}" />
+		<!-- 在获取连接的时候检查有效性, 默认false -->
+		<property name="testOnBorrow" value="true" />
+		<!-- 在空闲时检查有效性, 默认false -->
+		<property name="testWhileIdle" value="true" />
+		<!-- 连接耗尽时是否阻塞, false报异常,ture阻塞直到超时,默认true -->
+		<property name="blockWhenExhausted" value="false" />
+	</bean>
+    <bean id="jedisCluster" class="com.adtec.ms.msagent.util.JedisClusterFactory">  
+        <property name="addressConfig" value="${REDISSERVERLIST}" />  <!-- 从环境变量中取Redis的连接配置：REDISSERVERLIST -->     
+        <property name="timeout" value="${redis.timeout}" />  
+        <property name="maxRedirections" value="${redis.maxRedirections}" />   <!-- 取值失败，最大尝试次数 -->
+        <property name="genericObjectPoolConfig" ref="jedisPoolConfig" />  
+    </bean>  
+
+    <!-- 寻址数据缓存 -->
+    <!-- AddressingCache -->  
+    <bean id="addressingCache" class="com.adtec.ms.msagent.cache.AddressingCache">
+        <constructor-arg name="threads" value="${addressing.cache.threads}"/>
+        <constructor-arg name="expireTime"
+                         value="${addressing.cache.expire.time}"/>
+        <constructor-arg name="initSize" value="${addressing.cache.init.size}"/>
+        <constructor-arg name="maxsize" value="${addressing.cache.max.size}"/>
+    </bean>
+    
+    <!-- 参与者实例数据缓存 -->
+    <!-- PartInstCache -->  
+    <bean id="partInstCache" class="com.adtec.ms.msagent.cache.PartInstCache">
+        <constructor-arg name="threads" value="${partinst.cache.threads}"/>
+        <constructor-arg name="expireTime"
+                         value="${partinst.cache.expire.time}"/>
+        <constructor-arg name="initSize" value="${partinst.cache.init.size}"/>
+        <constructor-arg name="maxsize" value="${partinst.cache.max.size}"/>
+    </bean>
+
+    <!-- 租户数据缓存 -->
+    <!-- TenantCache -->
+    <bean id="tenantCache" class="com.adtec.ms.msagent.cache.TenantCache">
+        <constructor-arg name="threads" value="${tenant.cache.threads}"/>
+        <constructor-arg name="expireTime"
+                         value="${tenant.cache.expire.time}"/>
+        <constructor-arg name="initSize" value="${tenant.cache.init.size}"/>
+        <constructor-arg name="maxsize" value="${tenant.cache.max.size}"/>
+    </bean>
+    
+    <!-- 参与者数据缓存 -->
+    <!-- ServerCache -->
+    <bean id="serverCache" class="com.adtec.ms.msagent.cache.ServerCache">
+        <constructor-arg name="threads" value="${server.cache.threads}"/>
+        <constructor-arg name="expireTime"
+                         value="${server.cache.expire.time}"/>
+        <constructor-arg name="initSize" value="${server.cache.init.size}"/>
+        <constructor-arg name="maxsize" value="${server.cache.max.size}"/>
+    </bean>
+    
+    <!-- 服务基本信息数据缓存 -->
+    <!-- ServiceCache -->
+    <bean id="serviceCache" class="com.adtec.ms.msagent.cache.ServiceCache">
+        <constructor-arg name="threads" value="${service.cache.threads}"/>
+        <constructor-arg name="expireTime"
+                         value="${service.cache.expire.time}"/>
+        <constructor-arg name="initSize" value="${service.cache.init.size}"/>
+        <constructor-arg name="maxsize" value="${service.cache.max.size}"/>
+    </bean>
+    
+    <!-- 灰度规则数据缓存 -->
+    <!-- GrayCache -->
+    <bean id="grayCache" class="com.adtec.ms.msagent.cache.GrayCache">
+        <constructor-arg name="threads" value="${gray.cache.threads}"/>
+        <constructor-arg name="expireTime"
+                         value="${gray.cache.expire.time}"/>
+        <constructor-arg name="initSize" value="${gray.cache.init.size}"/>
+        <constructor-arg name="maxsize" value="${gray.cache.max.size}"/>
+    </bean>
+    
+    <!-- 白名单规则数据缓存 -->
+    <!-- WhiteListCache -->
+    <bean id="whiteListCache" class="com.adtec.ms.msagent.cache.WhiteListCache">
+        <constructor-arg name="threads" value="${whitelist.cache.threads}"/>
+        <constructor-arg name="expireTime"
+                         value="${whitelist.cache.expire.time}"/>
+        <constructor-arg name="initSize" value="${whitelist.cache.init.size}"/>
+        <constructor-arg name="maxsize" value="${whitelist.cache.max.size}"/>
+    </bean>
+    
+    <!-- 黑名单规则数据缓存 -->
+    <!-- BlackListCache -->
+    <bean id="blackListCache" class="com.adtec.ms.msagent.cache.BlackListCache">
+        <constructor-arg name="threads" value="${blacklist.cache.threads}"/>
+        <constructor-arg name="expireTime"
+                         value="${blacklist.cache.expire.time}"/>
+        <constructor-arg name="initSize" value="${blacklist.cache.init.size}"/>
+        <constructor-arg name="maxsize" value="${blacklist.cache.max.size}"/>
+    </bean>
+    
+    <!-- 流控规则数据缓存 -->
+    <!-- FlowControlCache -->
+    <bean id="flowControlCache" class="com.adtec.ms.msagent.cache.FlowControlCache">
+        <constructor-arg name="threads" value="${flowcontrol.cache.threads}"/>
+        <constructor-arg name="expireTime"
+                         value="${flowcontrol.cache.expire.time}"/>
+        <constructor-arg name="initSize" value="${flowcontrol.cache.init.size}"/>
+        <constructor-arg name="maxsize" value="${flowcontrol.cache.max.size}"/>
+    </bean>
+    
+    <!-- 熔断规则数据缓存 -->
+    <!-- FusingCache -->
+    <bean id="fusingCache" class="com.adtec.ms.msagent.cache.FusingCache">
+        <constructor-arg name="threads" value="${fusing.cache.threads}"/>
+        <constructor-arg name="expireTime"
+                         value="${fusing.cache.expire.time}"/>
+        <constructor-arg name="initSize" value="${fusing.cache.init.size}"/>
+        <constructor-arg name="maxsize" value="${fusing.cache.max.size}"/>
+    </bean>
+    
+    <!-- Agent数据缓存 -->
+    <!-- AgentCache -->
+    <bean id="agentCache" class="com.adtec.ms.msagent.cache.AgentCache" depends-on="curatorClient,healthTestCache">
+        <constructor-arg index="0" ref="curatorClient"/>
+    </bean>
+    
+     <!-- 参与者实例健康探测节点数据缓存 -->
+    <!-- HealthTestCache -->
+    <bean id="healthTestCache" class="com.adtec.ms.msagent.cache.HealthTestCache">
+    </bean>
+    
+    <!-- 资产库系统参数数据缓存 -->
+    <!-- MsmallParaCache -->
+    <bean id="msmallParaCache" class="com.adtec.ms.msagent.cache.MsmallParaCache">
+    </bean>
+    
+    <!-- 流控监控节点缓存 -->
+    <!-- MonitorFlowControlCache -->
+    <bean id="monitorFlowControlCache" class="com.adtec.ms.msagent.cache.MonitorFlowControlCache">
+    </bean>
+
+    <!-- ZooKeeper -->
+    <!-- 重连策略 -->
+    <bean id="retryPolicy" class="org.apache.curator.retry.ExponentialBackoffRetry">
+        <constructor-arg index="0" value="${zookeeper.retry.interval}"/> <!-- 间隔时间基数 -->
+        <constructor-arg index="1" value="${zookeeper.retry.times}"/><!--
+			最多重试几次 -->
+    </bean>
+
+    <bean id="curatorClient" class="org.apache.curator.framework.CuratorFrameworkFactory"
+          factory-method="newClient" init-method="start">
+        <constructor-arg index="0" value="${ZKSERVERLIST}"/>   <!-- 从环境变量中取ZKSERVERLIST -->
+        <constructor-arg index="1" value="${zookeeper.session.timeout}"/><!--
+			sessionTimeoutMs会话超时时间，单位为毫秒。默认是60000ms -->
+        <constructor-arg index="2"
+                         value="${zookeeper.connection.timeout}"/><!-- connectionTimeoutMs连接创建超时时间，单位毫秒，默认15000ms -->
+        <constructor-arg index="3" ref="retryPolicy"/>
+    </bean>
+
+    <!-- Spring Task -->
+    <!-- 迁移Redis中/LOG的服务质量数据到/HIST中 -->
+    <bean id="serviceLogTask" class="com.adtec.ms.msagent.task.ServiceLogTask"/>
+    <!-- 服务质量数据抽取，校验服务降级 -->
+    <bean id="serviceDemotion" class="com.adtec.ms.msagent.task.ServiceDemotion"/>
+    <!-- 检查参与者实例数的权重 -->
+    <bean id="chkWeight" class="com.adtec.ms.msagent.task.ChkPartInstWeight"/>
+    <!-- 写本地缓存自动任务 -->
+    <bean id="writeCache" class="com.adtec.ms.msagent.task.WriteCache"/>
+    <!-- 写参与者实例权重值本地缓存自动任务 -->
+    <bean id="savePartInstWeight" class="com.adtec.ms.msagent.task.SavePartInstWeight"/>
+
+    <!-- 自动任务 -->
+    <task:scheduler id="taskScheduler" pool-size="10"/>
+    <task:scheduled-tasks scheduler="taskScheduler">
+        <task:scheduled ref="serviceLogTask" method="doIt"
+                        fixed-rate='#{T(com.adtec.ms.msagent.util.TimeInterval).getMsTime("${serviceLogTask.interval}")}'/>
+        <task:scheduled ref="serviceDemotion" method="doIt"
+                        fixed-rate='#{T(com.adtec.ms.msagent.util.TimeInterval).getMsTime("${serviceDemotion.interval}")}'/>
+        <task:scheduled ref="chkWeight" method="doIt"
+                        fixed-rate='#{T(com.adtec.ms.msagent.util.TimeInterval).getMsTime("${chkWeight.interval}")}'/>
+        <task:scheduled ref="writeCache" method="doIt"
+                        fixed-rate='#{T(com.adtec.ms.msagent.util.TimeInterval).getMsTime("${writeCache.interval}")}'/>
+        <task:scheduled ref="savePartInstWeight" method="doIt"
+                        fixed-rate='#{T(com.adtec.ms.msagent.util.TimeInterval).getMsTime("${savePartInstWeight.interval}")}'/>                
+                        
+    </task:scheduled-tasks>
+</beans>

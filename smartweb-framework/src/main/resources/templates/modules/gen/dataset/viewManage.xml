@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template>
+	<name>viewManage</name>
+	<filePath>${jspPath}/${modlName}/${subModlName}</filePath>
+	<fileName>${procClssName}Manage.jsp</fileName>
+	<content><![CDATA[
+${JSPBEG}
+
+<div class="">
+	<div ravo="rainbow_fx_layout" class="row clearfix">
+		<div class="col-md-12 column">
+			<div ravo="rainbow_fx_layout_tab" class="tabbable" id="myTabs">
+				<!-- Only required for left/right tabs -->
+				<ul class="nav nav-tabs" data-toggle="tabs">
+					<li class="active">
+						<a id="${procClssName}List" href="#tab_list" data-toggle="tab" contenteditable="false"
+						title="${funcNameAbbr}列表" aria-expanded="true" url="${r"${ctx}"}/${urlPrefix}/${procClssName}List">
+							${funcNameAbbr}列表
+						</a>
+					</li>
+					<li>
+						<a href="#tab_add" data-toggle="tab" aria-expanded="false" url="${r"${ctx}"}/${urlPrefix}/${procClssName}Add">
+							${funcNameAbbr}添加
+						</a>
+					</li>
+					<li>
+						<a href="#tab_update" data-toggle="tab" aria-expanded="false" url="${r"${ctx}"}/${urlPrefix}/${procClssName}Update">
+							${funcNameAbbr}更新
+						</a>
+					</li>
+					<li>
+						<a href="#tab_detail" data-toggle="tab" aria-expanded="false" url="${r"${ctx}"}/${urlPrefix}/${procClssName}Detail">
+							${funcNameAbbr}详情
+						</a>
+					</li>
+				</ul>
+				<div class="tab-content">
+					<div class="tab-pane active" id="tab_list">
+						<iframe id="iframe_list" name="iframe_list" src="" style="width: 100%; height: 1000px; border: 0px;"
+						scrolling="no" frameborder="no">
+						</iframe>
+					</div>
+					<div id="tab_add" class="tab-pane">
+						<iframe id="iframe_add" name="iframe_add" src="" style="width: 100%; height: 1300px; border: 0px;" scrolling="no" frameborder="no"></iframe>
+					</div>
+					<div id="tab_update" class="tab-pane">
+						<iframe id="iframe_update" name="iframe_update" src="" style="width: 100%; height: 1300px; border: 0px;" scrolling="no" frameborder="no"></iframe>
+					</div>
+					<div id="tab_detail" class="tab-pane">
+						<iframe id="iframe_detail" name="iframe_detail" src="" style="width: 100%; height: 1300px; border: 0px;" scrolling="no" frameborder="no"></iframe>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--customer_code_beg-->
+
+<!--customer_code_end-->
+
+${JSPEND}
+]]>
+	</content>
+</template>

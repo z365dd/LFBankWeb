@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.adtec</groupId>
+    <artifactId>smartweb-all</artifactId>
+    <version>3.1.0.RELEASE</version>
+    <packaging>pom</packaging>
+    <name>smartweb-all</name>
+
+    <modules>
+        <!-- <module>../smartweb</module> -->
+        <module>../smartweb-framework</module>
+        <module>../smartweb-ctrl</module>
+        <!-- fbat批量元件 -->
+<!--        <module>../smartweb-fbat</module>-->
+        <!-- fccs清算元件 -->
+<!--        <module>../smartweb-fccs</module>-->
+        <!-- fchk对账元件 -->
+<!--        <module>../smartweb-fchk</module>-->
+        <module>../smartweb-fsvr</module>
+        <!--通用缴费模型-->
+<!--        <module>../smartweb-gpm</module>-->
+	    <module>../smartweb-pay</module>
+        <module>../smartweb-para</module>
+        <module>../smartweb-prod</module>
+        <module>../smartweb-sign</module>
+        <module>../smartweb-tseq</module>
+        <!-- 批量模型-->
+<!--        <module>../smartweb-mbat</module>-->
+        <!-- 银税模型 -->
+<!--        <module>../smartweb-mbtax</module>-->
+        <!-- 住建部公积金模型 -->
+<!--        <module>../smartweb-mhur</module>-->
+        <!-- 预售房监管模型 -->
+<!--        <module>../smartweb-pshs</module>-->
+    </modules>
+
+</project>

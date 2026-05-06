@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context" xmlns:jdbc="http://www.springframework.org/schema/jdbc"  
+    xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:util="http://www.springframework.org/schema/util" xmlns:task="http://www.springframework.org/schema/task" xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+        http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
+        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.3.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd
+        http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.3.xsd"
+    default-lazy-init="true">
+    
+    <description>Spring Configuration</description>
+    
+    <!-- 加载配置文件 -->
+    <bean
+            class="com.adtec.framework.common.util.ParamUtil">
+        <property
+                name="locations"> <!-- PropertyPlaceholderConfigurer类中有个locations属性，接收的是一个数组，即我们可以在下面配好多个properties文件 -->
+            <array>
+                <value>file:${JAVAWORKDIR}/config/agent.properties</value>
+				<value>file:${JAVAWORKDIR}/config/config.properties</value>
+                <value>file:${JAVAWORKDIR}/config/cacheagent.properties</value>
+            </array>
+        </property>
+    </bean>
+
+    <!-- 使用Annotation自动注册Bean，解决事物失效问题：在主容器中不扫描@Controller注解，在SpringMvc中只扫描@Controller注解。  -->
+    <context:component-scan base-package="com.adtec.framework,com.adtec.sys,com.adtec.scheduler"><!-- base-package 如果多个，用“,”分隔 -->
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+    
+    <!-- 由Spring管理MyBatis的事务 -->   
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+    
+    <!-- 配置 Annotation 驱动，扫描@Transactional注解的类定义事务  -->
+    <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
+    <!-- MyBatis end -->
+    
+    <!-- 配置 JSR303 Bean Validator 定义 -->
+    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
+
+    <!-- JSON处理器-->
+    <bean id="jsonServiceFactory" class="com.adtec.framework.impl.uiengine.engineservice.JsonServiceFactoryImpl" />
+    
+    <!-- 缓存配置 -->
+    <bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+        <property name="configLocation" value="classpath:${ehcache.configFile}" />
+    </bean>
+    
+    <!-- 加解密实现类 -->
+    <bean name="securityService" class="com.adtec.framework.security.impl.SecurityServiceImpl"/>
+    
+    <!-- spring-task等同于轻量级的quartz,计划任务配置，用 @Service @Lazy(false)标注类，用@Scheduled(cron = "0 0 2 * * ?")标注方法 -->
+    <task:executor id="executor" pool-size="10"/>
+    <task:scheduler id="scheduler" pool-size="10"/>
+    <task:annotation-driven scheduler="scheduler" executor="executor" proxy-target-class="true"/>
+    
+    <!-- 数据源配置, 使用 BoneCP 数据库连接池 -->
+<!--     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">  -->
+        <!-- 数据源驱动类可不写，Druid默认会自动根据URL识别DriverClass -->
+<!--        <property name="driverClassName" value="${datasource.driverClassName}" /> -->
+        
+        <!-- 基本属性 url、user、password -->
+<!--        <property name="url" value="${datasource.url}" />
+        <property name="username" value="${datasource.username}" />
+        <property name="password" value="${datasource.password}" /> -->
+        
+        <!-- 配置初始化大小、最小、最大 -->
+<!--        <property name="initialSize" value="${jdbc.pool.init}" />
+        <property name="minIdle" value="${jdbc.pool.minIdle}" /> 
+        <property name="maxActive" value="${jdbc.pool.maxActive}" /> -->
+        
+        <!-- 配置获取连接等待超时的时间 -->
+<!--        <property name="maxWait" value="180000" /> -->
+        
+        <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+<!--        <property name="timeBetweenEvictionRunsMillis" value="60000" />-->
+        
+        <!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+<!--        <property name="minEvictableIdleTimeMillis" value="300000" /> 
+         
+        <property name="validationQuery" value="${jdbc.testSql}" />-->
+        <!-- 指明连接是否被空闲连接回收器(如果有)进行检验.如果检测失败,则连接将被从池中去除. -->
+<!--        <property name="testWhileIdle" value="true" />-->
+        <!-- 指明是否在从池中取出连接前进行检验,如果检验失败,则从池中去除连接并尝试取出另一个. -->
+<!--        <property name="testOnBorrow" value="true" />-->
+        <!-- 否在归还到池中前进行检验 -->
+<!--        <property name="testOnReturn" value="false" />-->
+        <!-- 如果我们想检测内存泄露的连接，可以设置为true -->
+<!--        <property name="removeAbandoned" value="true" />-->
+        <!-- 调用dataSource.getConnection开始到丢弃检测到泄露连接的时间（seconds） -->
+<!--        <property name="removeAbandonedTimeout" value="300" />-->
+        <!-- 如果想用log记录丢弃的连接，可以设置为true。当设置为true时，调用dataSource.getConnection 时会记录一个堆栈追踪，并且被打印出来当连接没有返回的时候 -->
+<!--        <property name="logAbandoned" value="true" />-->
+        
+        <!-- 打开PSCache，并且指定每个连接上PSCache的大小（Oracle使用）-->
+<!--        <property name="poolPreparedStatements" value="true" />-->
+<!--        <property name="maxPoolPreparedStatementPerConnectionSize" value="20" />-->
+        
+        <!-- 配置监控统计拦截的filters -->
+<!--        <property name="filters" value="config" />-->
+        <!-- 解密密码必须要配置的项 -->
+<!--        <property name="connectionProperties" value="config.decrypt=true;config.decrypt.key=${datasource.publickey}" />-->
+<!--    </bean> -->
+     
+    <!-- smartweb集群部署时使用的zookeeper -->
+    <bean id="smCuratorClient" class="com.adtec.sys.common.cluster.SmCuratorClient" factory-method="initCuratorClient"/>
+    
+     <!-- redis集群配置 -->
+    <!-- 连接池配置 -->
+    <bean id="smJedisPoolConfig" class="com.adtec.sys.common.cluster.SmJedisPoolConfig"/>
+    <bean id="smJedisCluster" class="com.adtec.sys.common.cluster.JedisClusterFactory">
+        <property name="genericObjectPoolConfig" ref="smJedisPoolConfig" />  
+    </bean>
+    
+    <!-- 数据源配置, 使用应用服务器(tomcat、weblogic)的数据库连接池-->
+    <jee:jndi-lookup id="dataSource" jndi-name="smartwebdb" resource-ref="true" /> 
+
+    <!-- 数据源配置, 不使用连接池 
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${jdbc.driver}" />
+        <property name="url" value="${jdbc.url}" />
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>-->
+
+    <!-- smartweb javaConfig配置 -->
+    <bean id="smartwebConfig" class="com.adtec.framework.config.SmartwebConfig" />
+        
+    <!-- Spring中引入其他配置文件 -->
+    <import resource="classpath*:spring-context-*.xml" />
+
+</beans>

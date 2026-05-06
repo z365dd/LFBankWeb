@@ -1,0 +1,135 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.adtec</groupId>
+		<artifactId>smartweb-all</artifactId>
+		<version>3.1.0.RELEASE</version>
+		<relativePath>../smartweb-all/pom.xml</relativePath>
+	</parent>
+	<artifactId>smartweb-tseq</artifactId>
+	<packaging>war</packaging>
+	<name>smartweb-tseq</name>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.7</maven.compiler.source>
+		<maven.compiler.target>1.7</maven.compiler.target>
+		<httpclient.version>4.5.13</httpclient.version>
+		<SeqJavaUtil-version>1.0.1</SeqJavaUtil-version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.adtec.starring_comp</groupId>
+			<artifactId>starring-fs-api</artifactId>
+			<version>1.0.1</version>
+		</dependency>
+
+		<!-- 如果smartweb-test的中有对smartweb-framework的依赖,这个配置是不可少的 -->
+		<dependency>
+			<groupId>com.adtec</groupId>
+			<artifactId>smartweb-framework</artifactId>
+			<version>3.1.0.RELEASE</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- 子工程war包依赖,下面的这个配置，在集成其他war的时候，是必不可少的 -->
+		<dependency>
+			<groupId>com.adtec</groupId>
+			<artifactId>smartweb-framework</artifactId>
+			<version>3.1.0.RELEASE</version>
+			<type>war</type>
+		</dependency>
+		
+		<dependency>
+			 <groupId>org.apache.httpcomponents</groupId>
+  			 <artifactId>httpclient</artifactId>
+  			  <version>${httpclient.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.adtec.starring</groupId>
+			<artifactId>Starring-PubFunc-SeqJavaUtil</artifactId>
+			<version>${SeqJavaUtil-version}</version>
+		</dependency>
+	</dependencies>
+
+	<!-- 被合并的子web项目中，如果没有web.xml，则需要在pom.xml中声明 -->
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<packagingExcludes>WEB-INF/web.xml</packagingExcludes>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+					<overlays>
+						<overlay>
+							<!-- <groupId>com.adtec</groupId> <artifactId>smartweb-framework</artifactId> -->
+						</overlay>
+					</overlays>
+				</configuration>
+			</plugin>
+
+			<!-- web项目时同时打包为war和jar文件, package jar on package -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>compile</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- install jar to local repository -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-install-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>install</phase>
+						<goals>
+							<goal>install-file</goal>
+						</goals>
+						<configuration>
+							<packaging>jar</packaging>
+							<artifactId>${project.artifactId}</artifactId>
+							<groupId>${project.groupId}</groupId>
+							<version>${project.version}</version>
+							<file>
+								${project.build.directory}/${project.artifactId}-${project.version}.jar
+							</file>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- deploy jar to remote repository -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>deploy</phase>
+						<goals>
+							<goal>deploy-file</goal>
+						</goals>
+						<configuration>
+							<packaging>jar</packaging>
+							<generatePom>true</generatePom>
+							<url>${project.distributionManagement.repository.url}</url>
+							<artifactId>${project.artifactId}</artifactId>
+							<groupId>${project.groupId}</groupId>
+							<version>${project.version}</version>
+							<file>${project.build.directory}/${project.artifactId}-${project.version}.jar</file>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

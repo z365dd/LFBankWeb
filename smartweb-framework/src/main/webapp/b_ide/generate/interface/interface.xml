@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interfaces desc="all interfaces" name="">
+	<interface id="tableName_query" url="in/core/eleAcctInfoQuery">
+		<snd>
+			<field ID="1" c_label="体彩账户号" a_data_name="tcNo" a_data_type="varchar" a_data_length="64"  />
+		</snd>
+		<rcv>
+			<field ID="1" c_label="体彩账户号" a_data_name="tcNo" a_data_type="varchar" a_data_length="64"  />
+			<field ID="2" c_label="账户名" a_data_name="tcName" a_data_type="varchar" a_data_length="64" a_data_dictionary="" />
+			<field ID="3" c_label="账户余额" a_data_name="tcAmt" a_data_type="varchar" a_data_length="64" a_data_dictionary="" />
+			<field ID="3" c_label="充值金额" a_data_name="czAmt" a_data_type="varchar" a_data_length="64" a_data_dictionary="" />
+		</rcv>
+	</interface>
+	
+	<interface id="tableName_add" url="in/core/eleAcctInfoAdd">
+		<snd>
+			<field ID="1" c_label="体彩账户号" a_data_name="tcNo" a_data_type="varchar" a_data_length="64"  />
+			<field ID="2" c_label="账户名" a_data_name="tcName" a_data_type="varchar" a_data_length="64" a_data_dictionary="" />
+			<field ID="3" c_label="账户余额" a_data_name="tcAmt" a_data_type="varchar" a_data_length="64" a_data_dictionary="" />
+			<field ID="3" c_label="充值金额" a_data_name="czAmt" a_data_type="varchar" a_data_length="64" a_data_dictionary="" />
+		</snd>
+	</interface>
+	
+</interfaces>
+
+

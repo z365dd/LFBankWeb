@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans desc="总的接口文件" name="">
+	<rcv>
+		<field name="eleAcctInfoQuery.xml" desc="某某业务查询接口" type="query" comment="Q"/>
+		<field name="eleAcctInfoAdd.xml" desc="某某业务新增接口" type="form" comment="A"/>
+		<field name="eleAcctInfoDelete.xml" desc="某某业务删除接口" type="form" comment="D"/>
+		<field name="eleAcctInfoUpdate.xml" desc="某某业务修改接口" type="form" comment="U"/>
+		<field name="userQuery.xml" desc="某某业务查询接口" type="query" comment="Q"/>
+		<field name="userAdd.xml" desc="某某业务新增接口" type="form" comment="A"/>
+		<field name="userDelete.xml" desc="某某业务删除接口" type="form" comment="D"/>
+		<field name="userUpdate.xml" desc="某某业务修改接口" type="form" comment="U"/>
+	</rcv>
+</trans>
+
+

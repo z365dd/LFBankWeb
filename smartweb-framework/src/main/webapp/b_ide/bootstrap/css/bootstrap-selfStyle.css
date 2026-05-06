@@ -1,0 +1,7 @@
+@CHARSET "UTF-8";
+.rainbow-select{
+	/* background:red; */
+	border-color: purple !important;
+    box-shadow: 0 0px 4px purple inset, 0 0 8px purple !important;
+    outline: 0 none;
+ }

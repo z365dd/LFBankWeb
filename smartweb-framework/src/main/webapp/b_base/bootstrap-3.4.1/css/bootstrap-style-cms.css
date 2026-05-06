@@ -1,0 +1,211 @@
+/*-----------------------------------------------------------------------------------*/
+/*	作者：PANGZHE
+	时间：20160803
+	简介：CMS内(Content Manage System)容管理系统样式.CSS
+/*-----------------------------------------------------------------------------------*/
+html { font-size: 1em; }
+
+/* 1084 */
+body{
+	overflow-x:hidden;
+	/* background-color: rgba(0, 0, 0, 0); */
+	background-color:#fff;
+	color: #666;
+    font-family: "Open Sans",sans-serif;
+}
+/* 1606  */
+.container-fluid {
+  padding-right: 5px;
+  padding-left: 5px;
+}
+/* 1612 */
+.row {
+  margin-right: -5px;
+  margin-left: -5px;
+}
+
+/* 1616  */
+.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+  padding-right: 5px;
+  padding-left: 5px;
+}
+
+.form-group {
+    margin-bottom: 5px;
+}
+
+#user-nav {
+	/* background: #0c385d; */
+	background: rgba(0, 0, 0, 0);
+	min-height: 55px;
+	border-radius: 0px;
+	border: none;
+	margin-bottom: 0px;
+	-webkit-box-shadow: 0 2px 4px rgba(1, 1, 1, 0.15);
+	-moz-box-shadow: 0 2px 4px rgba(1, 1, 1, 0.15);
+	box-shadow: 0 2px 4px rgba(1, 1, 1, 0.15);
+	-webkit-transition: all 0.4s ease-in-out;
+	-moz-transition: all 0.4s ease-in-out;
+	-ms-transition: all 0.4s ease-in-out;
+	-o-transition: all 0.4s ease-in-out;
+	transition: all 0.4s ease-in-out;
+}
+
+/* 选择的时候的样式 */
+#user-nav .navbar-nav>li>a:hover, #user-nav .navbar-nav>li>a:focus,
+	.menu ul li a.current {
+	color: #4cadf8;
+	background-color: #394665;
+	/* TODO */
+	/* border: 1px solid #4cadf8; */
+}
+
+#user-nav .navbar-nav>li>a {
+	/* padding-bottom: 20px; */
+	color: #757984;
+	font-weight: 700;
+	/* text-transform: uppercase; */
+	-moz-transition: background-color .5s ease;
+	-o-transition: background-color .5s ease;
+	-webkit-transition: background-color .5s ease;
+	transition: background-color .5s ease;
+}
+
+#user-nav .navbar-nav>.open>a, #user-nav .navbar-nav>.open>a:hover,
+	#user-nav .navbar-nav>.open>a:focus {
+	color: #4cadf8;
+	font-weight: 700;
+}
+
+#user-nav>.navbar-header>.navbar-brand {
+	float: left;
+	padding: 10px 15px;
+	font-size: 18px;
+	line-height: 38px;
+	margin-right: 40px;
+}
+
+#user-nav>.navbar-header>.navbar-brand>img {
+	width: 100%;
+	height: 38px;
+	float: left;
+	margin-right: 5px;
+}
+
+#user-nav .navbar-nav>li>a {
+	padding-bottom: 15px;
+	padding-top: 15px;
+}
+
+#user-nav>.navbar-collapse>.nav .open>a, #user-nav>.navbar-collapse>.nav .open>a:hover,
+	#user-nav>.navbar-collapse>.nav .open>a:focus {
+	background-color: #17191a;
+	border-color: #fff;
+}
+
+#user-ml {
+	
+	/* background-color: #6f93b3; */
+	background:rgba(19, 104, 163, 0.75) none repeat scroll 0 0;
+	/* border-color:#2e323e; */
+	border-radius:0px;
+	margin-bottom: 0px;
+	border-width:0;
+	max-height:50px;
+	min-height:50px;
+	margin-bottom:0px;
+	z-index: 900;
+	
+}
+#user-ml>.collapse>ul>a{
+}
+
+#user-ml>.collapse>ul>li>span>input{
+	background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    border: medium none;
+    box-shadow: none;
+    color: #6f93b3;
+    font-size: 12px;
+    outline: 0 none;
+    padding: 5px 28px 5px 18px;
+}
+
+#user-ml>.collapse>ul>li>span{
+	background: #E6E6E6  none repeat scroll 0 0;
+    /* border: 1px solid #202027; */
+    border-radius: 30px;
+    display: inline-block;
+    line-height: 30px;
+    margin-right: 20px;
+    position: relative;
+    transition: background 0.3s ease-in-out 0s;
+}
+
+#user-ml>.collapse>ul>li>span:hover{
+	background: #fff none repeat scroll 0 0;
+}
+
+.page-head-line{
+	border-bottom: 2px solid #f0677c;
+    color: #f0677c;
+    font-size: 20px;
+    font-weight: 900;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    text-transform: uppercase;
+}
+
+ label.radio input[type="radio"], label.radio-inline input[type="radio"], label.checkbox input[type="checkbox"], label.checkbox-inline input[type="checkbox"] {
+    position: relative;
+} 
+
+.vertical-center{ 
+	position: absolute; 
+	top: 50%; 
+	-webkit-transform: translateY(-50%);
+	-moz-transform: translateY(-50%); 
+	-ms-transform: translateY(-50%); 
+	-o-transform: translateY(-50%); 
+	transform: translateY(-50%);
+}
+
+.center {
+  width: 300px;
+  height: 200px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background:#000;
+  color:#fff;
+  margin: 20px auto;
+
+
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-pack: center;
+  -webkit-box-align: center;
+  
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-pack: center;
+  -moz-box-align: center;
+  
+  display: -o-box;
+  -o-box-orient: horizontal;
+  -o-box-pack: center;
+  -o-box-align: center;
+  
+  display: -ms-box;
+  -ms-box-orient: horizontal;
+  -ms-box-pack: center;
+  -ms-box-align: center;
+  
+  display: box;
+  box-orient: horizontal;
+  box-pack: center;
+  box-align: center;
+}
+
+.panel-heading {
+    padding: 2px 15px;
+}
+

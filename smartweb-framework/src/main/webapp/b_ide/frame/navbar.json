@@ -1,0 +1,35 @@
+{"total":5,"rows":[
+	{"name":"样式","group":"导航栏","editor":{
+		"type":"combobox",
+		"options":{
+			   "data":
+		   		[{"value":"","text":"默认"},
+		   		{"value":"navbar-static-top","text":"静止顶部"},
+		   		{"value":"navbar-fixed-top","text":"固定顶部"},
+		   		{"value":"navbar-fixed-bottom","text":"固定底部"}],
+       	   		"panelHeight":"auto"
+		}
+	}},
+	{"name":"两侧内补","group":"导航栏","editor":{
+		"type":"combobox",
+		"options":{
+			   "data":
+		   		[{"value":"","text":"默认"},
+		   		{"value":"container","text":"固定宽度"},
+		   		{"value":"container-fluid","text":"百分比宽度"}],
+       	   		"panelHeight":"auto"
+		}
+	}},
+	{"name":"反转","group":"导航栏","editor":{
+		"type":"combobox",
+		"options":{
+			   "data":
+		   		[{"value":"","text":"默认"},
+		   		{"value":"navbar-inverse","text":"黑白"}],
+       	   		"panelHeight":"auto"
+		}
+	}},
+	{"name":"文本","value":"","group":"导航栏-眉","editor":"text"},
+	{"name":"品牌图标","value":"","group":"导航栏-眉","editor":"text"},
+	{"name":"标签","value":"","group":"导航栏-内容","editor":"textarea"}
+]}

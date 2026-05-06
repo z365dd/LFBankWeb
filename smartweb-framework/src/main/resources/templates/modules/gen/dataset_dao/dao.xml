@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template>
+	<name>dao</name>
+	<filePath>src/main/java/${packName}/${modlName}/${subModlName}/dao</filePath>
+	<fileName>${ProcClssName}Dao.java</fileName>
+	<content><![CDATA[
+/**
+* 系统名称: SmartWeb平台
+* 模块名称: ${modlName}<#if subModlName != "">-${subModlName}</#if>持久化模块
+* 功能描述: ${funcName}数据库操作
+* 类 名 称  : ${ProcClssName}Dao.java
+* 软件版权: 北京先进数通信息技术股份公司
+* 开发人员: chenyl <br>
+* 开发时间: ${functionVersion}<br>
+* 系统版本: V1.0.0<br>
+** 修改记录:
+* 修改日期                            修改人员          修改说明 <br>
+* ========     ======  ============================================
+* 
+* ========     ======  ============================================
+*/
+package ${packName}.${modlName}<#if subModlName != "">.${subModlName}</#if>.dao;
+
+import java.lang.Exception;
+import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
+import com.adtec.framework.impl.db.session.DBSessionFactory;
+import com.adtec.framework.interfaces.db.session.IDBSession;
+import com.adtec.sys.common.dao.IBaseDao;
+import com.adtec.framework.exception.BaseException;
+import com.adtec.framework.exception.SysErr;
+import com.adtec.framework.common.util.DataUtil;
+import com.google.common.collect.Lists;
+import ${packName}.${modlName}<#if subModlName != "">.${subModlName}</#if>.entity.${ProcClssName}DO;
+
+/**
+ * ${funcName}Dao接口
+ * @author ${funcCrtr}
+ * @version ${functionVersion}
+ */
+@Component
+public class ${ProcClssName}Dao implements IBaseDao<${ProcClssName}DO>{
+	/**
+	 * 日志对象
+	 */
+	protected Logger log = LoggerFactory.getLogger(getClass());
+	/*表名称*/
+    public static final String TABLE_NAME = "${table.name}";
+    
+	/**
+	 * 获取单条数据
+	<#list table.pkList as c>
+	 * @param ${c}
+	</#list>
+	 * @return
+	 */
+	public ${ProcClssName}DO get(<#if table.pkList?? && (table.pkList?size>0)><#assign count=0><#list table.columnList as c><#if c.mainKeyFlg?? && c.mainKeyFlg == "1"><#assign count=count+1>${c.simpleJavaTp} ${c.simpleJavaField}<#if (count<table.pkList?size)>, </#if></#if></#list><#else>String id</#if> ) {
+		${ProcClssName}DO obj = new ${ProcClssName}DO();
+		<#if table.pkList?? && (table.pkList?size>0)>
+		<#list table.pkList as c>
+	 	obj.set${c?cap_first}(${c});
+		</#list>
+		<#else>
+		obj.setId(id);
+		</#if>
+		return get(obj);
+	}
+	
+	/**
+	 * 获取单条数据
+	 * @param obj
+	 * @return
+	 */
+	@Override
+    public ${ProcClssName}DO get(${ProcClssName}DO obj) {
+        StringBuilder sql = new StringBuilder();
+        List<Object> parameters = Lists.newArrayList();
+        sql.append("select * from ").append(TABLE_NAME).append(getWhereSql(obj, parameters));       
+        ${ProcClssName}DO rs = null;
+        IDBSession session = DBSessionFactory.getSession();
+        try {
+            rs = session.getObjectByList(sql.toString(), ${ProcClssName}DO.class, parameters);
+        } catch (Exception e) {
+            log.error("获取${funcName}异常", e);
+			throw new BaseException(SysErr.E_MESSAGE, "获取${funcName}失败！");
+        }
+        return rs;
+    }
+	
+	/**
+	 * 插入数据
+	 * @param obj
+	 * @return
+	 */
+	@Override
+	public int insert(${ProcClssName}DO obj){
+		int rs = 0;
+		IDBSession session = DBSessionFactory.getSession();
+		try {
+			List<String> ignoreFields = obj.getIgnoreFields();
+			<#list table.columnList as c>
+				<#if c.insertFlg?? && c.insertFlg != "1"  && c.isNotBaseField>
+			ignoreFields.add("${c.simpleJavaField}");
+				</#if>
+				<#if c.qryFlg?? && c.qryFlg == "1" && c.qryTp == "between">
+			ignoreFields.add("${c.simpleJavaField}Begin");
+			ignoreFields.add("${c.simpleJavaField}End");
+				</#if>
+			</#list>
+			rs = session.saveObject(TABLE_NAME, obj, ignoreFields);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.error("新增${funcName}交易异常", e);
+            throw new BaseException(SysErr.E_MESSAGE, "新增${funcName}交易失败！");
+		}
+		return rs;
+	}
+	
+	/**
+	 * 更新数据
+	 * @param obj
+	 * @return
+	 */
+	@Override
+	public int update(${ProcClssName}DO obj){
+		int rs = 0;
+		IDBSession session = DBSessionFactory.getSession();
+		try {
+			List<String> ignoreFields = obj.getIgnoreFields();
+			<#list table.columnList as c>
+				<#if c.editFlg?? && c.editFlg != "1" && c.isNotBaseField>
+			ignoreFields.add("${c.simpleJavaField}");
+				</#if>
+				<#if c.qryFlg?? && c.qryFlg == "1" && c.qryTp == "between">
+			ignoreFields.add("${c.simpleJavaField}Begin");
+			ignoreFields.add("${c.simpleJavaField}End");
+				</#if>
+			</#list>
+			List<String> matchFields = obj.getMatchFields();
+			rs = session.updateObject(TABLE_NAME, obj, matchFields, ignoreFields);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.error("修改${funcName}异常", e);
+            throw new BaseException(SysErr.E_MESSAGE, "修改${funcName}失败！");
+		}
+		return rs;
+	}
+	
+	/**
+	 * 根据主键删除数据
+	<#list table.pkList as c>
+	 * @param ${c}
+	</#list>
+	 * @see public int delete(T entity)
+	 * @return
+	 */
+	public int delete(<#if table.pkList?? && (table.pkList?size>0)><#assign count=0><#list table.columnList as c><#if c.mainKeyFlg?? && c.mainKeyFlg == "1"><#assign count=count+1>${c.simpleJavaTp} ${c.simpleJavaField}<#if (count<table.pkList?size)>, </#if></#if></#list><#else>String id</#if> ){
+		${ProcClssName}DO obj = new ${ProcClssName}DO();
+		<#if table.pkList?? && (table.pkList?size>0)>
+		<#list table.pkList as c>
+	 	obj.set${c?cap_first}(${c});
+		</#list>
+		<#else>
+		obj.setId(id);
+		</#if>
+		return delete(obj);
+	}
+	
+	/**
+	 * 删除数据（一般为逻辑删除，更新del_flg字段为1）
+	 * @param obj
+	 * @return
+	 */
+	@Override
+	public int delete(${ProcClssName}DO obj){
+		int rs = 0;
+		IDBSession session = DBSessionFactory.getSession();
+		try {
+			List<Object> parameters = Lists.newArrayList();
+			<#if table.delFlgExists>
+			String sql = "update " + TABLE_NAME + " set del_flg='"+${ProcClssName}DO.DEL_FLAG_DELETE+"' "+getWhereSql(obj, parameters);
+			<#else>				
+			String sql = "DELETE FROM " + TABLE_NAME + getWhereSql(obj, parameters);
+			</#if>
+			rs = session.executeByList(sql, parameters);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.error("删除交易异常", e);
+			throw new BaseException(SysErr.E_MESSAGE, "删除交易失败！");
+		}
+		return rs;
+	}
+	
+	/**
+	 * 数据库多笔查询，不分页
+	 * @param obj 数据对象DO
+	 * @return List返回集合
+	 */
+	@Override
+	public List<${ProcClssName}DO> list(${ProcClssName}DO obj) {
+		// TODO Auto-generated method stub
+		return list(obj, 0, 0);
+	}
+	
+	/**
+	 * 数据库多笔查询，支持分页
+	 * @param obj 数据对象DO
+	 * @param start 起始位置
+	 * @param limit 每页数量
+	 * @return List返回集合
+	 */
+	@Override
+	public List<${ProcClssName}DO> list(${ProcClssName}DO obj, int start, int limit) {
+		log.debug("${ProcClssName}DO=" + obj.toString());
+		log.debug("start=" + start);
+		log.debug("limit=" + limit);
+		List<${ProcClssName}DO> list = null;
+		try {
+			List<Object> parameters = Lists.newArrayList();
+			StringBuilder sql = new StringBuilder();
+        	sql.append("select * from ").append(TABLE_NAME).append(getWhereSql(obj, parameters));
+        	<#if table.uptTimeExists>
+        	sql.append(" order by upt_time desc");
+        	</#if>
+        	IDBSession session = DBSessionFactory.getSession();
+			if (limit <= 0) {
+				list = session.getObjectListByList(sql.toString(), ${ProcClssName}DO.class, parameters);
+			} else {
+				list = session.getObjectListByListForPage(sql.toString(), ${ProcClssName}DO.class, start, limit, parameters);
+			}
+		} catch (Exception e) {
+			log.error("列表查询异常", e);
+			throw new BaseException(SysErr.E_MESSAGE, "列表查询失败！");
+		}
+		return list;
+	}
+	
+	/**
+	 * 数据库多笔查询，支持分页
+	 * @param start 起始位置
+	 * @param limit 每页数量
+	 * @param param 查询参数
+	 * @return List返回集合
+	 */
+	@Override
+	public List<${ProcClssName}DO> list(int start, int limit, Object... param) {
+		return null;
+	}
+	
+	/**
+	 * 根据数据对象产生对应的数据查询总记录
+	 * @param obj 数据对象DO
+	 * @return total
+	 */
+	public int getTotal(${ProcClssName}DO obj) {
+		log.debug("${ProcClssName}DO=" + obj);
+		List<Object> parameters = Lists.newArrayList();
+        StringBuilder sql = new StringBuilder();
+        sql.append("select * from ").append(TABLE_NAME).append(getWhereSql(obj, parameters));
+        String countSql = "select count(1) from (" + sql.toString() + ") ct";
+        IDBSession session = DBSessionFactory.getSession();       
+		int total = 0;
+        try {
+        	total = session.accountByList(countSql, parameters);
+        } catch (Exception e) {
+        	log.error("总记录数查询"+TABLE_NAME+"异常", e);
+        	throw new BaseException(SysErr.E_MESSAGE, "总记录数查询"+TABLE_NAME+"失败！");
+        }
+        return total;
+	}
+	
+	/**
+	 * 根据数据对象产生对应的查询SQL
+	 * @param obj 数据对象DO
+	 * @return SQL
+	 */
+	public String getWhereSql(${ProcClssName}DO obj, List<Object> parameters) {
+		if(null==parameters){
+        	parameters = Lists.newArrayList();
+        }
+		StringBuffer sql = new StringBuffer(" where 1=1 ");
+		<#list table.columnList as c>
+				<#if (c.qryFlg?? && c.qryFlg == "1") || (c.mainKeyFlg?? && c.mainKeyFlg == "1") || (table.parentExists && table.parentTabOutKey == c.name)>
+					<#if c.qryTp ?? && c.qryTp == 'between'>
+		if (<#if c.simpleJavaTp!="String">null!=obj.get${c.simpleJavaField?cap_first}Begin() &&</#if> !DataUtil.isNullStr(<#if c.simpleJavaTp!="String">""+</#if>obj.get${c.simpleJavaField?cap_first}Begin()) && DataUtil.isNullStr(<#if c.simpleJavaTp!="String">""+</#if>obj.get${c.simpleJavaField?cap_first}End())) {
+            sql.append(" AND ${c.name} >= ? ");
+            parameters.add(obj.get${c.simpleJavaField?cap_first}Begin());
+        }
+        else if (<#if c.simpleJavaTp!="String">null!=obj.get${c.simpleJavaField?cap_first}End() &&</#if> DataUtil.isNullStr(<#if c.simpleJavaTp!="String">""+</#if>obj.get${c.simpleJavaField?cap_first}Begin()) && !DataUtil.isNullStr(<#if c.simpleJavaTp!="String">""+</#if>obj.get${c.simpleJavaField?cap_first}End())) {
+            sql.append(" AND ${c.name} <= ? ");
+            parameters.add(obj.get${c.simpleJavaField?cap_first}End());
+        }
+		else if (<#if c.simpleJavaTp!="String">null!=obj.get${c.simpleJavaField?cap_first}Begin() && null!=obj.get${c.simpleJavaField?cap_first}Begin() &&</#if> !DataUtil.isNullStr(<#if c.simpleJavaTp!="String">""+</#if>obj.get${c.simpleJavaField?cap_first}Begin()) && !DataUtil.isNullStr(<#if c.simpleJavaTp!="String">""+</#if>obj.get${c.simpleJavaField?cap_first}End())) {
+			sql.append(" AND (${c.name} BETWEEN ? AND ?) ");
+            parameters.add(obj.get${c.simpleJavaField?cap_first}Begin());
+            parameters.add(obj.get${c.simpleJavaField?cap_first}End());
+		}
+					<#elseif c.qryTp ?? && c.qryTp == 'like'>
+		if (<#if c.simpleJavaTp!="String">null!=obj.get${c.simpleJavaField?cap_first}() &&</#if> !DataUtil.isNullStr(<#if c.simpleJavaTp!="String">""+</#if>obj.get${c.simpleJavaField?cap_first}())) {
+			sql.append(" AND ${c.name} LIKE ? ");
+			parameters.add("%"+obj.get${c.simpleJavaField?cap_first}()+"%");
+		}
+					<#elseif c.qryTp ?? && c.qryTp == 'left_like'>
+		if (<#if c.simpleJavaTp!="String">null!=obj.get${c.simpleJavaField?cap_first}() &&</#if> !DataUtil.isNullStr(<#if c.simpleJavaTp!="String">""+</#if>obj.get${c.simpleJavaField?cap_first}())) {
+			sql.append(" AND ${c.name} LIKE ? ");
+			parameters.add("%"+obj.get${c.simpleJavaField?cap_first}());
+		}
+					<#elseif c.qryTp ?? && c.qryTp == 'right_like'>
+		if (<#if c.simpleJavaTp!="String">null!=obj.get${c.simpleJavaField?cap_first}() &&</#if> !DataUtil.isNullStr(<#if c.simpleJavaTp!="String">""+</#if>obj.get${c.simpleJavaField?cap_first}())) {
+			sql.append(" AND ${c.name} LIKE ? ");
+			parameters.add(obj.get${c.simpleJavaField?cap_first}()+"%");
+		}
+					<#else>
+		if (<#if c.simpleJavaTp!="String">null!=obj.get${c.simpleJavaField?cap_first}() &&</#if> !DataUtil.isNullStr(<#if c.simpleJavaTp!="String">""+</#if>obj.get${c.simpleJavaField?cap_first}())) {
+		    sql.append(" AND ${c.name} ${c.qryTp} ? ");
+		    parameters.add(obj.get${c.simpleJavaField?cap_first}());
+		}
+					</#if>
+				</#if>
+			</#list>
+		<#if table.delFlgExists>
+		sql.append(" AND del_flg=? ");
+		parameters.add(${ProcClssName}DO.DEL_FLAG_NORMAL);
+		</#if>			
+		return sql.toString();
+	}
+	
+}]]>
+	</content>
+</template>

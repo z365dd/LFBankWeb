@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template>
+	<name>service</name>
+	<filePath>src/main/java/${packName}/${modlName}/${subModlName}/service</filePath>
+	<fileName>${ProcClssName}Service.java</fileName>
+	<content><![CDATA[
+/**
+* 系统名称: SmartWeb平台
+* 模块名称: ${modlName}<#if subModlName != "">-${subModlName}</#if>服务模块
+* 功能描述: ${funcName}服务提供类
+* 类 名 称  : ${ProcClssName}Service.java
+* 软件版权: 北京先进数通信息技术股份公司
+* 开发人员: chenyl <br>
+* 开发时间: ${functionVersion}<br>
+* 系统版本: V1.0.0<br>
+** 修改记录:
+* 修改日期                            修改人员          修改说明 <br>
+* ========     ======  ============================================
+* 
+* ========     ======  ============================================
+*/
+package ${packName}.${modlName}<#if subModlName != "">.${subModlName}</#if>.service;
+
+import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import com.adtec.framework.common.util.DataUtil;
+import com.adtec.framework.exception.BaseException;
+import com.adtec.framework.exception.SysErr;
+<#if hasFileSelect??>
+import java.sql.SQLException;
+import com.adtec.framework.common.constant.Constants;
+import com.adtec.framework.impl.db.session.DBSessionFactory;
+import com.adtec.framework.interfaces.db.session.IDBSession;
+import com.adtec.sys.modules.sys.entity.FileDO;
+import com.adtec.sys.modules.sys.service.FileService;
+</#if>
+import ${packName}.${modlName}<#if subModlName != "">.${subModlName}</#if>.entity.${ProcClssName}DO;
+import ${packName}.${modlName}<#if subModlName != "">.${subModlName}</#if>.dao.${ProcClssName}Dao;
+
+/**
+ * ${ProcClssName}Service
+ * @author ${funcCrtr}
+ * @version ${functionVersion}
+ */
+@Service
+@Transactional(readOnly = true)
+public class ${ProcClssName}Service {
+	private static Logger log = LoggerFactory.getLogger(${ProcClssName}Service.class);
+	
+	@Autowired
+	private ${ProcClssName}Dao ${procClssName}Dao;
+	
+	/**
+	 * 获取单条数据
+	<#list table.pkList as c>
+	 * @param ${c}
+	</#list>
+	 * @return
+	 */
+	public ${ProcClssName}DO get(<#if table.pkList?? && (table.pkList?size>0)><#assign count=0><#list table.columnList as c><#if c.mainKeyFlg?? && c.mainKeyFlg == "1"><#assign count=count+1>${c.simpleJavaTp} ${c.simpleJavaField}<#if (count<table.pkList?size)>,</#if></#if></#list><#else>String id</#if>) {
+		return ${procClssName}Dao.get(<#if table.pkList?? && (table.pkList?size>0)><#assign count=0><#list table.columnList as c><#if c.mainKeyFlg?? && c.mainKeyFlg == "1"><#assign count=count+1>${c.simpleJavaField}<#if (count<table.pkList?size)>,</#if></#if></#list><#else>id</#if>);
+	}
+	
+	/**
+	 * 获取单条数据
+	 * @param obj
+	 * @return
+	 */
+	public ${ProcClssName}DO get(${ProcClssName}DO obj) {
+		return ${procClssName}Dao.get(obj);
+	}
+	
+	/**
+	 * 插入数据
+	 * @param obj
+	 * @return
+	 */
+	public void insert(${ProcClssName}DO obj){
+	<#if hasFileSelect??>
+		IDBSession session = DBSessionFactory.getSession();
+		try {
+			session.beginTransaction();
+			obj.preInsert();
+			<#list table.columnList as c>
+				<#if c.isList?? && c.isList == "1">
+					<#if c.dpyTp == "fileselect">
+			// 保存${c.javaFieldId}的图片
+			String ${c.javaFieldId} = obj.get${c.simpleJavaField?cap_first}();
+			FileDO fileDO = fileService.saveImageByUpload(${c.javaFieldId}, Constants.PUB_RES);
+			obj.set${c.simpleJavaField?cap_first}(fileDO.getId());		
+					</#if>
+				</#if>
+			</#list>
+			// 新增数据
+			${procClssName}Dao.insert(obj);
+			session.endTransaction();
+		}catch (Exception e) {
+			try {
+				session.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			log.error("新增信息异常：" + e.getMessage());
+			throw new BaseException(SysErr.E_MESSAGE, "新增信息失败！"+e.getMessage());
+		}	
+	<#else>
+		obj.preInsert();
+		${procClssName}Dao.insert(obj);
+	</#if>
+	}
+	
+	/**
+	 * 更新数据
+	 * @param obj
+	 * @return
+	 */
+	public void update(${ProcClssName}DO obj){
+		if(null==obj){
+			throw new BaseException(SysErr.E_DEFAULT, "更新数据对象不能空！");
+		}
+		<#if table.pkList?? && (table.pkList?size>0)>
+			<#list table.columnList as c>
+				<#if c.mainKeyFlg?? && c.mainKeyFlg == "1">
+				<#if c.simpleJavaTp=="String">
+		if (DataUtil.isNullStr(obj.get${c.simpleJavaField?cap_first}())) {
+			throw new BaseException(SysErr.E_IN_NULL, "${c.simpleJavaField}");
+		}		
+				<#else>
+		if (null==obj.get${c.simpleJavaField?cap_first}()) {
+			throw new BaseException(SysErr.E_IN_NULL, "${c.simpleJavaField}");
+		}		
+				</#if>
+				</#if>
+			</#list>
+		<#else>
+		if (DataUtil.isNullStr(obj.getId())) {
+			throw new BaseException(SysErr.E_IN_NULL, "id");
+		}
+		</#if>
+
+		<#if hasFileSelect??>
+		IDBSession session = DBSessionFactory.getSession();
+		try {
+			session.beginTransaction();
+			// 获取数据库保存的数据
+			${ProcClssName}DO qryDO = ${procClssName}Dao.get(<#if table.pkList?? && (table.pkList?size>0)><#assign count=0><#list table.columnList as c><#if c.mainKeyFlg?? && c.mainKeyFlg == "1"><#assign count=count+1>obj.get${c.simpleJavaField?cap_first}()<#if (count<table.pkList?size)>,</#if></#if></#list><#else>obj.getId()</#if>);
+			// 更新产品数据
+			obj.setCrtr(qryDO.getCrtr());
+			obj.setCrtTime(qryDO.getCrtTime());
+			obj.preUpdate();
+			
+			<#list table.columnList as c>
+				<#if c.isList?? && c.isList == "1">
+					<#if c.dpyTp == "fileselect">
+			// 获取旧的${c.javaFieldId}图片id
+			String old${c.simpleJavaField?cap_first} = qryDO.get${c.simpleJavaField?cap_first}();
+			// 保存新图片
+			String ${c.javaFieldId} = obj.get${c.simpleJavaField?cap_first}();
+			FileDO file${c.simpleJavaField?cap_first}DO = fileService.saveImageByUpload(${c.javaFieldId}, Constants.PUB_RES);
+			obj.set${c.simpleJavaField?cap_first}(fileDO.getId());
+			//删除旧的${c.javaFieldId}图片
+			FileDO oldFile${c.simpleJavaField?cap_first}DO = new FileDO();
+			oldFile${c.simpleJavaField?cap_first}DO.setId(old${c.simpleJavaField?cap_first});
+			fileService.delete(oldFile${c.simpleJavaField?cap_first}DO);	
+					</#if>
+				</#if>
+			</#list>
+			// 更新数据
+			${procClssName}Dao.update(obj);
+			session.endTransaction();
+		}catch (Exception e) {
+			try {
+				session.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			log.error("更新信息异常：" + e.getMessage());
+			throw new BaseException(SysErr.E_MESSAGE, "更新信息失败！"+e.getMessage());
+		}
+		<#else>
+		// 获取数据库保存的数据
+		${ProcClssName}DO qryDO = ${procClssName}Dao.get(<#if table.pkList?? && (table.pkList?size>0)><#assign count=0><#list table.columnList as c><#if c.mainKeyFlg?? && c.mainKeyFlg == "1"><#assign count=count+1>obj.get${c.simpleJavaField?cap_first}()<#if (count<table.pkList?size)>,</#if></#if></#list><#else>obj.getId()</#if>);		
+		// 更新产品数据
+		obj.setCrtr(qryDO.getCrtr());
+		obj.setCrtTime(qryDO.getCrtTime());
+		obj.preUpdate();		
+		${procClssName}Dao.update(obj);		
+		</#if>
+	}
+	
+	/**
+	 * 根据主键删除数据
+	<#list table.pkList as c>
+	 * @param ${c}
+	</#list>
+	 * @see public int delete(T entity)
+	 * @return
+	 */
+	public void delete(<#if table.pkList?? && (table.pkList?size>0)><#assign count=0><#list table.columnList as c><#if c.mainKeyFlg?? && c.mainKeyFlg == "1"><#assign count=count+1>${c.simpleJavaTp} ${c.simpleJavaField}<#if (count<table.pkList?size)>,</#if></#if></#list><#else>String id</#if>){
+		<#if table.pkList?? && (table.pkList?size>0)>
+			<#list table.columnList as c>
+				<#if c.mainKeyFlg?? && c.mainKeyFlg == "1">
+				<#if c.simpleJavaTp=="String">
+		if (DataUtil.isNullStr(${c.simpleJavaField})) {
+			throw new BaseException(SysErr.E_IN_NULL, "${c.simpleJavaField}");
+		}		
+				<#else>
+		if (null==${c.simpleJavaField}) {
+			throw new BaseException(SysErr.E_IN_NULL, "${c.simpleJavaField}");
+		}		
+				</#if>
+				</#if>
+			</#list>
+		<#else>
+		if (DataUtil.isNullStr(id)) {
+			throw new BaseException(SysErr.E_IN_NULL, "id");
+		}
+		</#if>
+		
+		<#if hasFileSelect??>
+		IDBSession session = DBSessionFactory.getSession();
+		try{
+			session.beginTransaction();
+			// 获取数据库保存的数据
+			${ProcClssName}DO qryDO = ${procClssName}Dao.get(<#if table.pkList?? && (table.pkList?size>0)><#assign count=0><#list table.columnList as c><#if c.mainKeyFlg?? && c.mainKeyFlg == "1"><#assign count=count+1>${c.simpleJavaField}<#if (count<table.pkList?size)>,</#if></#if></#list><#else>id</#if>);
+			<#list table.columnList as c>
+				<#if c.isList?? && c.isList == "1">
+					<#if c.dpyTp == "fileselect">
+			// 获取旧的${c.javaFieldId}图片id
+			String old${c.simpleJavaField?cap_first} = qryDO.get${c.simpleJavaField?cap_first}();
+			//删除旧的${c.javaFieldId}图片
+			FileDO oldFile${c.simpleJavaField?cap_first}DO = new FileDO();
+			oldFile${c.simpleJavaField?cap_first}DO.setId(old${c.simpleJavaField?cap_first});
+			fileService.delete(oldFile${c.simpleJavaField?cap_first}DO);	
+					</#if>
+				</#if>
+			</#list>
+			//删除数据
+			${procClssName}Dao.delete(<#if table.pkList?? && (table.pkList?size>0)><#assign count=0><#list table.columnList as c><#if c.mainKeyFlg?? && c.mainKeyFlg == "1"><#assign count=count+1>${c.simpleJavaField}<#if (count<table.pkList?size)>,</#if></#if></#list><#else>id</#if>);
+			session.endTransaction();
+		}catch(Exception e){
+			try {
+				session.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			log.error("删除交易失败", e);
+			throw new BaseException(SysErr.E_MESSAGE, "删除交易失败！"+e.getMessage());
+		}		
+		<#else>
+		try{
+			${procClssName}Dao.delete(<#if table.pkList?? && (table.pkList?size>0)><#assign count=0><#list table.columnList as c><#if c.mainKeyFlg?? && c.mainKeyFlg == "1"><#assign count=count+1>${c.simpleJavaField}<#if (count<table.pkList?size)>,</#if></#if></#list><#else>id</#if>);
+		}catch(Exception e){
+			log.error("删除交易失败", e);
+			throw new BaseException(SysErr.E_MESSAGE, "删除交易失败！"+e.getMessage());
+		}		
+		</#if>
+	}
+	
+	/**
+	 * 删除数据（一般为逻辑删除，更新del_flg字段为1）
+	 * @param obj
+	 * @return
+	 */
+	public void delete(${ProcClssName}DO obj){
+		if(null==obj){
+			throw new BaseException(SysErr.E_DEFAULT, "删除数据对象不能空！");
+		}
+		<#if table.pkList?? && (table.pkList?size>0)>
+			<#list table.columnList as c>
+				<#if c.mainKeyFlg?? && c.mainKeyFlg == "1">
+				<#if c.simpleJavaTp=="String">
+		if (DataUtil.isNullStr(obj.get${c.simpleJavaField?cap_first}())) {
+			throw new BaseException(SysErr.E_IN_NULL, "${c.simpleJavaField}");
+		}		
+				<#else>
+		if (null==obj.get${c.simpleJavaField?cap_first}()) {
+			throw new BaseException(SysErr.E_IN_NULL, "${c.simpleJavaField}");
+		}		
+				</#if>
+				</#if>
+			</#list>
+		<#else>
+		if (DataUtil.isNullStr(obj.getId())) {
+			throw new BaseException(SysErr.E_IN_NULL, "id");
+		}
+		</#if>
+		
+		<#if hasFileSelect??>
+		IDBSession session = DBSessionFactory.getSession();
+		try{
+			session.beginTransaction();
+			// 获取数据库保存的数据
+			${ProcClssName}DO qryDO = ${procClssName}Dao.get(obj);
+			<#list table.columnList as c>
+				<#if c.isList?? && c.isList == "1">
+					<#if c.dpyTp == "fileselect">
+			// 获取旧的${c.javaFieldId}图片id
+			String old${c.simpleJavaField?cap_first} = qryDO.get${c.simpleJavaField?cap_first}();
+			//删除旧的${c.javaFieldId}图片
+			FileDO oldFile${c.simpleJavaField?cap_first}DO = new FileDO();
+			oldFile${c.simpleJavaField?cap_first}DO.setId(old${c.simpleJavaField?cap_first});
+			fileService.delete(oldFile${c.simpleJavaField?cap_first}DO);	
+					</#if>
+				</#if>
+			</#list>
+			//删除数据
+			${procClssName}Dao.delete(obj);
+			session.endTransaction();
+		}catch(Exception e){
+			try {
+				session.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			log.error("删除交易失败", e);
+			throw new BaseException(SysErr.E_MESSAGE, "删除交易失败！"+e.getMessage());
+		}		
+		<#else>		
+		try{
+			${procClssName}Dao.delete(obj);
+		}catch(Exception e){
+			log.error("删除交易失败", e);
+			throw new BaseException(SysErr.E_MESSAGE, "删除交易失败！"+e.getMessage());
+		}
+		</#if>
+	}
+	
+	/**
+	 * 数据库多笔查询
+	 * @param obj 数据对象DO
+	 * @return List返回集合
+	 */
+	public List<${ProcClssName}DO> list(${ProcClssName}DO obj) {
+		return ${procClssName}Dao.list(obj);
+	}
+	
+	/**
+	 * 数据库多笔查询，支持分页
+	 * @param obj 数据对象DO
+	 * @param start 起始位置
+	 * @param limit 每页数量
+	 * @return List返回集合
+	 */
+	public List<${ProcClssName}DO> list(${ProcClssName}DO obj, int start, int limit) {
+		return ${procClssName}Dao.list(obj, start, limit);
+	}
+	
+	/**
+	 * 数据库多笔查询，支持分页
+	 * @param start 起始位置
+	 * @param limit 每页数量
+	 * @param param 查询参数
+	 * @return List返回集合
+	 */
+	public List<${ProcClssName}DO> list(int start, int limit, Object... param) {
+		return ${procClssName}Dao.list(start, limit, param);
+	}
+	
+	/**
+	 * 根据数据对象产生对应的数据查询总记录
+	 * @param obj 数据对象DO
+	 * @return total
+	 */
+	public int getTotal(${ProcClssName}DO obj) {
+		return ${procClssName}Dao.getTotal(obj);
+	}
+}]]>
+	</content>
+</template>

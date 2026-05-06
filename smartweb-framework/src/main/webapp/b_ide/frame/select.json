@@ -1,0 +1,212 @@
+{"total":7,"rows":[
+    {"name":"左占","value":"","group":"控件属性","editor":{
+		"type":"combobox",
+		"options":{
+			   "data":
+		   		[{"value":"col-sm-1 control-label","text":"col-sm-1"},
+		   		{"value":"col-sm-2 control-label","text":"col-sm-2"},
+		   		{"value":"col-sm-3 control-label","text":"col-sm-3"},
+		   		{"value":"col-sm-4 control-label","text":"col-sm-4"},
+		   		{"value":"col-sm-5 control-label","text":"col-sm-5"},
+		   		{"value":"col-sm-6 control-label","text":"col-sm-6"},
+		   		{"value":"col-sm-7 control-label","text":"col-sm-7"},
+		   		{"value":"col-sm-8 control-label","text":"col-sm-8"},
+		   		{"value":"col-sm-9 control-label","text":"col-sm-9"},
+		   		{"value":"col-sm-10 control-label","text":"col-sm-10"},
+		   		{"value":"col-sm-11 control-label","text":"col-sm-11"},
+		   		{"value":"col-sm-12 control-label","text":"col-sm-12"}],
+		   		"panelHeight":"auto"
+		}
+	}},
+	{"name":"右占","value":"","group":"控件属性","editor": {
+		"type":"combobox",
+		"options":{
+			   "data":
+		   		[{"value":"btn-group col-sm-1","text":"col-sm-1"},
+		   		{"value":"btn-group col-sm-2","text":"col-sm-2"},
+		   		{"value":"btn-group col-sm-3","text":"col-sm-3"},
+		   		{"value":"btn-group col-sm-4","text":"col-sm-4"},
+		   		{"value":"btn-group col-sm-5","text":"col-sm-5"},
+		   		{"value":"btn-group col-sm-6","text":"col-sm-6"},
+		   		{"value":"btn-group col-sm-7","text":"col-sm-7"},
+		   		{"value":"btn-group col-sm-8","text":"col-sm-8"},
+		   		{"value":"btn-group col-sm-9","text":"col-sm-9"},
+		   		{"value":"btn-group col-sm-10","text":"col-sm-10"},
+		   		{"value":"btn-group col-sm-11","text":"col-sm-11"},
+		   		{"value":"btn-group col-sm-12","text":"col-sm-12"}],
+		   		"panelHeight":"auto"
+		}
+	}},
+	{"name":"尺寸","value":"","group":"控件属性","editor": {
+		"type":"combobox",
+		"options":{
+			   "data":
+		   		[{"value":"","text":"默认"},
+		   		{"value":"form-group-lg","text":"大"},
+		   		{"value":"form-group-sm","text":"小"}],
+		   		"panelHeight":"auto"
+		}
+	}},
+	{"name":"隐藏label","value":"","group":"控件属性","editor":{
+		"type":"checkbox",
+		 "options":{
+             "on":"visibility:hidden",
+             "off":"visibility:visible"
+         }
+	}},
+	
+	{"name":"id","value":"","group":"下拉列表属性","editor":"text"},
+	{"name":"name","value":"","group":"下拉列表属性","editor":{
+		"type":"combobox",
+			"options":{
+				   "data":
+			   		[],
+			   		"panelHeight":"auto"
+			}
+	}},
+	{"name":"style","value":"","group":"下拉列表属性"},
+	{"name":"内容","value":"","group":"下拉列表属性","editor":"textarea"},
+	{"name":"支持多选","value":"false","group":"下拉列表属性","editor":{
+		"type":"checkbox",
+		 "options":{
+             "on":"true",
+             "off":"false"
+         }
+	}},
+	{"name":"optgroup可点击","value":"false","group":"下拉列表属性","editor":{
+		"type":"checkbox",
+		 "options":{
+             "on":"true",
+             "off":"false"
+         }
+	}},
+	{"name":"optgroup可折叠","value":"false","group":"下拉列表属性","editor":{
+		"type":"checkbox",
+		 "options":{
+             "on":"true",
+             "off":"false"
+         }
+	}},
+	{"name":"无选项时下拉禁用","value":"false","group":"下拉列表属性","editor":{
+		"type":"checkbox",
+		 "options":{
+             "on":"true",
+             "off":"false"
+         }
+	}},
+	{"name":"设置无选项下拉禁用时显示文本","value":"","group":"下拉列表属性","editor":"text"},
+	{"name":"下拉是否靠右","value":"false","group":"下拉列表属性","editor":{
+		"type":"checkbox",
+		 "options":{
+             "on":"true",
+             "off":"false"
+         }
+	}},
+	{"name":"下拉是否朝上","value":"false","group":"下拉列表属性","editor":{
+		"type":"checkbox",
+		 "options":{
+             "on":"true",
+             "off":"false"
+         }
+	}},
+	{"name":"设置下拉最大高度","value":"","group":"下拉列表属性","editor":"text"},
+	{"name":"buttonClass","value":"btn btn-default","group":"下拉列表属性","editor":"text"},
+	{"name":"是否继承原始下拉中的button","value":"false","group":"下拉列表属性","editor":{
+		"type":"checkbox",
+		 "options":{
+             "on":"true",
+             "off":"false"
+         }
+	}},
+	{"name":"buttonWidth","value":"auto","group":"下拉列表属性","editor":"text"},
+	{"name":"没有选择选项时显示的文本","value":"None selected","group":"下拉列表属性","editor":"text"},
+	{"name":"选项超过numberDisplayed个数时显示的文本","value":"selected","group":"下拉列表属性","editor":"text"},
+	{"name":"所有选项选中时显示的文本","value":"All selected","group":"下拉列表属性","editor":"text"},
+	{"name":"选中选项可视的最大个数","value":"3","group":"下拉列表属性","editor":"text"},
+	{"name":"选中选项的分割符","value":",","group":"下拉列表属性","editor":"text"},
+	{"name":"应用于选中选项的类(class)","value":"active","group":"下拉列表属性","editor":"text"},
+	{"name":"启用选择所有选项","value":"false","group":"下拉列表属性","editor":{
+		"type":"checkbox",
+		 "options":{
+             "on":"true",
+             "off":"false"
+         }
+	}},
+	{"name":"选择所有选项总是只选择可视的选项","value":"true","group":"下拉列表属性","editor":{
+		"type":"checkbox",
+		 "options":{
+             "on":"true",
+             "off":"false"
+         }
+	}},
+	{"name":"设置selectAll的文本内容","value":"Select all","group":"下拉列表属性","editor":"text"},
+	{"name":"设置selectAll的value","value":"multiselect-all","group":"下拉列表属性","editor":"text"},
+	{"name":"设置selectAll的name","value":"false","group":"下拉列表属性","editor":"text"},
+	{"name":"是否显示selectAll的个数","value":"false","group":"下拉列表属性","editor":{
+		"type":"checkbox",
+		 "options":{
+             "on":"true",
+             "off":"false"
+         }
+	}},
+	{"name":"启用过滤器","value":"false","group":"下拉列表属性","editor":{
+		"type":"checkbox",
+		 "options":{
+             "on":"true",
+             "off":"false"
+         }
+	}},
+	{"name":"过滤器不分大小写","value":"false","group":"下拉列表属性","editor":{
+		"type":"checkbox",
+		 "options":{
+             "on":"true",
+             "off":"false"
+         }
+	}},
+	{"name":"全值过滤","value":"false","group":"下拉列表属性","editor":{
+		"type":"checkbox",
+		 "options":{
+             "on":"true",
+             "off":"false"
+         }
+	}},
+	{"name":"过滤依据","value":"text","group":"下拉列表属性","editor":{
+		"type":"combobox",
+			"options":{
+				   "data":
+			   	[{"value":"text","text":"文本"},
+		   		{"value":"value","text":"值"},
+		   		{"value":"both","text":"文本和值"}],
+		   		"panelHeight":"auto"
+			}
+	}},
+	{"name":"过滤输入框placeholder","value":"Search","group":"下拉列表属性","editor":"text"},
+	
+	{"name":"校验","value":"","group":"下拉列表属性","editor":{
+		"type":"combobox",
+			"options":{
+				   "data":
+			   		[],
+			   		"panelHeight":"auto"
+			}
+	}},
+	{"name":"校验不为空","value":"","group":"新校验","effect":"check","editor":"text"},
+	{"name":"绑定后台structs文件","value":"","group":"设置structs路径","editor":"text"},
+	{"name":"url","value":"","group":"远程数据请求","editor":"textarea"},
+	{"name":"是否同步加载","value":"","group":"远程数据请求","editor":{
+		"type":"checkbox",
+		 "options":{
+             "on":"true",
+             "off":"false"
+         }
+	}},
+	{"name":"是否显示空选项","value":"","group":"远程数据请求","editor":{
+		"type":"checkbox",
+		 "options":{
+             "on":"true",
+             "off":"false"
+         }
+	}},
+	{"name":"空选项标签值","value":"","group":"远程数据请求","editor":"text"},
+	{"name":"空选项值","value":"","group":"远程数据请求","editor":"text"}
+]}

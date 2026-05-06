@@ -1,0 +1,5 @@
+{"total":12,"rows":[
+	{"value":"null","text":"无"},
+	{"value":"notEmpty#message=选项不能为空!","text":"不为空"},
+	{"value":"choice#min=2#max=3#message=请选择2-3项!","text":"选项"}
+]}

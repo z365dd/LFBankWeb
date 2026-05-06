@@ -1,0 +1,201 @@
+/**
+* 系统名称: SmartWeb平台
+* 模块名称: comp.prod-oper拦截器模块
+* 功能描述: 签约规则参数控制类
+* 类 名 称  : TPipSignRuleController.java
+* 软件版权: 北京先进数通信息技术股份公司
+* 开发人员: chenyl <br>
+* 开发时间: 20200309<br>
+* 系统版本: V1.0.0<br>
+** 修改记录:
+* 修改日期                            修改人员          修改说明 <br>
+* ========     ======  ============================================
+* 
+* ========     ======  ============================================
+*/
+package com.adtec.prod.oper.web;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.adtec.prod.oper.dao.TPipSignRuleLimDao;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.adtec.prod.oper.entity.TPipRuleRelatDO;
+import com.adtec.prod.oper.entity.TPipSignRuleDO;
+import com.adtec.prod.oper.entity.TPipSignRuleLimDO;
+import com.adtec.prod.oper.service.TPipRuleRelatService;
+import com.adtec.prod.oper.service.TPipSignRuleService;
+import com.adtec.framework.impl.share.dataset.CommonDatasets;
+import com.adtec.framework.impl.share.dataset.DatasetService;
+import com.adtec.framework.interfaces.share.DatasetColumnType;
+import com.adtec.framework.interfaces.share.IDataset;
+import com.adtec.framework.interfaces.share.IDatasets;
+import com.adtec.framework.exception.BaseException;
+import com.adtec.framework.common.util.DataUtil;
+import com.adtec.sys.common.web.BaseController;
+import com.adtec.framework.exception.SysErr;
+import com.alibaba.fastjson.JSON;
+
+/**
+ * 签约规则参数Controller
+ * @author linyx
+ * @version 20200309
+ */
+@Controller
+@RequestMapping(value = "${adminPath}/prod/oper/tPipSignRule")
+public class TPipSignRuleController extends BaseController {
+
+	@Autowired
+	private TPipRuleRelatService tPipRuleRelatService;
+	@Autowired
+	private TPipSignRuleService tPipSignRuleService;
+	@Autowired
+	private TPipSignRuleLimDao tPipSignRuleLimDao;
+	
+	/*首页页面路径*/
+	private String PATH = "starring/prod/oper/tPipSignRule";
+
+	/**
+	 * 进入管理页面
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequiresPermissions("user")
+	@RequestMapping(value ={"manage", ""})
+	public String index(HttpServletRequest request, HttpServletResponse response) {
+		return PATH+"Manage";
+	}
+	
+	/**
+	 * 列表页面
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequiresPermissions("user")
+	@RequestMapping(value ={"tPipSignRuleList"})
+	public String tPipSignRuleList(HttpServletRequest request, HttpServletResponse response) {
+		return PATH+"List";
+	}
+	
+	/**
+	 * 进入修改页面
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequiresPermissions("user")
+	@RequestMapping(value ={"tPipSignRuleUpdate"})
+	public String tPipSignRuleUpdate(HttpServletRequest request, HttpServletResponse response) {
+		return PATH+"UpdateForm";
+	}
+	
+	/**
+	* 列表查询
+	* @param request
+	* @param response
+	*/
+	@ResponseBody
+	@RequiresPermissions("user")
+	@RequestMapping(value="list")
+	public void list(HttpServletRequest request, HttpServletResponse response) {
+		IDataset resDs = DatasetService.getInstace().getDataset();
+		IDataset reqDs = DatasetService.getInstace().getDataset(request);
+		TPipRuleRelatDO obj = DatasetService.getInstace().getObject(reqDs, TPipRuleRelatDO.class);
+		int start = reqDs.getInt("start");
+		int limit = reqDs.getInt("pageSize");
+		String busiNo =  reqDs.getString("busiNo");
+		obj.setBusiNo(busiNo);
+		obj.setRuleTp("401");
+		
+		List<TPipRuleRelatDO> list = tPipRuleRelatService.list(obj, start, limit);
+		int total = tPipRuleRelatService.getTotal(obj);
+		resDs = DatasetService.getInstace().getDataset(list,TPipRuleRelatDO.class);
+		chgDict(resDs, true);
+		resDs.setTotalCount(total);
+		setResponseDataset(request, response, resDs, SysErr.E_SUCCESS, "列表查询交易成功！");
+	} 
+	/**
+	* 修改交易
+	* @param request
+	* @param response
+	*/
+	@ResponseBody
+	@RequiresPermissions("user")
+	@RequestMapping(value="update")
+	public void update(HttpServletRequest request, HttpServletResponse response) {
+		IDataset resDs = DatasetService.getInstace().getDataset();
+		IDataset reqDs = DatasetService.getInstace().getDataset(request);
+		TPipSignRuleDO obj = DatasetService.getInstace().getObject(reqDs, TPipSignRuleDO.class);
+		String limParaList = reqDs.getString("limParaList");
+		List<TPipSignRuleLimDO> tPipSignRuleLimDOList = JSON.parseArray(limParaList, TPipSignRuleLimDO.class);
+		
+		int rs = tPipSignRuleService.update(obj,tPipSignRuleLimDOList);
+		if(rs > 0){
+			setResponseDataset(request, response, resDs, SysErr.E_SUCCESS, "更新交易成功！");
+		}else{
+			setResponseDataset(request, response, resDs, SysErr.E_DEFAULT, "更新交易失败！");
+		}
+	}
+
+	/**
+	* 明细查询
+	* @param request
+	* @param response
+	*/
+	@ResponseBody
+	@RequestMapping(value="get")
+	public void get(HttpServletRequest request, HttpServletResponse response) {
+		IDataset reqDs = DatasetService.getInstace().getDataset(request);
+		String ruleId = reqDs.getString("ruleId");
+		if (DataUtil.isNullStr(ruleId)) {
+			throw new BaseException(SysErr.E_IN_NULL, "输入项[ruleId]不能空！");
+		}		
+
+		//获取签约规则表DO
+		TPipSignRuleDO obj = tPipSignRuleService.get(ruleId);
+		IDataset TPipSignRuleDOResDs = DatasetService.getInstace().getDataset(obj, TPipSignRuleDO.class);
+		chgDict(TPipSignRuleDOResDs, false);
+		TPipSignRuleDOResDs.setDatasetName("TPipSignRuleDO");
+
+		//获取签约限额表DO列表
+		TPipSignRuleLimDO tPipSignRuleLimDO = new TPipSignRuleLimDO();
+		tPipSignRuleLimDO.setRuleId(ruleId);
+		List<TPipSignRuleLimDO> tPipSignRuleLimDOList = tPipSignRuleLimDao.list(tPipSignRuleLimDO, 0, 0);
+		IDataset TPipSignRuleLimDOResDs = DatasetService.getInstace().getDataset(tPipSignRuleLimDOList, TPipSignRuleLimDO.class);
+		TPipSignRuleLimDOResDs.setDatasetName("TPipSignRuleLimDOList");
+		
+		//赋值到IDatasets
+		IDatasets resDss = new CommonDatasets();
+		resDss.putDataset(TPipSignRuleDOResDs);
+		resDss.putDataset(TPipSignRuleLimDOResDs);
+		setResponseDataset(request, response, resDss, SysErr.E_SUCCESS, "明细查询交易成功！");
+	}	
+	/**
+	 * 数字字典转换
+	 * @param ds
+	 * @param isAction
+	 */
+	private void chgDict(IDataset ds, boolean isAction){
+		if(null==ds){
+			return;
+		}
+		ds.addColumn("ACTION", DatasetColumnType.DS_STRING);
+		ds.beforeFirst();
+		while(ds.hasNext()){
+			ds.next();
+			/*添加相关操作按钮*/
+			StringBuffer action = new StringBuffer();
+			action.append("	<a href=\"JavaScript:void(0);\" onClick=\"update('" + ds.getString("ruleId") + "')\" >配置</a>");
+			ds.updateString("ACTION", action.toString());
+		}
+	}
+}

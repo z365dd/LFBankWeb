@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template>
+	<name>viewAddFormCst</name>
+	<filePath>${jspPath}/${modlName}/${subModlName}</filePath>
+	<fileName>${procClssName}AddForm.cst</fileName>
+	<content><![CDATA[
+
+]]>
+	</content>
+</template>

@@ -1,0 +1,151 @@
+<config>
+	<enabled>true</enabled>	<!-- 修改为true，表示开启ckfinder功能。默认是false -->
+	<baseDir></baseDir>		<!-- 服务直接路径，图片上传后的位置,是物理地址的全路径而不是相对路径，最后加“/” -->
+	<baseURL>/userfiles/</baseURL>	<!-- 配置ckfinder处理的资源路径，上传文件存放的路径 -->
+	<licenseKey></licenseKey>
+	<licenseName></licenseName>
+	<imgWidth>1920</imgWidth>
+	<imgHeight>1080</imgHeight>
+	<imgQuality>100</imgQuality>
+	<uriEncoding>UTF-8</uriEncoding>
+	<forceASCII>false</forceASCII>
+	<disallowUnsafeCharacters>false</disallowUnsafeCharacters>
+	<userRoleSessionVar>CKFinder_UserRole</userRoleSessionVar>
+	<checkDoubleExtension>true</checkDoubleExtension>
+	<checkSizeAfterScaling>true</checkSizeAfterScaling>
+	<secureImageUploads>true</secureImageUploads>
+	<htmlExtensions>html,htm,xml,js</htmlExtensions>
+	<hideFolders>
+		<folder>.*</folder>
+		<folder>CVS</folder>
+	</hideFolders>
+	<hideFiles>
+		<file>.*</file>
+	</hideFiles>
+	<defaultResourceTypes></defaultResourceTypes>
+	<types>
+		<type name="docs">
+			<url>%BASE_URL%docs/</url>
+			<directory>%BASE_DIR%docs</directory>
+			<maxSize>50M</maxSize>
+			<allowedExtensions>csv,doc,docx,pdf,ppt,pptx,txt,xls,xlsx,xml,json</allowedExtensions>
+			<deniedExtensions></deniedExtensions>
+		</type>
+		<type name="files">
+			<url>%BASE_URL%files/</url>
+			<directory>%BASE_DIR%files</directory>
+			<maxSize>500M</maxSize>
+			<allowedExtensions>jar,war,7z,aiff,asf,avi,bmp,csv,doc,docx,fla,flv,gif,gz,gzip,jpeg,jpg,mid,mov,mp3,mp4,mpc,mpeg,mpg,ods,odt,pdf,png,ppt,pptx,pxd,qt,ram,rar,rm,rmi,rmvb,rtf,sdc,sitd,swf,sxc,sxw,tar,tgz,tif,tiff,txt,vsd,wav,wma,wmv,xls,xlsx,zip</allowedExtensions>
+			<deniedExtensions></deniedExtensions>
+		</type>
+		<type name="images">
+			<url>%BASE_URL%images/</url>
+			<directory>%BASE_DIR%images</directory>
+			<maxSize>20M</maxSize>
+			<allowedExtensions>bmp,gif,jpeg,jpg,png</allowedExtensions>
+			<deniedExtensions></deniedExtensions>
+		</type>
+		<type name="flash">
+			<url>%BASE_URL%flash/</url>
+			<directory>%BASE_DIR%flash</directory>
+			<maxSize>20M</maxSize>
+			<allowedExtensions>swf,flv</allowedExtensions>
+			<deniedExtensions></deniedExtensions>
+		</type>
+	</types>
+	<!-- Access Control 访问权限 -->
+	<accessControls>
+		<accessControl>
+			<role>*</role>	<!-- 设置用户类型 -->
+			<resourceType>*</resourceType>	<!-- 不同资源如images,flash,files -->
+			<folder>/</folder>	<!-- 默认“/”是没有文件夹设置 -->
+			<folderView>false</folderView>	<!-- 以下设置true代表有效，false代表无效 -->
+			<folderCreate>false</folderCreate>
+			<folderRename>false</folderRename>
+			<folderDelete>false</folderDelete>
+			<fileView>false</fileView>
+			<fileUpload>false</fileUpload>
+			<fileRename>false</fileRename>
+			<fileDelete>false</fileDelete>
+		</accessControl>
+		<accessControl>
+			<role>*</role>	<!-- 设置用户类型 -->
+			<resourceType>docs</resourceType>	<!-- 不同资源如images,flash,files -->
+			<folder>/</folder>	<!-- 默认“/”是没有文件夹设置 -->
+			<folderView>true</folderView>	<!-- 以下设置true代表有效，false代表无效 -->
+			<folderCreate>true</folderCreate>
+			<folderRename>true</folderRename>
+			<folderDelete>true</folderDelete>
+			<fileView>true</fileView>
+			<fileUpload>true</fileUpload>
+			<fileRename>true</fileRename>
+			<fileDelete>true</fileDelete>
+		</accessControl>
+		<accessControl>
+			<role>*</role>	<!-- 设置用户类型 -->
+			<resourceType>files</resourceType>	<!-- 不同资源如images,flash,files -->
+			<folder>/</folder>	<!-- 默认“/”是没有文件夹设置 -->
+			<folderView>true</folderView>	<!-- 以下设置true代表有效，false代表无效 -->
+			<folderCreate>true</folderCreate>
+			<folderRename>true</folderRename>
+			<folderDelete>true</folderDelete>
+			<fileView>true</fileView>
+			<fileUpload>true</fileUpload>
+			<fileRename>true</fileRename>
+			<fileDelete>true</fileDelete>
+		</accessControl>		
+		<accessControl>
+			<role>*</role>	<!-- 设置用户类型 -->
+			<resourceType>images</resourceType>	<!-- 不同资源如images,flash,files -->
+			<folder>/</folder>	<!-- 默认“/”是没有文件夹设置 -->
+			<folderView>true</folderView>	<!-- 以下设置true代表有效，false代表无效 -->
+			<folderCreate>true</folderCreate>
+			<folderRename>true</folderRename>
+			<folderDelete>true</folderDelete>
+			<fileView>true</fileView>
+			<fileUpload>true</fileUpload>
+			<fileRename>true</fileRename>
+			<fileDelete>true</fileDelete>
+		</accessControl>		
+		<accessControl>
+			<role>*</role>	<!-- 设置用户类型 -->
+			<resourceType>flash</resourceType>	<!-- 不同资源如images,flash,files -->
+			<folder>/</folder>	<!-- 默认“/”是没有文件夹设置 -->
+			<folderView>true</folderView>	<!-- 以下设置true代表有效，false代表无效 -->
+			<folderCreate>true</folderCreate>
+			<folderRename>true</folderRename>
+			<folderDelete>true</folderDelete>
+			<fileView>true</fileView>
+			<fileUpload>true</fileUpload>
+			<fileRename>true</fileRename>
+			<fileDelete>true</fileDelete>
+		</accessControl>		
+	</accessControls>
+	<!-- 设置缩略图参数 -->
+	<thumbs>
+		<enabled>true</enabled>
+		<url>%BASE_URL%_thumbs/</url>
+		<directory>%BASE_DIR%_thumbs</directory>
+		<directAccess>true</directAccess>	<!-- 设置为true，直接从_thumbs文件夹中加载缩略图，其他目录下时不能使用 -->
+		<maxWidth>54</maxWidth>
+		<maxHeight>35</maxHeight>
+		<quality>80</quality>	<!-- 设置范围[0-100],可接受值是45左右，一般设置为80 -->
+	</thumbs>
+	<plugins>
+		<plugin>
+			<name>imageresize</name>
+			<class>com.ckfinder.connector.plugins.ImageResize</class>
+			<params>
+				<param name="smallThumb" value="90x90"></param>
+				<param name="mediumThumb" value="120x120"></param>
+				<param name="largeThumb" value="180x180"></param>
+			</params>
+		</plugin>
+		<plugin>
+			<name>fileeditor</name>
+			<class>com.ckfinder.connector.plugins.FileEditor</class>
+			<params></params>
+		</plugin>
+	</plugins>
+	<basePathBuilderImpl>com.ckfinder.connector.configuration.ConfigurationPathBuilder</basePathBuilderImpl>
+</config>

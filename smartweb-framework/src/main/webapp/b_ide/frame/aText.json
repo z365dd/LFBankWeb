@@ -1,0 +1,13 @@
+{"total":12,"rows":[
+	{"name":"朝向","group":"私有属性","editor":{
+		"type":"combobox",
+		"options":{
+		  "data":
+		   		[{"value":"","text":"默认"},
+		   		{"value":"dropup","text":"向上"}],
+       	   		"panelHeight":"auto"
+		}
+	}},
+	{"name":"默认显示","value":"","group":"私有属性","editor":"text"},
+	{"name":"下拉内容","value":"","group":"私有属性","editor":"textarea"}
+]}

@@ -1,0 +1,11 @@
+{"total":1,"rows":[
+	{"name":"容器","group":"容器","editor":{
+		"type":"combobox",
+		"options":{
+			   "data":
+		   		[{"value":"container","text":"固定宽度"},
+		   		{"value":"container-fluid","text":"100%宽度"}],
+		   		"panelHeight":"auto"
+		}
+	}}
+]}

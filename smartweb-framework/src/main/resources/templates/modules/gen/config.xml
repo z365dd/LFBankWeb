@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<!-- 生成分类 -->
+	<category>
+		<category value="dataset_curd" label="增删改查（单表_Dataset）">
+			<template>dataset/controller.xml</template>
+			<template>dataset/service.xml</template>
+			<template>category-ref:dateset_dao</template>
+			<template>dataset/viewManage.xml</template>
+			<template>dataset/viewManageJs.xml</template>
+			<template>dataset/viewManageCst.xml</template>
+			<template>dataset/viewAddForm.xml</template>
+			<template>dataset/viewAddFormJs.xml</template>
+			<template>dataset/viewAddFormCst.xml</template>
+			<template>dataset/viewUpdateForm.xml</template>
+			<template>dataset/viewUpdateFormJs.xml</template>
+			<template>dataset/viewUpdateFormCst.xml</template>
+			<template>dataset/viewList.xml</template>
+			<template>dataset/viewListJs.xml</template>
+			<template>dataset/viewListCst.xml</template>
+			<template>dataset/viewDetailForm.xml</template>
+			<template>dataset/viewDetailFormJs.xml</template>
+			<template>dataset/viewDetailFormCst.xml</template>
+		</category>
+		<category value="dateset_dao" label="仅持久层_Dataset（dao/entity）">
+			<template>dataset_dao/dao.xml</template>
+			<template>dataset_dao/entity.xml</template>
+		</category>
+	</category>
+	<!-- java类型 -->
+	<javaType>
+		<dict value="String" label="String"/>
+		<dict value="Long" label="Long"/>
+		<dict value="Integer" label="Integer"/>
+		<dict value="Double" label="Double"/>
+		<!--  
+		<dict value="java.util.Date" label="Date"/>
+		<dict value="com.adtec.sys.modules.sys.entity.User" label="User"/>
+		<dict value="com.adtec.sys.modules.sys.entity.Office" label="Office"/>
+		<dict value="com.adtec.sys.modules.sys.entity.Area" label="Area"/>
+		<dict value="This" label="ThisObj" description="生成当前对象"/>
+		<dict value="Custom" label="Custom" description="自定义对象，生成后手动设置"/>
+		-->
+	</javaType>
+	<!-- 查询类型 -->
+	<queryType>
+		<dict value="=" label="="/>
+		<dict value="!=" label="!="/>
+		<dict value="&gt;" label="&gt;"/>
+		<dict value="&gt;=" label="&gt;="/>
+		<dict value="&lt;" label="&lt;"/>
+		<dict value="&lt;=" label="&lt;="/>
+		<dict value="between" label="Between"/>
+		<dict value="like" label="Like"/>
+		<dict value="left_like" label="Left Like"/>
+		<dict value="right_like" label="Right Like"/>
+	</queryType>
+	<!-- 字段显示类型 -->
+	<showType>
+		<dict value="input" label="单行文本"/>
+		<dict value="textarea" label="多行文本"/>
+		<dict value="select" label="下拉选项"/>
+		<dict value="radiobox" label="单选按钮"/>
+		<dict value="checkbox" label="复选框"/>
+		<dict value="dateselect" label="日期选择"/>
+		<dict value="userselect" label="人员选择"/>
+		<dict value="officeselect" label="机构选择"/>
+		<dict value="areaselect" label="区域选择"/>
+		<dict value="roleselect" label="角色选择"/>
+		<dict value="iconselect" label="图标选择"/>
+		<dict value="fileselect" label="图片管理器"/>
+		<dict value="ueditor" label="富文本编辑器"/>
+		<dict value="fileinput" label="文件上传选择"/>
+		<!-- 
+		<dict value="treeselect" label="树选择控件"/>
+		-->
+	</showType>
+</config>

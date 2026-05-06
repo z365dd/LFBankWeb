@@ -1,0 +1,124 @@
+*{
+	margin:0;
+	padding:0;
+}
+
+
+
+#leftGo{
+	width:50px;
+	height:50px;
+	background:url(./leftGo.png) no-repeat center center;
+	background-size:23px 23px;
+	position: absolute;
+	top: 24%;
+    left: 21px;
+}
+#leftGo:hover{
+	left: 18px;
+}
+
+#rightGo{
+	width:50px;
+	height:50px;
+	background:url(./rightGo.png) no-repeat center center;
+	background-size:23px 23px;
+	position: absolute;
+	top: 24%;
+    left: 1070px;
+}
+#rightGo:hover{
+	left: 1073px;
+}
+
+/* .cv{
+	background-color:#f7f7f7;
+	border-radius: 4px; 
+	display:block;
+}
+.cv:hover{
+	background-color:#e6f6ff;
+} */
+
+.openBtn{
+	width:100%;
+	height:20px;
+	background:#f7f7f7 url(./open.png) no-repeat center center;
+	background-size:18px;
+	border-radius: 4px; 
+}
+.openBtn:hover{
+	background-color:#e6f6ff;
+}
+
+
+/* 去掉标题边框 */
+.clearBorder{
+	border-width:0!important;
+}
+
+/* 内容区域div */
+.panelBody{
+	border-top: solid #ddd 2px;
+	border-bottom: solid #ddd 2px;
+    margin: 0 20px;
+   /*  height: 200px; */
+}
+
+/* 中间内容区块 */
+.centerCon{
+    width: 100%;
+    /* height: 100%; */
+    padding: 0 0 0 1%;
+   	/* box-sizing: border-box; */
+}
+
+/* 展示内容块 */
+.centerCon ul{
+	list-style-type: none;
+    /* height: 100%; */
+    width:100%;
+    /* position: relative; */
+    margin:0;
+    padding: 8px 0 0 0;
+    overflow:hidden;
+}
+
+
+/* 展示的每一个内容 */
+.centerCon li{
+	margin: 0 1% 1% 0;
+	float: left;
+    width: 10%;
+    height:180px;
+    box-sizing: border-box;
+    border: solid #ddd 2px;
+    padding:6px;
+    /* border-radius: 4px; */
+}
+.centerCon li:hover{
+	position:relative;
+	top:-3px;
+	box-shadow: 0 2px 4px 1px #d5d5d5;
+}
+
+.centerCon li div{
+	width:100%;
+	height: 130px;
+}
+
+.centerCon li img{
+    width: 100%; 
+    height: 130px;
+}
+
+.centerCon li p{
+	margin: 9px;
+    font: 14px "微软雅黑";
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+    border-bottom: solid #ddd 1px;
+   	color: #328ee3;
+}

@@ -1,0 +1,31 @@
+{
+  "name": "bootstrap-multiselect",
+  "version": "0.9.13",
+  "description": "JQuery multiselect plugin based on Twitter Bootstrap.",
+  "main": "dist/js/bootstrap-multiselect.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "/davidstutz/bootstrap-multiselect"
+  },
+  "keywords": [
+    "js",
+    "css",
+    "less",
+    "bootstrap",
+    "jquery",
+    "multiselect"
+  ],
+  "author": "David Stutz",
+  "license": "Apache License, Version 2.0",
+  "bugs": {
+    "url": "/davidstutz/bootstrap-multiselect/issues"
+  },
+  "homepage": "/davidstutz/bootstrap-multiselect"
+}

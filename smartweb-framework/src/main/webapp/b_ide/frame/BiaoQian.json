@@ -1,0 +1,25 @@
+{"total":1,"rows":[
+	{"name":"样式","group":"私有属性","editor":{
+		"type":"combobox",
+		"options":{
+			   "data":
+		   		[{"value":"label-default","text":"默认"},
+		   		{"value":"label-primary","text":"原生"},
+		   		{"value":"label-success","text":"成功"},
+		   		{"value":"label-info","text":"提示"},
+		   		{"value":"label-warning","text":"警告"},
+		   		{"value":"label-danger","text":"危险"}],
+       	   		"panelHeight":"auto"
+		}
+	}},{"name":"浮动","group":"私有属性","editor":{
+		"type":"combobox",
+		"options":{
+			   "data":
+		   		[{"value":"","text":"默认"},
+		   		{"value":"pull-left","text":"靠左"},
+		   		{"value":"pull-right","text":"靠右"}],
+       	   		"panelHeight":"auto"
+		}
+	}},
+	{"name":"style","value":"","group":"私有属性","editor":"text"}
+]}

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans>
+	<table name="tableName" desc="用户表">
+	    <field ID="1" c_label="体彩" a_data_name="tcNo" a_data_type="varchar" a_data_length="64" />
+		<field ID="2" c_label="账户名123" a_data_name="tcName" a_data_type="varchar" a_data_length="64" />
+		<field ID="3" c_label="账户余额" a_data_name="tcAmt" a_data_type="varchar" a_data_length="64" />
+		<field ID="4" c_label="充值金额" a_data_name="czAmt" a_data_type="varchar" a_data_length="64" />
+	
+		<interface id="tableName_add" type="base" />
+		<interface id="tableName_update" type="base" />
+		<interface id="tableName_delete" type="base" />
+		<interface id="tableName_query" type="base" />
+		<interface id="id_name" type="expand" />
+	</table>
+</trans>
+
+

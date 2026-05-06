@@ -1,0 +1,5 @@
+{"total":12,"rows":[
+	{"value":"null","text":"无"},
+	{"value":"notEmpty#message=输入不为空!","text":"不为空"},
+	{"value":"stringlength#min=500#message=输入长度不小于500!","text":"长度"}
+]}

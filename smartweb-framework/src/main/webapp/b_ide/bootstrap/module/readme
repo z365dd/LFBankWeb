@@ -1,0 +1,15 @@
+说明：module文件夹存放开源组件，已有的组件包括：
+1、cheditor 文本编辑器
+2、datetimepicker 时间、日期 组件
+3、ace javascript 编辑器
+4、File Input for bootstrap 图片上传兼预览
+5、chart for Bootstrap 图表
+6、Bootstrap TreeView 树形结构 
+7、Video Player for Bootstrap /视频播放组件
+8、slider for Bootstrap /滑块
+9、pick-a-color-master or Colorpicker /颜色选择器
+10、Bootstrap Multiselect /多选
+11、bootstrap-wysiwyg /富文本编辑器 / 
+12、RollingNews /滚动新闻
+13、bootstrap-table /Bootstrap Table是轻量级的和功能丰富的以表格的形式显示的数据,
+	支持单选,复选框,排序,分页,显示/隐藏列,固定标题滚动表,响应式设计,Ajax加载JSON数据,点击排序的列,卡片视图等。

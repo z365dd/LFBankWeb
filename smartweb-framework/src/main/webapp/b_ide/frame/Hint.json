@@ -1,0 +1,12 @@
+{"total":7,"rows":[
+	{"name":"提示框样式","group":"提示框属性","editor":{
+		"type":"combobox",
+		"options":{
+			   "data":
+		   		[{"value":"alert alert-success alert-dismissable","text":"Success"},
+		   		{"value":"alert alert-info alert-dismissable","text":"Info"},
+		   		{"value":"alert alert-warning alert-dismissable","text":"Warning"},
+		   		{"value":"alert alert-danger alert-dismissable","text":"Danger"}],
+		   		"panelHeight":"auto"
+		}}}
+]}

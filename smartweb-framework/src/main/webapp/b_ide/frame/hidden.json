@@ -1,0 +1,12 @@
+{"total":4,"rows":[
+	{"name":"id","value":"","group":"隐藏域属性","editor":"text"},
+	{"name":"name","value":"","group":"隐藏域属性","editor":"text"},
+	{"name":"value","value":"","group":"隐藏域属性","editor":"text"},
+	{"name":"不为空","value":"","group":"新校验","inputCheck":"check-empty","effect":"check","editor":{    
+         "type":"checkbox",
+		 "options":{
+             "on":"true",
+             "off":"false"
+         }
+	}}
+]}

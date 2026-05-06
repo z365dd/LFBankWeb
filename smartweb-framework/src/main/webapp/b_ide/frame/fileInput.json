@@ -1,0 +1,74 @@
+{"total":1,"rows":[
+	{"name":"绑定后台structs文件","value":"","group":"设置structs路径","editor":"text"},
+	{"name":"请求远程数据类型","value":"post","group":"远程请求服务","editor":{
+		"type":"combobox",
+		"options":{
+			   "data":
+		   		[{"value":"get","text":"get"},
+		   		{"value":"post","text":"post"}],
+		   		"panelHeight":"auto"
+		}
+	}},
+	{"name":"远程数据url","value":"","group":"远程请求服务","editor":{
+		"type":"combobox",
+			"options":{
+				   "data":
+			   		[],
+			   		"panelHeight":"auto"
+			}
+	}},
+	{"name":"是否预览","value":"true","group":"文件上传","editor":{
+		"type":"checkbox",
+		"options":{
+			   "on":"true",
+               "off":"false"
+		}
+	}},
+	{"name":"是否显示删除","value":"true","group":"文件上传","editor":{
+		"type":"checkbox",
+		"options":{
+			   "on":"true",
+               "off":"false"
+		}
+	}},
+	{"name":"是否显示取消","value":"true","group":"文件上传","editor":{
+		"type":"checkbox",
+		"options":{
+			   "on":"true",
+               "off":"false"
+		}
+	}},
+	{"name":"是否显示上传","value":"true","group":"文件上传","editor":{
+		"type":"checkbox",
+		"options":{
+			   "on":"true",
+               "off":"false"
+		}
+	}},
+	{"name":"是否显示标题","value":"true","group":"文件上传","editor":{
+		"type":"checkbox",
+		"options":{
+			   "on":"true",
+               "off":"false"
+		}
+	}},
+	{"name":"只读","value":"true","group":"文件上传","editor":{
+		"type":"checkbox",
+		"options":{
+			   "on":"true",
+               "off":"false"
+		}
+	}},
+	{"name":"不可用","value":"true","group":"文件上传","editor":{
+		"type":"checkbox",
+		"options":{
+			   "on":"true",
+               "off":"false"
+		}
+	}},
+	{"name":"最小上传数量","value":"1","group":"文件上传","editor":"text"},
+	{"name":"最大上传数量","value":" ","group":"文件上传","editor":"text"},
+	{"name":"接收的文件后缀","value":" ","group":"文件上传","editor":"text"},
+	{"name":"接收的文件类型","value":" ","group":"文件上传","editor":"text"},
+	{"name":"预览文件类型","value":" ","group":"文件上传","editor":"text"}
+]}

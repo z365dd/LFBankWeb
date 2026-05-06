@@ -1,0 +1,264 @@
+		@charset "utf-8";
+		/* CSS Document */
+		body{ margin:0; padding:0;overflow:hidden;}
+		input{margin:0; padding:0; outline:none;}
+		li{list-style-type:none;}
+		ul{ margin:0; padding:0;overflow:hidden;}
+		input::-webkit-input-placeholder{
+					color:#ccc;
+				}
+				input::-moz-placeholder{   /* Mozilla Firefox 19+ */
+					color:#ccc;
+				}
+				input:-moz-placeholder{    /* Mozilla Firefox 4 to 18 */
+					color:#ccc;
+				}
+				input:-ms-input-placeholder{  /* Internet Explorer 10-11 */ 
+					color:#ccc;
+				}
+		.top{ width:100%; height:60px !important;background:linear-gradient(0deg, #a0090b, #c32b2d); position:relative;}
+		.topleft{ width:740px; height:60px; background: url(../img/red/topleft.png) center no-repeat; float:left;}
+		.topright{ width:400px; height:60px; background: url(../img/red/topright.png) center no-repeat; float: right;}
+		.top1{ width:100%; height:60px; position:absolute;z-index:80;}
+		.top2{ width:100%; height:60px; position:absolute; z-index:100;}
+		.logoleft{ width:250px; height:60px; background-size:contain !important;background:url(../img/red/logoleft.png) center no-repeat; float:left; margin-left:15px;}
+		.sousuo{ width:330px; height:40px; background:url(../img/red/sousuo.png); float:left; margin-left:63px; margin-top:9px;}
+		.s1{ width:230px; height:15px; float:left; margin-top:6px; margin-left:47px;}
+		#searchMenuName{ width:230px; height:27px; line-height:15px; border:none !important;font-size:14px; font-family:"微软雅黑"; color:#666 !important;background-color:transparent !important; padding-bottom: 7px !important;outline: none;}
+		#searchMenuName:focus{border:none !important;outline: none !important;}
+		.s2{ width:20px; height:20px; float:left; margin-left:10px;  margin-top:9px;}
+		.sb1{ width:20px; height:20px; border:none; outline:none; font-size:14px; font-family:"微软雅黑"; color:#666;background-color:transparent;}
+		.guanbi{ width:60px; height:60px; float:right; background:url(../img/red/guanbi.png);}
+		.guanbi1{ width:19px; height:19px;background-color:transparent;border:none; outline:none; background:url(../img/red/guanbi1.png); float:left; margin-left:20px; margin-top:20px;}
+		.top3{ width:190px; height:60px; float:right; margin-right:43px; }
+		.top3-1{ width:190px; height:15px; float:left; margin-top:12px; line-height:15px;}
+		.zi1{font-size:14px; font-family:"微软雅黑"; color:#fff;}
+		.zi2{font-size:14px; font-family:"微软雅黑"; color:#eed110; font-weight:bold;}
+		.zi3{font-size:12px; font-family:"微软雅黑"; color:#fff;}
+		.top3-2{ width:190px; height:15px; float:left; margin-top:9px;  line-height:15px;}
+		.top4{ width:30px; height:30px; float:right; margin-top:13px; margin-right:40px; position: relative;}
+		.dropdown-menu{top: 100%;right: 0;z-index: 1000;display: none;float: right;min-width: 160px; padding: 5px 0; margin: 0px 21px 0;;;list-style: none;position: absolute;border-radius: 6px;}
+		.dropdown-menu li a, .dropdown-menu li {    height: 20px !important;width: 120px !important;color: black !important;margin-bottom: 4px;}
+		.top5{ width:30px; height:30px; float:right; margin-top:13px; margin-right:15px; }
+		.top5-1{ width:30px; height:30px; position:relative;}
+		.top5-2{ width:10px; height:10px; position:absolute;top:3px;right:0; background:#d2521b; border-radius:10px;}
+		.sb2{ width:30px; height:30px; background:url(../img/red/shezhi.png);background-color:transparent;border:none; outline:none;}
+		.sb3{ width:30px; height:30px; background:url(../img/red/xiaoxi.png);background-color:transparent;border:none; outline:none;}
+		.index1{ width:100%; height:100%; background:#f4f4f4;position: relative; }
+		.index1-1{ width:157px !important; height:100%; float:left; background:linear-gradient(0deg, #a0090b, #c32b2d); position: absolute;overflow-y:auto;overflow-x:hidden;  }
+		.menuHeader{ width:157px; height:100%;background:#e1e2e2;float:left; position:relative;}
+		.c1{ width:157px; height:auto; position:absolute; right:0; bottom:0; background:url(../img/red/c1.png) center;}
+		.menuTree{ width:100%; height:48px; background: url(../img/red/c2.png) center; float:left; cursor: pointer;}
+		.menuTree:hover{ background:url(../img/red/c4.png);}
+		.c2-1{ width:19px; height:16px; float:left; margin-left:13px; margin-top:15px; background:url(../img/red/c3.png) center;}
+		.c2-2{ width:auto; height:16px; float:left; margin-left:10px; margin-top:15px; line-height:16px;font-size:14px; font-family:"微软雅黑"; color:#fff; font-weight:bold;}
+		.menu2{ width:100%; height:38px; background:url(../img/red/c5.png) center; float:left; cursor: pointer}
+		.c3-1{ width:auto; height:38px; float:left; margin-left:20px; line-height:38px;font-size:12px; font-family:"微软雅黑"; color:#fff;}
+		.icon-change-right{ width:12px; height:12px; float:right; margin-right:12px; margin-top:13px; background:url(../img/red/icon-change-right.png);}
+		.icon-change-down{ width:12px; height:12px; float:right; margin-right:12px; margin-top:13px; background:url(../img/red/icon-change-down.png);}
+		.list-hidden{ width:100%; height:auto; float:left;display:none !important;}
+		.list-show{width:100%; height:auto; float:left;}
+		.c4-1{ width:100%; height:35px; float:left; }
+		.index1-1-2{ width:8px; height:100% ; background:#f7f5f5; float:left;position: absolute; cursor: pointer;left:157px;}
+		.fold{ width:8px; height:40px; background: url(../img/red/bt1.png);position: absolute;top: 50%; margin-top:-50px;}
+		.unfold{ width:8px; height:40px; background: url(../img/red/bt2.png);position: absolute;top: 50%; margin-top:-50px;}
+		.index-menu{ float: left; height:100%; left:165px; width:100%;  top:0; overflow-x:hidden; overflow-y:hidden; position:absolute;}
+		.firstIndex{width: 100%;height: 100%;}
+		.menu3-circle-blur{ width:5px; height:5px;border:3px solid #999;  border-radius:10px; float:left; margin-top:12px; margin-left:25px;}
+		.menu3-circle-focus{ width:5px; height:5px;border:3px solid #023b2e;  border-radius:10px; float:left; margin-top:12px; margin-left:25px;}
+		.menu3-circle-blur:hover{border:3px solid #023b2e;}
+		.c4-1-2{ width: auto; height:35px; line-height:35px;  float:left;  margin-left:10px;font-size:14px; font-family:"微软雅黑" !important; color:#999 !important;}
+		.menu3-list-blur{color:#999 !important;}
+		.menu3-list-blur:hover{color:#023b2e !important;text-decoration:none;}
+		.menu3-list-focus{color:#023b2e !important;}
+		.menu3-list-focus:hover{text-decoration:none;}
+		.c4-1-2:hover{color:#023b2e !important;}
+	
+		/* .firstIndex{display:none} */
+		#footer-div{margin-bottom: 0px;position: fixed;right:0px;bottom:0px; color:#ffffff;font-size: 13px;line-height: 22px;text-align: center;background-color: #c32b2d;height:20px;width:100%}
+		/* 全部菜单样式 */
+/* CSS Document */
+html,body{ margin:0; padding:0;overflow:hidden;
+    }
+input{margin:0; padding:0; outline:none !important;}
+
+li{list-style-type:none;}
+ul{ margin:0; padding:0;overflow:hidden;}
+*{margin:0; padding:0;}
+
+/*菜单搜索弹出页面的右边滚动条和底色*/	
+::-webkit-scrollbar
+{
+    width: 10px;
+    background-color: #000040;
+}	
+
+::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+		width:2px;
+        border-radius: 10px;
+         -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+        background-color: #0a7290 !important;
+    }
+
+::-webkit-scrollbar-track {/*滚动条里面轨道*/
+        -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+        border-radius: 10px;
+        background-color: #c32b2d;
+        }
+        
+.menuModel{
+     width: 100%;
+    height: 50px;
+    position: relative;
+}
+.menuline{
+     width: 100%;
+     height: 2px;
+      background:url(../img/red/menuline.png) center repeat-x ;
+      position: absolute;bottom: 0;left: 0;
+}
+.searchbox{
+ width: 375px;
+ height: 25px;
+  background: #fff;
+  margin-left: 30px;
+  margin-top: 11px;
+  float: left;
+  border-radius: 30px;
+}
+.searchicon{
+    width: 15px;
+    height: 25px;
+    float: left;
+    margin-left: 15px; 
+    
+}
+.searchbox2{
+    width: 250px;
+    height: 25px;
+     margin-left: 30px;
+     float: left;
+   }
+   .searchbox3{
+        width: 250px !important;
+        height: 17px !important;
+        line-height: 25px !important;
+        float: left;
+        border: none !important;
+        color: #666 !important;
+
+   }
+   
+   .searchbox3:focus{
+   		outline:none !important;	
+		-webkit-box-shadow: 0 0 0 #fff;
+  		-moz-box-shadow:0 0 0 #fff;
+
+   }
+   .menuModel2{
+       width: 100%;
+       position: relative;
+   }
+   .menuModel3{ 
+   		width: 100%;
+    	float: left;
+   		margin-top: 8px; 
+   		
+    	position: relative;  
+   }
+   .menu3icon{
+          width: 25px;
+          height: 25px;
+          float: left;
+          margin-left: 35px;
+   }
+   .menu3title{
+       width: auto;
+       height: 25px;
+       line-height: 25px;
+       font-size: 14px;
+       color: #fff;
+       font-weight: bold;
+       float: left;
+       margin-left: 10px;
+   }
+   .menuModel4{ 
+       width: 100%;
+       height: auto;
+       float: left;
+       margin-left: 70px;
+       margin-top: 15px;
+       overflow: hidden;
+}
+.menu4li{
+    width: 100%;
+    height: auto;
+    line-height: 20px;
+    font-size: 12px;
+       color: #fff;
+       font-weight: bold;
+}
+.menu4li2{
+    float: left;
+    min-width: 135px;
+    height: 45px;
+    line-height: 45px;
+    float: left;
+    font-size: 12px;
+    color: #fff !important;
+
+}
+.menu4icon{
+     width: 5px;
+     height: 5px;
+     border: #fff solid 3px;
+     border-radius: 10px;
+      float: left;
+      margin-top:16px;
+    }
+.menu4title{
+    width: auto;
+    height: 45px;
+    line-height: 45px;
+    font-size: 12px;
+    color: #fff !important;
+    float: left;
+    margin-left: 8px;
+
+}
+.menuimg{
+    width: 620px;
+    height: 440px;
+    background: url(../img/red/menuimg.png);
+    position: absolute;
+    right: 0;bottom: 0;
+}
+.menuda{
+    background:linear-gradient(0deg, #a0090b, #c32b2d);
+    position: relative;
+    overflow: hidden;
+    top: 0px;
+    bottom: 0px;
+	overflow-y:auto !important;
+	height: 100%;
+	width:100%;
+}
+
+.menuTarget{
+	 color: #fff !important;
+}
+
+.menuTarget:hover{
+	text-decoration: none;
+}
+		
+.menuHide{
+	display: none
+}
+/*--theme--菜单搜索框字体颜色*/
+input:-webkit-autofill{
+		background: none !important;
+		-webkit-text-fill-color: #666 !important;
+		transition: background-color 99999s ease-in-out 0s;
+		-webkit-transition-delay: 99999s;
+		}

@@ -1,0 +1,10 @@
+{"total":12,"rows":[
+	{"value":"null","text":"无"},
+	{"value":"notEmpty#message=输入不为空!","text":"不为空"},
+	{"value":"stringlength#min=1#max=6#message=输入长度为1-6!","text":"长度"},
+	{"value":"emailaddress#message=请输入正确的邮箱地址!","text":"邮箱地址"},
+	{"value":"telephone#message=请输入正确的手机号!","text":"手机号码"},
+	{"value":"idCardNum#message=请输入正确的15或18位身份证号码!","text":"身份证号码"},
+	{"value":"choice#min=2#max=3#message=请选择2-3项!","text":"选项"},
+	{"value":"date#message=请输入正确的时间格式!#format=YYYY-MM-DD","text":"日期"}
+]}

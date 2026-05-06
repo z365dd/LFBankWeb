@@ -1,0 +1,204 @@
+{"total":7,"rows":[
+    {"name":"左占","value":"","group":"控件属性","editor":{
+		"type":"combobox",
+		"options":{
+			   "data":
+		   		[{"value":"col-sm-1 control-label","text":"col-sm-1"},
+		   		{"value":"col-sm-2 control-label","text":"col-sm-2"},
+		   		{"value":"col-sm-3 control-label","text":"col-sm-3"},
+		   		{"value":"col-sm-4 control-label","text":"col-sm-4"},
+		   		{"value":"col-sm-5 control-label","text":"col-sm-5"},
+		   		{"value":"col-sm-6 control-label","text":"col-sm-6"},
+		   		{"value":"col-sm-7 control-label","text":"col-sm-7"},
+		   		{"value":"col-sm-8 control-label","text":"col-sm-8"},
+		   		{"value":"col-sm-9 control-label","text":"col-sm-9"},
+		   		{"value":"col-sm-10 control-label","text":"col-sm-10"},
+		   		{"value":"col-sm-11 control-label","text":"col-sm-11"},
+		   		{"value":"col-sm-12 control-label","text":"col-sm-12"}],
+		   		"panelHeight":"auto"
+		}
+	}},
+	{"name":"右占","value":"","group":"控件属性","editor": {
+		"type":"combobox",
+		"options":{
+			   "data":
+		   		[{"value":"col-sm-1","text":"col-sm-1"},
+		   		{"value":"col-sm-2","text":"col-sm-2"},
+		   		{"value":"col-sm-3","text":"col-sm-3"},
+		   		{"value":"col-sm-4","text":"col-sm-4"},
+		   		{"value":"col-sm-5","text":"col-sm-5"},
+		   		{"value":"col-sm-6","text":"col-sm-6"},
+		   		{"value":"col-sm-7","text":"col-sm-7"},
+		   		{"value":"col-sm-8","text":"col-sm-8"},
+		   		{"value":"col-sm-9","text":"col-sm-9"},
+		   		{"value":"col-sm-10","text":"col-sm-10"},
+		   		{"value":"col-sm-11","text":"col-sm-11"},
+		   		{"value":"col-sm-12","text":"col-sm-12"}],
+		   		"panelHeight":"auto"
+		}
+	}},
+	{"name":"尺寸","value":"","group":"控件属性","editor": {
+		"type":"combobox",
+		"options":{
+			   "data":
+		   		[{"value":"","text":"默认"},
+		   		{"value":"form-group-lg","text":"大"},
+		   		{"value":"form-group-sm","text":"小"}],
+		   		"panelHeight":"auto"
+		}
+	}},
+	{"name":"隐藏label","value":"","group":"控件属性","editor":{
+         "type":"checkbox",
+		 "options":{
+             "on":"visibility:hidden",
+             "off":"visibility:visible"
+         }
+	}},
+	{"name":"id","value":"","group":"时间选择器属性","editor":"text"},
+	{"name":"name","value":"","group":"时间选择器属性","editor":{
+		"type":"combobox",
+			"options":{
+				   "data":
+			   		[],
+			   		"panelHeight":"auto"
+			}
+	}},
+	{"name":"style","value":"","group":"时间选择器属性","editor":"text"},
+    {"name":"日期时间格式","value":"mm/dd/yyyy","group":"时间选择器属性","editor":{    
+        "type":"combobox",    
+        "options":{    
+            "data":
+             [{"value":"yyyy-mm-dd - HH:ii p","text":"yyyy-mm-dd - HH:ii p"},
+             {"value":"yyyy/mm/dd - HH:ii p","text":"yyyy/mm/dd - HH:ii p"},
+             {"value":"yyyy:mm:dd - HH:ii p","text":"yyyy:mm:dd - HH:ii p"},
+             {"value":"yyyy年mm月dd日 - HH时ii分  p","text":"yyyy年mm月dd日 - HH时ii分 p"},
+             {"value":"yyyy-mm-dd - HH:ii","text":"yyyy-mm-dd - HH:ii"},
+             {"value":"yyyy/mm/dd - HH:ii","text":"yyyy/mm/dd - HH:ii"},
+             {"value":"yyyy:mm:dd - HH:ii","text":"yyyy:mm:dd - HH:ii"},
+             {"value":"yyyy年mm月dd日 - HH时ii分","text":"yyyy年mm月dd日 - HH时ii分 "},
+             {"value":"yyyy-mm-dd","text":"yyyy-mm-dd"},
+             {"value":"yyyy/mm/dd","text":"yyyy/mm/dd"},
+             {"value":"yyyy:mm:dd","text":"yyyy:mm:dd"},
+             {"value":"yyyy年mm月dd日 ","text":"yyyy年mm月dd日"}],
+            "panelHeight":"auto"   
+        }    
+    }},
+    {"name":"每周开始日期","value":"0","group":"时间选择器属性","editor":{    
+        "type":"combobox",    
+        "options":{    
+            "data":
+             [{"value":"0","text":"星期日"},
+             {"value":"1","text":"星期一"},
+             {"value":"2","text":"星期二"},
+             {"value":"3","text":"星期三"},
+             {"value":"4","text":"星期四"},
+             {"value":"5","text":"星期五"},
+             {"value":"6","text":"星期六"}],
+            "panelHeight":"auto"   
+        }    
+    }},
+	{"name":"设置开始日期","value":"","group":"时间选择器属性","editor":"text"},
+	{"name":"设置结束日期","value":"","group":"时间选择器属性","editor":"text"},
+	{"name":"禁用每周的某天","value":"","group":"时间选择器属性","editor":"text"},
+	{"name":"选择后关闭日期选择器","value":"false","group":"时间选择器属性","editor":{
+		"type":"checkbox",
+		 "options":{
+             "on":"true",
+             "off":"false"
+         }
+	}},	
+    {"name":"日期选择器打开后首显视图","value":"2","group":"时间选择器属性","editor":{    
+        "type":"combobox",    
+        "options":{    
+            "data":
+             [{"value":"0","text":"时(hour)"},
+             {"value":"1","text":"日(day)"},
+             {"value":"2","text":"月(month)"},
+             {"value":"3","text":"年(year)"},
+             {"value":"4","text":"十年(decade)"}],
+            "panelHeight":"auto"   
+        }    
+    }},
+    {"name":"最精确的时间选择视图","value":"0","group":"时间选择器属性","editor":{    
+        "type":"combobox",    
+        "options":{    
+            "data":
+             [{"value":"0","text":"时(hour)"},
+             {"value":"1","text":"日(day)"},
+             {"value":"2","text":"月(month)"},
+             {"value":"3","text":"年(year)"},
+             {"value":"4","text":"十年(decade)"}],
+            "panelHeight":"auto"   
+        }    
+    }},
+    {"name":"最高能展示的选择范围视图","value":"4","group":"时间选择器属性","editor":{    
+        "type":"combobox",    
+        "options":{    
+            "data":
+             [{"value":"0","text":"时(hour)"},
+             {"value":"1","text":"日(day)"},
+             {"value":"2","text":"月(month)"},
+             {"value":"3","text":"年(year)"},
+             {"value":"4","text":"十年(decade)"}],
+            "panelHeight":"auto"   
+        }    
+    }},
+	{"name":"今日按钮","value":"false","group":"时间选择器属性","editor":{    
+        "type":"combobox",    
+        "options":{    
+            "data":
+             [{"value":"linked","text":"linked"},
+             {"value":"true","text":"true"},
+             {"value":"false","text":"false"}],
+            "panelHeight":"auto"   
+        }    
+    }},
+	{"name":"高亮今日按钮","value":"false","group":"时间选择器属性","editor":{
+		"type":"checkbox",
+		 "options":{
+             "on":"true",
+             "off":"false"
+         }
+	}},	
+	{"name":"是否允许通过方向键改变日期","value":"true","group":"时间选择器属性","editor":{
+		"type":"checkbox",
+		 "options":{
+             "on":"true",
+             "off":"false"
+         }
+	}},
+	{"name":"选择器关闭强制解析输入框值","value":"true","group":"时间选择器属性","editor":{
+		"type":"checkbox",
+		 "options":{
+             "on":"true",
+             "off":"false"
+         }
+	}},
+	{"name":"日期选择器位置","value":"bottom-right","group":"时间选择器属性","editor":{    
+        "type":"combobox",    
+        "options":{    
+            "data":
+            [
+             {"value":"top-left","text":"上左"},
+             {"value":"top-right","text":"上右"},
+             {"value":"bottom-left","text":"下左"},
+             {"value":"bottom-right","text":"下右"}],
+            "panelHeight":"auto"   
+        }    
+    }},	
+	{"name":"启动day和hour视图的经络视图","value":"false","group":"时间选择器属性","editor":{
+		"type":"checkbox",
+		 "options":{
+             "on":"true",
+             "off":"false"
+         }
+	}},
+    {"name":"校验","value":"","group":"选择框属性校验","editor":{
+		"type":"combobox",
+			"options":{
+				   "data":
+			   		[],
+			   		"panelHeight":"auto"
+			}
+	}}
+]}

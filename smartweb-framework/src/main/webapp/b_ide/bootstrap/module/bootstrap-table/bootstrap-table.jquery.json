@@ -1,0 +1,30 @@
+{
+  "name": "bootstrap-table",
+  "version": " ",
+  "title": "Bootstrap Table",
+  "description": "An extended Bootstrap table with radio, checkbox, sort, pagination, and other added features.",
+  "author": {
+    "name": "zhixin wen",
+    "email": "wenzhixin2010",
+    "url": "http://wenzhixin.net.cn/"
+  },
+  "licenses": [
+    {
+      "type": "MIT License",
+      "url": "http://opensource.org/licenses/MIT"
+    }
+  ],
+  "dependencies": {
+    "jquery": ">=1.7"
+  },
+  "keywords": [
+    "bootstrap.table"
+  ],
+  "homepage": "/wenzhixin/bootstrap-table",
+  "demo": "http://bootstrap-table.wenzhixin.net.cn",
+  "bugs": {
+    "url": "/wenzhixin/bootstrap-table/issues"
+  },
+  "docs": "/wenzhixin/bootstrap-table",
+  "download": "/wenzhixin/bootstrap-table/archive/master.zip"
+}

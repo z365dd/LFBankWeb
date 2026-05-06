@@ -1,0 +1,38 @@
+{
+  "name": "jquery-validation",
+  "title": "jQuery Validation Plugin",
+  "description": "Form validation made easy",
+  "version": " ",
+  "homepage": "",
+  "author": {
+    "name": "Jörn Zaefferer",
+    "email": "joern.zaefferer",
+    "url": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "bugs": {
+    "url": ""
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": ""
+    }
+  ],
+  "scripts": {
+    "test": "grunt lint qunit"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "0.3.x",
+    "zipstream": "0.2.x"
+  },
+  "keywords": [
+    "forms",
+    "validation",
+    "validate"
+  ]
+}

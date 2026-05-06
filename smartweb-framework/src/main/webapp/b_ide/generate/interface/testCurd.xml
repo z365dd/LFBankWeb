@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans>
+	<!-- package：生成的后台类的包路径的前缀(控制类存放在web、请求/响应报文实体类存放在entity下),页面名称为name的全小写 -->
+	<table name="student" desc="业务渠道开通" package="com.adtec.sys.modules.test.student">
+		<!-- 页面用到的字段域 -->
+	    <field ID="1" c_label="编号" a_data_name="id" a_data_type="varchar" a_data_length="64" />
+	    <field ID="2" c_label="英文名称" a_data_name="enname" a_data_type="varchar" a_data_length="64" />
+		<field ID="3" c_label="名称" a_data_name="name" a_data_type="varchar" a_data_length="128" />
+		<field ID="4" c_label="生日" a_data_name="birthday" a_data_type="varchar" a_data_length="8" />
+		<field ID="5" c_label="性别" a_data_name="sex" a_data_type="varchar" a_data_length="2" />
+		<field ID="6" c_label="电话" a_data_name="mobile" a_data_type="varchar" a_data_length="15" />
+		<field ID="7" c_label="入学时间" a_data_name="in_date" a_data_type="varchar" a_data_length="8" />
+		<field ID="8" c_label="选修科目" a_data_name="subject" a_data_type="varchar" a_data_length="256" />
+		<field ID="9" c_label="录入人" a_data_name="create_by" a_data_type="varchar" a_data_length="64" />
+		<field ID="10" c_label="录入时间" a_data_name="create_date" a_data_type="varchar" a_data_length="20" />
+		<field ID="11" c_label="修改人" a_data_name="update_by" a_data_type="varchar" a_data_length="64" />
+		<field ID="12" c_label="修改时间" a_data_name="update_date" a_data_type="varchar" a_data_length="20" />
+		<field ID="13" c_label="备注" a_data_name="remarks" a_data_type="varchar" a_data_length="256" />
+		<field ID="14" c_label="删除标识" a_data_name="del_flag" a_data_type="varchar" a_data_length="1" />
+	
+		<!-- 页面用到的接口 -->
+		<interface id="add" name="新增交易" url="/student/add">
+			<!-- 请求报文体 -->
+			<request>
+				<!-- data_type属性为java的基础类型String、int、long、float、double、character、byte、boolean -->
+				<!-- 如果isconstant为true,表示该字段为常量且固定送default_value的值,且在界面上不做接口映射 -->
+				<element id="id" name="编号" data_type="String" required="true"/>
+				<element id="enname" name="英文名称" data_type="String" required="true"/>
+				<element id="name" name="名称" data_type="String" required="true"/>
+				<element id="birthday" name="生日" data_type="String" required="true"/>
+				<element id="sex" name="性别" data_type="String" required="true"/>
+				<element id="mobile" name="电话" data_type="String" required="true"/>
+				<element id="in_date" name="入学时间" data_type="String" required="true"/>
+				<element id="subject" name="选修科目" data_type="String" required="true"/>
+				<element id="create_by" name="录入人" data_type="String" required="true"/>
+				<element id="create_date" name="录入时间" data_type="String" required="true"/>
+				<element id="update_by" name="修改人" data_type="String" required="true"/>
+				<element id="update_date" name="修改时间" data_type="String" required="true"/>
+				<element id="remarks" name="备注" data_type="String" required="false"/>
+				<element id="del_flag" name="删除标识" data_type="String" required="true"/>
+			</request>
+			<!-- 响应报文体 -->
+			<response>
+			</response>
+		</interface>
+		<interface id="update" name="修改交易" url="/student/update">
+			<!-- 请求报文体 -->
+			<request>
+				<!-- data_type属性为java的基础类型String、int、long、float、double、character、byte、boolean -->
+				<!-- 如果isconstant为true,表示该字段为常量且固定送default_value的值,且在界面上不做接口映射 -->
+				<element id="id" name="编号" data_type="String" required="true"/>
+				<element id="enname" name="英文名称" data_type="String" required="true"/>
+				<element id="name" name="名称" data_type="String" required="true"/>
+				<element id="birthday" name="生日" data_type="String" required="true"/>
+				<element id="sex" name="性别" data_type="String" required="true"/>
+				<element id="mobile" name="电话" data_type="String" required="true"/>
+				<element id="in_date" name="入学时间" data_type="String" required="true"/>
+				<element id="subject" name="选修科目" data_type="String" required="true"/>
+				<element id="create_by" name="录入人" data_type="String" required="true"/>
+				<element id="create_date" name="录入时间" data_type="String" required="true"/>
+				<element id="update_by" name="修改人" data_type="String" required="true"/>
+				<element id="update_date" name="修改时间" data_type="String" required="true"/>
+				<element id="remarks" name="备注" data_type="String" required="false"/>
+				<element id="del_flag" name="删除标识" data_type="String" required="true"/>
+			</request>
+			<!-- 响应报文体 -->
+			<response>
+			</response>
+		</interface>
+		<interface id="delete" name="删除交易" url="/student/delete">
+			<request>
+				<element id="id" name="编号" data_type="String" required="true"/>
+			</request>
+			<response>
+			</response>
+		</interface>
+		<interface id="query" name="列表查询交易" url="/student/qry">
+			<request>
+				<element id="name" name="名称" data_type="String" required="false"/>
+				<element id="sex" name="性别" data_type="String" required="false"/>
+				<element id="in_date" name="入学时间" data_type="String" required="false"/>
+			</request>
+			<response>
+				<!-- list标签为循环体,id为对应这循环体的一个属性名称 -->
+				<list id="LIST" name="业务渠道开通综合查询结果列表">
+					<element id="id" name="编号" data_type="String" />
+					<element id="enname" name="英文名称" data_type="String" />
+					<element id="name" name="名称" data_type="String" />
+					<element id="birthday" name="生日" data_type="String" />
+					<element id="sex" name="性别" data_type="String" />
+					<element id="mobile" name="电话" data_type="String" />
+					<element id="in_date" name="入学时间" data_type="String" />
+					<element id="subject" name="选修科目" data_type="String" />
+					<element id="create_by" name="录入人" data_type="String" />
+					<element id="create_date" name="录入时间" data_type="String" />
+					<element id="update_by" name="修改人" data_type="String" />
+					<element id="update_date" name="修改时间" data_type="String" />
+					<element id="remarks" name="备注" data_type="String" />
+					<element id="del_flag" name="删除标识" data_type="String" />
+				</list>
+			</response>
+		</interface>
+		<interface id="detail" name="明细查询交易" url="/student/detail">
+			<request>
+				<element id="id" name="编号" data_type="String" required="true"/>
+			</request>
+			<response>
+				<element id="id" name="编号" data_type="String" />
+				<element id="enname" name="英文名称" data_type="String" />
+				<element id="name" name="名称" data_type="String" />
+				<element id="birthday" name="生日" data_type="String" />
+				<element id="sex" name="性别" data_type="String" />
+				<element id="mobile" name="电话" data_type="String" />
+				<element id="in_date" name="入学时间" data_type="String" />
+				<element id="subject" name="选修科目" data_type="String" />
+				<element id="create_by" name="录入人" data_type="String" />
+				<element id="create_date" name="录入时间" data_type="String" />
+				<element id="update_by" name="修改人" data_type="String" />
+				<element id="update_date" name="修改时间" data_type="String" />
+				<element id="remarks" name="备注" data_type="String" />
+				<element id="del_flag" name="删除标识" data_type="String" />
+			</response>
+		</interface>
+	</table>
+</trans>
+
+

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  
+组件：定时调度
+作者：陈应龙
+文档：Spring+Quartz实现定时任务的配置方法 
+-->
+<beans 
+
+    xmlns="http://www.springframework.org/schema/beans"
+	xmlns:beans="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx" 
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.3.xsd"
+                        default-lazy-init="true" default-autowire="byName">
+                     
+    <!--     ****************************************配置跑批**************************************-->  
+    <!-- 线程执行器配置，用于任务注册 -->   
+     <bean id="executor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">    
+     <property name="corePoolSize" value="10" />    
+     <property name="maxPoolSize" value="100" />    
+     <property name="queueCapacity" value="500" />    
+    </bean>   
+                     
+    <!-- ============= 业务对象=============  将需要添加定时任务调度的类配置到这里 -->                     
+    <!-- 配置定时调度每秒钟获取一次错误信息 -->
+    <!--运行时请将方式一注释掉！ -->    
+    <!-- 方式二：使用MethodInvokingJobDetailFactoryBean，任务类可以不实现Job接口，通过targetMethod指定调用方法-->    
+    <!-- 定义目标bean和bean中的方法 --> 
+    	<!-- 
+	"0 0 12 * * ?"             每天中午12点触发   
+	"0 15 10 ? * *"            每天上午10:15触发   
+	"0 15 10 * * ?"            每天上午10:15触发   
+	"0 15 10 * * ? *"          每天上午10:15触发   
+	"0 15 10 * * ? 2005"       2005年的每天上午10:15触发   
+	"0 * 14 * * ?"             在每天下午2点到下午2:59期间的每1分钟触发   
+	"0 0/5 14 * * ?"           在每天下午2点到下午2:55期间的每5分钟触发   
+	"0 0/5 14,18 * * ?"        在每天下午2点到2:55期间和下午6点到6:55期间的每5分钟触发   
+	"0 0-5 14 * * ?"           在每天下午2点到下午2:05期间的每1分钟触发   
+	"0 10,44 14 ? 3 WED"       每年三月的星期三的下午2:10和2:44触发   
+	"0 15 10 ? * MON-FRI"      周一至周五的上午10:15触发   
+	"0 15 10 15 * ?"           每月15日上午10:15触发   
+	"0 15 10 L * ?"            每月最后一日的上午10:15触发   
+	"0 15 10 ? * 6L"           每月的最后一个星期五上午10:15触发   
+	"0 15 10 ? * 6L 2002-2005" 2002年至2005年的每月的最后一个星期五上午10:15触发   
+	"0 15 10 ? * 6#3"          每月的第三个星期五上午10:15触发  --> 
+	
+	<!-- 流程超时检查自动任务入口BEGIN -->
+	<bean id="FlowChkTask" class="com.adtec.quartz.FlowChkTask" depends-on="smCuratorClient">
+		<constructor-arg index="0" ref="smCuratorClient"/>
+	</bean>
+    <bean id="FlowChkTaskMethod" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">  
+	    <!-- 要调用的对象 --> 
+	    <property name="targetObject" ref="FlowChkTask" />
+	    <!--  要执行的方法名称   -->
+	    <property name="targetMethod" value="execute" />
+	    <!-- 如果前一个任务还没有结束第二个任务不会启动 false -->  
+        <property name="concurrent" value="false" />  
+	</bean> 
+	<!-- ============= 调度触发器 ============= -->
+	<bean id="FlowChkTaskBean" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean" >  
+	    <property name="jobDetail" ref="FlowChkTaskMethod"></property>
+	    <!-- 每5分钟执行一次 -->  
+	    <property name="cronExpression" value="0 */5 * * * ?"></property>  
+	</bean> 
+	<!-- 流程超时检查自动任务入口END -->
+	
+	<!-- ================================================ -->  
+	
+    
+	<!-- ======================== 调度工厂 ======================== quartz 自动装配惹的祸   -->
+	<bean id="SpringJobSchedulerFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean" autowire="no">  
+	    <property name="triggers">  
+	        <list>
+	        	<!-- 添加自定义的触发器 -->
+	     	   	<ref bean="FlowChkTaskBean"/>
+	        </list>  
+	    </property>
+	    <property name="quartzProperties"> 
+			<props>
+			<!-- 跳过quartz版本检查，以防请求一直没有返回导致程序被阻塞无法启动成功 -->
+			<prop key="org.quartz.scheduler.skipUpdateCheck">true</prop> 
+			</props>
+		</property>
+   		<property name="autoStartup" value="true"/>  
+	</bean>
+    
+    <!-- Spring中引入其他配置文件 -->
+	<import resource="classpath*:spring-quartz-*.xml" />
+</beans>  

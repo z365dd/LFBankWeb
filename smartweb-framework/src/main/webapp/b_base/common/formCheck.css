@@ -1,0 +1,62 @@
+.promptScript{
+	color:#999999;
+	font-size:12px;
+	vertical-align:-5px;
+}
+
+.warnScript{
+	color:#F77F5B;
+	font-size:12px;
+	vertical-align:-5px;
+}
+
+.warnBlock{
+	color:#F77F5B;
+	font-size:12px;
+	/* background: url(../images/warn.png) no-repeat left 0px; */
+	background-size: 12px;
+	padding-left:15px;
+	vertical-align:-5px;
+}
+
+.trueInput{
+	background: url(../images/true.png) no-repeat 95% center;
+	background-size: 12px;
+	padding-right:22px;
+}
+
+.warnInput{
+	background: url(../images/warn.png) no-repeat 95% center;
+	background-size: 12px;
+	padding-right:22px;
+}
+
+.warnBlock2{
+	vertical-align:-1px;
+	margin-left:15px;
+}
+
+.imgDiv{
+	width:20px;
+	height:20px;
+	display:inline;
+	/* background: url(../../act/rest/libs/ext-2.0.2/resources/images/default/grid/loading.gif) no-repeat center center; */
+	background: url(../images/loading-select.gif) no-repeat center center; 
+	background-size: 16px;
+	padding-left:50px;
+	vertical-align:-2px;
+}
+
+.tableTrC{
+	background-color: #a6c8f3 !important;
+}
+
+
+
+.ztree li span.button.pIcon01_ico_open{margin-right:2px; background: url(../jquery-ztree/3.5.12/css/zTreeStyle/img/diy/1_open.png) no-repeat scroll 0 0 transparent; vertical-align:top; *vertical-align:middle}
+.ztree li span.button.pIcon01_ico_close{margin-right:2px; background: url(../jquery-ztree/3.5.12/css/zTreeStyle/img/diy/1_close.png) no-repeat scroll 0 0 transparent; vertical-align:top; *vertical-align:middle}
+.ztree li span.button.pIcon01_ico_docu{margin-right:2px; background: url(../jquery-ztree/3.5.12/css/zTreeStyle/img/diy/3.png) no-repeat scroll 0 0 transparent; vertical-align:top; *vertical-align:middle}
+
+.ztree li span{
+	font-size:14px
+}

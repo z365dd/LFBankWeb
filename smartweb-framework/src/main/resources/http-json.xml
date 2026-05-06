@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 配置Http+Json方式的服务码映射请求URL和对应响应报文下解析的自定义对象类 -->
+<services>
+
+</services>

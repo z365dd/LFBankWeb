@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:jdbc="http://www.springframework.org/schema/jdbc"  
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:util="http://www.springframework.org/schema/util" xmlns:task="http://www.springframework.org/schema/task" xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.0.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.0.xsd"
+	default-lazy-init="true">
+    
+    <description>Spring Configuration</description>
+
+	<!-- 使用Annotation自动注册Bean，解决事物失效问题：在主容器中不扫描@Controller注解，在SpringMvc中只扫描@Controller注解。  -->
+	<context:component-scan base-package="com.adtec.para"><!-- base-package 如果多个，用“,”分隔 -->
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
+	
+	<bean id="paraParamUtil" class="com.adtec.para.common.util.ParaParamUtil">
+        <property
+                name="locations"> <!-- PropertyPlaceholderConfigurer类中有个locations属性，接收的是一个数组，即我们可以在下面配好多个properties文件 -->
+            <array>
+                <!-- <value>classpath:/agent.properties</value> -->
+                <!-- <value>file:${user.dir}/config/agent.properties</value> -->
+                <value>file:${JAVAWORKDIR}/config/cacheagent.properties</value>
+            </array>
+        </property>
+    </bean>
+    <!-- redis集群配置 -->
+	<!-- 连接池配置 -->
+	<bean id="paraJedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+		<!-- 最大连接数 -->
+		<property name="maxTotal" value="${cache.redis.maxTotal}" />
+		<!-- 最大空闲连接数 -->
+		<property name="maxIdle" value="${cache.redis.maxIdle}" />
+		<!-- 最小空闲连接数 -->
+        <property name="minIdle" value="${cache.redis.minIdle}" />
+		<!-- 每次释放连接的最大数目 -->
+		<property name="numTestsPerEvictionRun" value="${cache.redis.numTestsPerEvictionRun}" />
+		<!-- 释放连接的扫描间隔（毫秒） -->
+		<property name="timeBetweenEvictionRunsMillis" value="${cache.redis.timeBetweenEvictionRunsMillis}" />
+		<!-- 连接最小空闲时间 -->
+		<property name="minEvictableIdleTimeMillis" value="${cache.redis.minEvictableIdleTimeMillis}" />
+		<!-- 连接空闲多久后释放, 当空闲时间>该值 且 空闲连接>最大空闲连接数 时直接释放 -->
+		<property name="softMinEvictableIdleTimeMillis" value="${cache.redis.softMinEvictableIdleTimeMillis}" />
+		<!-- 获取连接时的最大等待毫秒数,小于零:阻塞不确定的时间,默认-1 -->
+		<property name="maxWaitMillis" value="${cache.redis.maxWaitMillis}" />
+		<!-- 在获取连接的时候检查有效性, 默认false -->
+		<property name="testOnBorrow" value="true" />
+		<!-- 在空闲时检查有效性, 默认false -->
+		<property name="testWhileIdle" value="true" />
+		<!-- 连接耗尽时是否阻塞, false报异常,ture阻塞直到超时,默认true -->
+		<property name="blockWhenExhausted" value="false" />
+	</bean>
+    <bean id="paraJedisCluster" class="com.adtec.para.common.util.ParaJedisClusterFactory">
+        <!-- <property name="addressConfig" value="" /> -->  <!-- 从环境变量中取Redis的连接配置：REDISSERVERLIST -->     
+        <property name="timeout" value="${cache.redis.timeout}" />  
+        <property name="maxRedirections" value="${cache.redis.maxRedirections}" />   <!-- 取值失败，最大尝试次数 -->
+        <property name="genericObjectPoolConfig" ref="paraJedisPoolConfig" />  
+    </bean>  
+	
+	<bean id="cacheagentParamUtil"
+            class="com.adtec.cache.cacheagent.util.ParamUtil">
+        <property
+                name="locations"> <!-- PropertyPlaceholderConfigurer类中有个locations属性，接收的是一个数组，即我们可以在下面配好多个properties文件 -->
+            <array>
+                <!-- <value>classpath:/agent.properties</value> -->
+                <!-- <value>file:${user.dir}/config/agent.properties</value> -->
+                <value>file:${JAVAWORKDIR}/config/cacheagent.properties</value>
+            </array>
+        </property>
+    </bean>
+    <!-- 自动扫描(自动注入)，扫描com.adtec.cache.service这个包以及它的子包的所有使用@Service注解标注的类 -->
+    <context:component-scan base-package="com.adtec.cache.cacheagent.service"/>
+
+    <bean id="mcacheSpringContextHolder" class="com.adtec.cache.cacheagent.util.SpringContextHolder" lazy-init="false">
+    </bean>
+    
+	<!-- 缓存中心数据缓存 -->
+    <!-- 缓存中心信息缓存 -->
+    <!-- CentersrCache -->
+    <bean id="centersCache" class="com.adtec.cache.cacheagent.cache.CentersCache">
+        <constructor-arg name="threads" value="${centers.cache.threads}"/>
+        <constructor-arg name="expireTime"
+                         value="${centers.cache.expire.time}"/>
+        <constructor-arg name="initSize" value="${centers.cache.init.size}"/>
+        <constructor-arg name="maxsize" value="${centers.cache.max.size}"/>
+    </bean>
+    
+    <!-- 参与者实例信息缓存 -->
+    <!-- PartInstCache -->
+    <bean id="cachePartInstCache" class="com.adtec.cache.cacheagent.cache.PartInstCache">
+        <constructor-arg name="threads" value="${cache.partInst.cache.threads}"/>
+        <constructor-arg name="expireTime"
+                         value="${cache.partInst.cache.expire.time}"/>
+        <constructor-arg name="initSize" value="${cache.partInst.cache.init.size}"/>
+        <constructor-arg name="maxsize" value="${cache.partInst.cache.max.size}"/>
+    </bean>
+    
+    
+    <!-- 存储规则数据缓存 -->
+    <!-- StorageCache -->
+    <bean id="storageCache" class="com.adtec.cache.cacheagent.cache.RulesStorageCache">
+        <constructor-arg name="threads" value="${storage.cache.threads}"/>
+        <constructor-arg name="expireTime"
+                         value="${storage.cache.expire.time}"/>
+        <constructor-arg name="initSize" value="${storage.cache.init.size}"/>
+        <constructor-arg name="maxsize" value="${storage.cache.max.size}"/>
+    </bean>
+    
+    
+    <!-- 缓存中心Agent关系缓存 -->
+    <!-- AgentCenterCache -->
+    <bean id="agentCenterCache" class="com.adtec.cache.cacheagent.cache.AgentCenterCache">
+        <constructor-arg name="threads" value="${agentCenter.cache.threads}"/>
+        <constructor-arg name="expireTime"
+                         value="${agentCenter.cache.expire.time}"/>
+        <constructor-arg name="initSize" value="${agentCenter.cache.init.size}"/>
+        <constructor-arg name="maxsize" value="${agentCenter.cache.max.size}"/>
+    </bean>
+
+    <!-- ZooKeeper -->
+    <!-- 重连策略 -->
+    <bean id="cacheRetryPolicy" class="org.apache.curator.retry.ExponentialBackoffRetry">
+        <constructor-arg index="0" value="${zookeeper.retry.interval}"/> <!-- 间隔时间基数 -->
+        <constructor-arg index="1" value="${zookeeper.retry.times}"/><!--
+			最多重试几次 -->
+    </bean>
+
+    <!-- 配置中心zkClient，用于获取缓存中心节点信息、缓存规则等-->
+    <bean id="configClient" class="org.apache.curator.framework.CuratorFrameworkFactory"
+          factory-method="newClient" init-method="start">
+        <constructor-arg index="0" value="${CONFIGCENTERLIST}"/>   <!-- 从环境变量中取ZKSERVERLIST -->
+        <constructor-arg index="1" value="${zookeeper.session.timeout}"/><!--
+			sessionTimeoutMs会话超时时间，单位为毫秒。默认是60000ms -->
+        <constructor-arg index="2"
+                         value="${zookeeper.connection.timeout}"/><!-- connectionTimeoutMs连接创建超时时间，单位毫秒，默认15000ms -->
+        <constructor-arg index="3" ref="cacheRetryPolicy"/>
+    </bean>
+
+    <!-- Agent数据缓存 -->
+    <!-- AgentCache -->
+    <bean id="cacheAgentCache" class="com.adtec.cache.cacheagent.cache.AgentCache" depends-on="configClient">
+        <constructor-arg index="0" ref="configClient"/>
+    </bean>
+
+
+</beans>

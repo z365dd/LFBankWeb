@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template>
+	<name>entity</name>
+	<filePath>src/main/java/${packName}/${modlName}/${subModlName}/entity</filePath>
+	<fileName>${ProcClssName}DO.java</fileName>
+	<content><![CDATA[
+/**
+* 系统名称: SmartWeb平台
+* 模块名称: ${modlName}<#if subModlName != "">-${subModlName}</#if>的实体类模块
+* 功能描述: ${funcName}数据定义
+* 类 名 称  : ${ProcClssName}DO.java
+* 软件版权: 北京先进数通信息技术股份公司
+* 开发人员: chenyl <br>
+* 开发时间: ${functionVersion}<br>
+* 系统版本: V1.0.0<br>
+** 修改记录:
+* 修改日期                            修改人员          修改说明 <br>
+* ========     ======  ============================================
+* 
+* ========     ======  ============================================
+*/
+package ${packName}.${modlName}<#if subModlName != "">.${subModlName}</#if>.entity;
+
+<#list table.importList as i>
+import ${i};
+</#list>
+import java.util.ArrayList;
+import java.util.List;
+import com.adtec.sys.common.persistence.BaseDO;
+
+/**
+ * ${funcName}
+ * @author ${funcCrtr}
+ * @version ${functionVersion}
+ */
+public class ${ProcClssName}DO extends BaseDO {
+	
+	private static final long serialVersionUID = 1L;
+	<#-- 生成字段属性 -->
+	<#list table.columnList as c>
+		<#-- 如果不是基类属性 -->
+		<#if c.isNotBaseField>
+			<#-- 父类对象 -->
+			<#if table.parentExists && table.parentTabOutKey == c.name>
+	private ${table.parent.procClssName?cap_first} ${c.simpleJavaField};		<#if c.tabDesc??>// ${c.tabDesc} 父类</#if>
+			<#-- 其它字段 -->
+			<#else>
+	private ${c.simpleJavaTp} ${c.simpleJavaField};		<#if c.tabDesc??>// ${c.tabDesc}</#if>
+			</#if>
+		</#if>
+	</#list>
+	<#-- 范围条件字段 -->
+	<#list table.columnList as c>
+		<#if c.qryFlg?? && c.qryFlg == "1" && c.qryTp == "between">
+	private ${c.simpleJavaTp} ${c.simpleJavaField}Begin;		<#if c.tabDesc??>// 开始 ${c.tabDesc}</#if>
+	private ${c.simpleJavaTp} ${c.simpleJavaField}End;		<#if c.tabDesc??>// 结束 ${c.tabDesc}</#if>
+		</#if>
+	</#list>
+	<#-- 子表列表字段 -->
+	<#list table.childList as c>
+	private List<${c.procClssName?cap_first}> ${c.procClssName?uncap_first}List = Lists.newArrayList();		// 子表列表
+	</#list>
+	
+	<#-- 构造方法 -->
+	public ${ProcClssName}DO() {
+		super();
+	}
+
+	public ${ProcClssName}DO(String id){
+		super(id);
+	}
+	<#list table.columnList as c>
+		<#if table.parentExists && table.parentTabOutKey == c.name>
+
+	public ${ProcClssName}DO(${table.parent.procClssName?cap_first} ${c.simpleJavaField}){
+		this.${c.simpleJavaField} = ${c.simpleJavaField};
+	}
+		</#if>
+	</#list>
+
+	<#-- 生成get和set方法 -->
+	<#list table.columnList as c>
+		<#-- 如果不是基类属性 -->
+		<#if c.isNotBaseField>
+			<#list c.simpleAnnotationList as a>
+	@${a}
+			</#list>
+			<#-- 父类对象 -->
+			<#if table.parentExists && table.parentTabOutKey == c.name>
+	public ${table.parent.procClssName?cap_first} get${c.simpleJavaField?cap_first}() {
+		return ${c.simpleJavaField};
+	}
+
+	public void set${c.simpleJavaField?cap_first}(${table.parent.procClssName?cap_first} ${c.simpleJavaField}) {
+		this.${c.simpleJavaField} = ${c.simpleJavaField};
+	}
+	
+			<#-- 其它字段 -->
+			<#else>
+	public ${c.simpleJavaTp} get${c.simpleJavaField?cap_first}() {
+		return ${c.simpleJavaField};
+	}
+
+	public void set${c.simpleJavaField?cap_first}(${c.simpleJavaTp} ${c.simpleJavaField}) {
+		this.${c.simpleJavaField} = ${c.simpleJavaField};
+	}
+	
+			</#if>
+		</#if>
+	</#list>
+	<#-- 范围条件字段get和set方法 -->
+	<#list table.columnList as c>
+		<#if c.qryFlg?? && c.qryFlg == "1" && c.qryTp == "between">
+	public ${c.simpleJavaTp} get${c.simpleJavaField?cap_first}Begin() {
+		return ${c.simpleJavaField}Begin;
+	}
+
+	public void set${c.simpleJavaField?cap_first}Begin(${c.simpleJavaTp} ${c.simpleJavaField}Begin) {
+		this.${c.simpleJavaField}Begin = ${c.simpleJavaField}Begin;
+	}
+	
+	public ${c.simpleJavaTp} get${c.simpleJavaField?cap_first}End() {
+		return ${c.simpleJavaField}End;
+	}
+
+	public void set${c.simpleJavaField?cap_first}End(${c.simpleJavaTp} ${c.simpleJavaField}End) {
+		this.${c.simpleJavaField}End = ${c.simpleJavaField}End;
+	}
+		
+		</#if>
+	</#list>
+	<#-- 子表列表get和set方法 -->
+	<#list table.childList as c>
+	public List<${c.procClssName?cap_first}> get${c.procClssName?cap_first}List() {
+		return ${c.procClssName?uncap_first}List;
+	}
+
+	public void set${c.procClssName?cap_first}List(List<${c.procClssName?cap_first}> ${c.procClssName?uncap_first}List) {
+		this.${c.procClssName?uncap_first}List = ${c.procClssName?uncap_first}List;
+	}
+	</#list>
+	
+	<#-- 重写toString方法 -->
+	@Override
+	public String toString() {
+		StringBuffer sb = new StringBuffer();
+		sb.append("${ProcClssName}DO [ ");
+		<#list table.columnList as c>
+		sb.append("${c.simpleJavaField}="+${c.simpleJavaField}+" , ");
+		</#list>
+		sb.append(" ] ");
+		return sb.toString();
+	}
+	
+	<#-- 重写忽略字段方法 -->
+	@Override
+	public List<String> getIgnoreFields() {
+		// TODO Auto-generated method stub
+		List<String> list = super.getIgnoreFields();
+		<#-- 忽略查询范围字段 -->
+		<#list table.columnList as c>
+		<#if c.qryFlg?? && c.qryFlg == "1" && c.qryTp == "between">
+		list.add("${c.simpleJavaField}Begin");
+		list.add("${c.simpleJavaField}End");		
+		</#if>
+		</#list>
+		<#if !table.delFlgExists>
+		list.add("delFlg");
+		</#if>
+		<#if !table.idExists>
+		list.add("id");
+		</#if>
+		<#if !table.crtrExists>
+		list.add("crtr");
+		</#if>
+		<#if !table.crtTimeExists>
+		list.add("crtTime");
+		</#if>
+		<#if !table.uptrExists>
+		list.add("uptr");
+		</#if>
+		<#if !table.uptTimeExists>
+		list.add("uptTime");
+		</#if>
+		<#if !table.rmrkExists>
+		list.add("rmrk");
+		</#if>
+		return list;
+	}
+	
+	<#-- 重写匹配字段方法 -->
+	@Override
+	public List<String> getMatchFields() {
+		// TODO Auto-generated method stub
+		List<String> list = new ArrayList<String>();
+		<#-- 忽略查询范围字段 -->
+		<#list table.pkList as c>
+		list.add("${c}");
+		</#list>
+		return list;
+	}
+}]]>
+	</content>
+</template>

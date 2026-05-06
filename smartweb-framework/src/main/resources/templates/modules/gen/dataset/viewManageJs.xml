@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template>
+	<name>viewManageJs</name>
+	<filePath>${jsPath}/${modlName}/${subModlName}</filePath>
+	<fileName>${procClssName}Manage.js</fileName>
+	<content><![CDATA[
+$(document).ready(function(){
+	/* 如果URL存在参数则，调整请求url，用于同一套界面操作不同交易类型 */
+	var opTp = getQueryString('OpTp');
+	$("a[href^='#tab_']").each(function(i){
+		console.info("choose tab");
+		$(this).click(function(e){
+			var url = $(this).attr("url");
+			if(null!=opTp && undefined!=opTp && ''!=opTp){
+				if(url.indexOf('?')>0){
+					url += '&OpTp='+opTp
+				}else{
+					url += '?OpTp='+opTp
+				}
+			}
+			showTabs($(this).attr("href"),url);
+		    e.preventDefault();
+		});
+	});
+	$("a[href^='#tab_list']").click();
+});	
+
+function showTabs(tabsId,url) {
+	console.info('tabId:' + tabsId);
+	console.info('url:' + url);
+    var $tabContent = $(tabsId);
+    $("a[href='"+tabsId+"']").tab('show');
+    if($("a[href='"+tabsId+"']").attr("isLoad")!="true") {
+    	$tabContent.find("iframe").attr("src",url);
+    }
+    $tabContent.siblings().each(function(i){
+    	$(this).find("iframe").hide();
+    });
+    if(tabsId=="#tab_list"){
+    	$("a[href='#tab_list']").show();
+    	$("a[href='#tab_add']").show();
+    	$("a[href='#tab_update']").hide();
+    	$("a[href='#tab_detail']").hide();
+    }else{
+    	$("a[href='"+tabsId+"']").show();
+        $("a[href='"+tabsId+"']").parent().siblings().each(function(i){
+        	if($(this).find("a").attr("href")!="#tab_list"){
+        		$(this).find("a").hide();
+        	}
+        });
+    }
+}
+
+]]>
+	</content>
+</template>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans desc="提出充值详情查询" name="in/core/eleAcctInfoQuery">
+	<snd>
+		<!-- <field name="ACCT_NO" desc="电子帐号" length="32" required="true" /> -->
+		<field ID="1" c_label="体彩账户号" a_data_name="tcNo" a_data_type="varchar" a_data_length="64" a_data_dictionary="CD01990001 10100-居民身份证" />
+	</snd>
+	<rcv>
+		<!-- <field name="ACCT_NO" desc="卡号" length="32" /> -->
+		<!-- <field name="NAME" desc="客户姓名" length="128" comment="开户人姓名" /> -->
+		<!-- <field name="IDN_TYPE" desc="证件类型" length="8" comment="CD01990001 10100-居民身份证" /> -->
+		<field ID="1" c_label="体彩账户号" a_data_name="tcNo" a_data_type="varchar" a_data_length="64" a_data_dictionary="CD01990001 10100-居民身份证" />
+		<field ID="2" c_label="账户名" a_data_name="tcName" a_data_type="varchar" a_data_length="64" a_data_dictionary="" />
+		<field ID="3" c_label="账户余额" a_data_name="tcAmt" a_data_type="varchar" a_data_length="64" a_data_dictionary="" />
+		<field ID="3" c_label="充值金额" a_data_name="czAmt" a_data_type="varchar" a_data_length="64" a_data_dictionary="" />
+	</rcv>
+</trans>
+
+

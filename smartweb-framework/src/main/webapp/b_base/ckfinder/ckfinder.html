@@ -1,0 +1,246 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<title>文件管理</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="robots" content="noindex, nofollow" />
+	<script type="text/javascript" src="ckfinder.js"></script>
+	<script type="text/javascript" src="../../b_base/jquery-3.6.1.min.js" charset="utf-8"></script>
+	<script type="text/javascript" src="../../b_base/jquery-migrate-3.4.0.min.js" charset="utf-8"></script>
+	<style type="text/css">body, html, iframe, #ckfinder {margin:0;padding:0;border:0;width:100%;height:100%;overflow:hidden;}</style>
+</head>
+<body class="CKFinderFrameWindow">
+	<div id="ckfinder"></div>
+	<script type="text/javascript">
+	var startupPath = '';
+	var _ckfinderInterval;
+	var _ckfinderTimes = 0;
+	var _lastNode = '';
+	var _lastNodeLevel = 0;
+	var _isFound = false;
+	//<![CDATA[
+	(function()
+	{
+		var config = {};
+		var get = CKFinder.tools.getUrlParam;
+		var getBool = function( v )
+		{
+			var t = get( v );
+
+			if ( t === null )
+				return null;
+
+			return t == '0' ? false : true;
+		};
+
+		var tmp;
+		if ( tmp = get( 'configId' ) )
+		{
+			var win = window.opener || window;
+			try
+			{
+				while ( ( !win.CKFinder || !win.CKFinder._.instanceConfig[ tmp ] ) && win != window.top )
+					win = win.parent;
+
+				if ( win.CKFinder._.instanceConfig[ tmp ] )
+					config = CKFINDER.tools.extend( {}, win.CKFinder._.instanceConfig[ tmp ] );
+			}
+			catch(e) {}
+		}
+
+		if ( tmp = get( 'basePath' ) )
+			CKFINDER.basePath = tmp;
+
+		if ( tmp = get( 'startupPath' ) || get( 'start' ) ){
+			config.startupPath = decodeURIComponent( tmp );
+			startupPath = config.startupPath;
+		}
+		
+		config.id = get( 'id' ) || '';
+
+		if ( ( tmp = getBool( 'rlf' ) ) !== null )
+			config.rememberLastFolder = tmp;
+
+		if ( ( tmp = getBool( 'dts' ) ) !== null )
+			config.disableThumbnailSelection = tmp;
+		
+		if ( ( tmp = getBool( 'sm' ) ) !== null )
+			config.selectMultiple = tmp;
+		
+		if ( tmp = get( 'data' ) )
+			config.selectActionData = tmp;
+
+		if ( tmp = get( 'tdata' ) )
+			config.selectThumbnailActionData = tmp;
+
+		if ( tmp = get( 'type' ) )
+			config.resourceType = tmp;
+
+		if ( tmp = get( 'skin' ) )
+			config.skin = tmp;
+
+		if ( tmp = get( 'langCode' ) )
+			config.language = tmp;
+
+		if ( typeof( config.selectActionFunction ) == 'undefined' )
+		{
+			// Try to get desired "File Select" action from the URL.
+			var action;
+			if ( tmp = get( 'CKEditor' ) )
+			{
+				if ( tmp.length )
+					action = 'ckeditor';
+			}
+			if ( !action )
+				action = get( 'action' );
+
+			var parentWindow = ( window.parent == window ) ? window.opener : window.parent;
+			if (!parentWindow) parentWindow = window.parent.document;
+			
+			if ( tmp = get( 'pwMf' ) )
+				parentWindow = parentWindow.mainFrame;
+			
+			switch ( action )
+			{
+				case 'js':
+					var actionFunction = get( 'func' );
+					if ( actionFunction && actionFunction.length > 0 )
+						config.selectActionFunction = parentWindow[ actionFunction ];
+
+					actionFunction = get( 'thumbFunc' );
+					if ( actionFunction && actionFunction.length > 0 )
+						config.selectThumbnailActionFunction = parentWindow[ actionFunction ];
+					break ;
+
+				case 'ckeditor':
+					var funcNum = get( 'CKEditorFuncNum' );
+					if ( parentWindow['CKEDITOR'] )
+					{
+						config.selectActionFunction = function( fileUrl, data )
+						{
+							parentWindow['CKEDITOR'].tools.callFunction( funcNum, fileUrl, data );
+						};
+
+						config.selectThumbnailActionFunction = config.selectActionFunction;
+					}
+					break;
+
+				default:
+					if ( parentWindow && parentWindow['FCK'] && parentWindow['SetUrl'] )
+					{
+						action = 'fckeditor' ;
+						config.selectActionFunction = parentWindow['SetUrl'];
+
+						if ( !config.disableThumbnailSelection )
+							config.selectThumbnailActionFunction = parentWindow['SetUrl'];
+					}
+					else
+						action = null ;
+			}
+			config.action = action;
+			
+			var callback = get( 'cb' );
+			if ( callback && callback.length > 0 )
+				config.callback = parentWindow[ callback ];
+			
+		}
+
+		// Always use 100% width and height when nested using this middle page.
+		config.width = config.height = '100%';
+		
+		var ckfinder = new CKFinder( config );
+		ckfinder.replace( 'ckfinder', config );
+		
+		/*20181227 add by chenyl for 移除掉非指定前缀的目录*/
+		_ckfinderInterval = setInterval(function(){
+			if(document.getElementsByName('CKFinder').length>0){
+				var $iframe = $(document.getElementsByName('CKFinder')[0].contentWindow.document.body);
+				if(null!=$($iframe).find('ul.folder_tree') && $($iframe).find('ul.folder_tree').length>0){
+					if(undefined!=startupPath && ''!=startupPath){
+						var ss = startupPath.split(':');
+						var __IsAllVisiable = false;
+						var customPath = '';
+						var typePtah = '';
+						if(ss.length==3 && ss[2]=='true'){
+							__IsAllVisiable = true;
+						}
+						if(ss.length>=2){
+							typePtah = ss[0];
+							customPath = ss[1];
+						}
+						if(''!==customPath && __IsAllVisiable){
+							console.info('customPath='+customPath);
+							var sp = customPath.split('/');
+							if(null!=sp && sp.length>1){
+								if(null!=$($iframe).find('ul.folder_tree') && $($iframe).find('ul.folder_tree').length>0){
+									var $folderTree = $($iframe).find('ul.folder_tree')[0];
+									if(null!=$($folderTree).find('a[role="treeitem"]') && $($folderTree).find('a[role="treeitem"]').length>0 ){
+										/*只需要寻址一次最后一个 节点*/
+										if(''==_lastNode){
+											for(var j=sp.length-1;j>=0;j--){
+												if(''!=sp[j]){
+													_lastNode = sp[j];
+													_lastNodeLevel = j;
+													break;
+												}
+											}
+										}										
+										
+										/*寻址最后一节点击被选中状态时，ckfinder初始化完毕*/
+										if(!_isFound){
+											$($folderTree).find('a[role="treeitem"]').each(function(){
+												var $this = $(this);
+												var $parent = $this.parent();
+												if(_lastNode==$this.text()){
+													if($parent.hasClass('selected')){
+														_isFound = true;
+													}
+													return false;
+												}
+											});
+										}
+										
+										if(_isFound){
+											for(var i=1;i<sp.length;i++){
+												console.info('idx='+i);
+												if(null!=sp[i] && ''!=sp[i]){
+													$($folderTree).find('a[role="treeitem"][aria-level="'+(i+2)+'"]').each(function(){
+														var $this = $(this);
+														var $parent = $this.parent();
+														if($this.text()!=sp[i]){
+															console.info('移除：'+$this.text());
+															try{
+																$parent.empty();
+																$parent.remove();
+															}catch(e){}
+														}
+													});
+												}
+												
+												if(null!=$($folderTree).parent() && null!=$($folderTree).parent().find('div.selection') && $($folderTree).parent().find('div.selection').length>0){
+													var _selection = $($($folderTree).parent().find('div.selection')[0]);
+													_selection.css('top', (_lastNodeLevel*18)+'px');
+												}
+											}
+											clearInterval(_ckfinderInterval);
+											console.info('finish');
+										}
+									}
+								}								
+							}
+						}
+					}
+				}
+			}
+
+			if(_ckfinderTimes>30){
+				clearInterval(_ckfinderInterval);
+			}
+			_ckfinderTimes++;
+		}, 100);
+
+	})();
+	//]]>
+	</script>
+</body>
+</html>

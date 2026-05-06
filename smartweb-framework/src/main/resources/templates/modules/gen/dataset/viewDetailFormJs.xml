@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template>
+	<name>viewDetailFormJs</name>
+	<filePath>${jsPath}/${modlName}/${subModlName}</filePath>
+	<fileName>${procClssName}DetailForm.js</fileName>
+	<content><![CDATA[
+<#list table.columnList as c>
+<#if c.dpyTp == "ueditor">
+/*实例化编辑器到id为 container 的 dom 容器上*/
+var ${c.javaFieldId}UE = UE.getEditor('${c.javaFieldId}');
+</#if>
+</#list>
+
+$(document).ready(function(){
+	/*把修详情面内容显示出来*/
+	parent.window.$("#iframe_detail").show();
+	<#if table.pkList?? && (table.pkList?size>0)>
+	<#list table.columnList as c>
+	<#if c.mainKeyFlg?? && c.mainKeyFlg == "1">
+	/*从session中拿出${c.javaFieldId}*/
+	var HID_${c.javaFieldId} = $.session.get('HID_${c.javaFieldId}');
+	/*从session中移除${c.javaFieldId}*/
+	$.session.remove('HID_${c.javaFieldId}');
+	$("#HID_${c.javaFieldId}").val(HID_${c.javaFieldId});
+	</#if>
+	</#list>
+	<#else>
+	/*从session中拿出HID_id*/
+	var HID_id = $.session.get('HID_id');
+	/*从session中移除HID_id*/
+	$.session.remove('HID_id');
+	$("#HID_id").val(HID_id);
+	</#if>
+
+	getDetail(<#if table.pkList?? && (table.pkList?size>0)><#assign count=0><#list table.columnList as c><#if c.mainKeyFlg?? && c.mainKeyFlg == "1"><#assign count=count+1>HID_${c.javaFieldId}<#if (count<table.pkList?size)>, </#if></#if></#list><#else>HID_id</#if>);
+	
+	/*取消按钮*/
+	$('#cancleBtn').click(function(){
+		cancle();
+	});
+	
+});
+
+function cancle(){
+	parent.window.$("a[href^='#tab_list']").click();
+}
+
+/*查询明细*/
+function getDetail(<#if table.pkList?? && (table.pkList?size>0)><#assign count=0><#list table.columnList as c><#if c.mainKeyFlg?? && c.mainKeyFlg == "1"><#assign count=count+1>${c.javaFieldId}<#if (count<table.pkList?size)>, </#if></#if></#list><#else>id</#if>){
+	console.info('get ${procClssName} info......');
+	$.post(ctx + "/${urlPrefix}/get", {<#if table.pkList?? && (table.pkList?size>0)><#assign count=0><#list table.columnList as c><#if c.mainKeyFlg?? && c.mainKeyFlg == "1"><#assign count=count+1>${c.javaFieldId}:${c.javaFieldId}<#if (count<table.pkList?size)>, </#if></#if></#list><#else>id:id</#if>}, function(data){
+		if(data.returnCode!==undefined && "0000"!=data.returnCode){ 
+			var errMsg = "错误信息["+data.message+"]"; 
+			showContent(errMsg,"error");	
+		}else {
+			for(var i = 0 ; i < data.dataSetResult.length; i++){
+				for(var j = 0 ; j < data.dataSetResult[i].data.length; j++){
+					var jsonObj = data.dataSetResult[i].data[j];
+					console.info(jsonObj);
+					<#list table.columnList as c>
+					<#if c.insertFlg?? && c.insertFlg == "1" && (c.isNotBaseField || c.simpleJavaField == 'rmrk')>
+					<#if c.dpyTp == "select">
+					$('#${c.javaFieldId}').multiselect("select", [jsonObj.${c.javaFieldId}]).multiselect('rebuild');
+					$('#${c.javaFieldId}').multiselect("disable");
+					<#elseif c.dpyTp == "checkbox">
+					setCheckboxVal('${c.javaFieldId}',jsonObj.${c.javaFieldId});
+					<#elseif c.dpyTp == "radiobox">
+					setRadioVal('${c.javaFieldId}',jsonObj.${c.javaFieldId});
+					<#elseif c.dpyTp == "dateselect">
+					setDateValue('${c.javaFieldId}', jsonObj.${c.javaFieldId});
+					<#elseif c.dpyTp == "userselect" || c.dpyTp == "officeselect" || c.dpyTp == "areaselect" || c.dpyTp == "roleselect">
+					$('#${c.javaFieldId}Name').val(jsonObj.${c.javaFieldId}Name);
+					<#elseif c.dpyTp == "iconselect">
+					$('#${c.javaFieldId}').val(jsonObj.${c.javaFieldId});
+					${c.javaFieldId}IconPreview(); /*图标预览*/
+					setIconSelectDisabled('${c.javaFieldId}');
+					<#elseif c.dpyTp == "fileselect" || c.dpyTp == "fileinput">
+					$('#${c.javaFieldId}').val(jsonObj.${c.javaFieldId});
+					${c.javaFieldId}Preview(); /*文件预览*/
+					setFileSelectDisabled('${c.javaFieldId}');
+					<#elseif c.dpyTp == "ueditor">
+					/*实例后在ready方(组件渲染后事件)中设置内容*/
+                    ${c.javaFieldId}UE.ready(function() {
+                    	${c.javaFieldId}UE.setContent(jsonObj.${c.javaFieldId});
+                    	${c.javaFieldId}UE.setDisabled('fullscreen');
+                    });
+					<#else>
+					$('#${c.javaFieldId}').val(jsonObj.${c.javaFieldId});	
+					</#if>
+					</#if>
+					</#list>
+				}
+			}
+
+		}
+	},
+    "json");
+}
+
+]]>
+	</content>
+</template>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans>
+	<table name="tableName" desc="用户表">
+	    <field ID="1" c_label="体彩" a_data_name="tcNo" a_data_type="varchar" a_data_length="64" />
+		<field ID="2" c_label="账户名123" a_data_name="tcName" a_data_type="varchar" a_data_length="64" />
+		<field ID="3" c_label="账户余额" a_data_name="tcAmt" a_data_type="varchar" a_data_length="64" />
+		<field ID="4" c_label="充值金额" a_data_name="czAmt" a_data_type="varchar" a_data_length="64" />
+		<field ID="5" c_label="开始时间" a_data_name="stDate" a_data_type="varchar" a_data_length="64" />
+		<field ID="6" c_label="结束时间" a_data_name="enDate" a_data_type="varchar" a_data_length="64" />
+	
+		<interface id="tableName_add" type="base" />
+		<interface id="tableName_update" type="base" />
+		<interface id="tableName_delete" type="base" />
+		<interface id="tableName_query" type="base" />
+		<interface id="id_name" type="expand" />
+	</table>
+	
+	<table name="tableName2" desc="机构表">
+	    <field ID="1" c_label="体彩账户号" a_data_name="tcNo" a_data_type="varchar" a_data_length="64" />
+		<field ID="2" c_label="账户名" a_data_name="tcName" a_data_type="varchar" a_data_length="64" />
+		<field ID="3" c_label="账户余额" a_data_name="tcAmt" a_data_type="varchar" a_data_length="64" />
+		<field ID="4" c_label="充值金额" a_data_name="czAmt" a_data_type="varchar" a_data_length="64" />
+	
+		<interface id="tableName2_add" type="base"></interface>
+		<interface id="tableName2_update" type="base"></interface>
+		<interface id="tableName2_delete" type="base"></interface>
+		<interface id="tableName2_query" type="base"></interface>
+		<interface id="id_name" type="expand"></interface>
+	</table>
+</trans>
+
+

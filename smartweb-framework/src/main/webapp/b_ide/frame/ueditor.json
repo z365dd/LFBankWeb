@@ -1,0 +1,61 @@
+{"total":7,"rows":[
+    {"name":"左占","value":"","group":"控件属性","editor":{
+		"type":"combobox",
+		"options":{
+			   "data":
+		   		[{"value":"col-sm-1 control-label","text":"col-sm-1"},
+		   		{"value":"col-sm-2 control-label","text":"col-sm-2"},
+		   		{"value":"col-sm-3 control-label","text":"col-sm-3"},
+		   		{"value":"col-sm-4 control-label","text":"col-sm-4"},
+		   		{"value":"col-sm-5 control-label","text":"col-sm-5"},
+		   		{"value":"col-sm-6 control-label","text":"col-sm-6"},
+		   		{"value":"col-sm-7 control-label","text":"col-sm-7"},
+		   		{"value":"col-sm-8 control-label","text":"col-sm-8"},
+		   		{"value":"col-sm-9 control-label","text":"col-sm-9"},
+		   		{"value":"col-sm-10 control-label","text":"col-sm-10"},
+		   		{"value":"col-sm-11 control-label","text":"col-sm-11"},
+		   		{"value":"col-sm-12 control-label","text":"col-sm-12"}],
+		   		"panelHeight":"auto"
+		}
+	}},
+	{"name":"右占","value":"","group":"控件属性","editor": {
+		"type":"combobox",
+		"options":{
+			   "data":
+		   		[{"value":"col-sm-1","text":"col-sm-1"},
+		   		{"value":"col-sm-2","text":"col-sm-2"},
+		   		{"value":"col-sm-3","text":"col-sm-3"},
+		   		{"value":"col-sm-4","text":"col-sm-4"},
+		   		{"value":"col-sm-5","text":"col-sm-5"},
+		   		{"value":"col-sm-6","text":"col-sm-6"},
+		   		{"value":"col-sm-7","text":"col-sm-7"},
+		   		{"value":"col-sm-8","text":"col-sm-8"},
+		   		{"value":"col-sm-9","text":"col-sm-9"},
+		   		{"value":"col-sm-10","text":"col-sm-10"},
+		   		{"value":"col-sm-11","text":"col-sm-11"},
+		   		{"value":"col-sm-12","text":"col-sm-12"}],
+		   		"panelHeight":"auto"
+		}
+	}},
+	{"name":"尺寸","value":"","group":"控件属性","editor": {
+		"type":"combobox",
+		"options":{
+			   "data":
+		   		[{"value":"","text":"默认"},
+		   		{"value":"form-group-lg","text":"大"},
+		   		{"value":"form-group-sm","text":"小"}],
+		   		"panelHeight":"auto"
+		}
+	}},
+	{"name":"隐藏label","value":"","group":"控件属性","editor":{
+         "type":"checkbox",
+		 "options":{
+             "on":"visibility:hidden",
+             "off":"visibility:visible"
+         }
+	}},
+	{"name":"id","value":"","group":"图标选择属性","editor":"text"},
+	{"name":"name","value":"","group":"图标选择属性","editor":"text"},
+	{"name":"value","value":"","group":"图标选择属性","editor":"text"},
+	{"name":"style","value":"","group":"图标选择属性","editor":"text"}
+]}

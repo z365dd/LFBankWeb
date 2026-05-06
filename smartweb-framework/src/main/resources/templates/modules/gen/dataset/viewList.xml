@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template>
+	<name>viewList</name>
+	<filePath>${jspPath}/${modlName}/${subModlName}</filePath>
+	<fileName>${procClssName}List.jsp</fileName>
+	<content><![CDATA[
+${JSPBEG}
+
+<div class="">
+	<div ravo="rainbow_fx_layout" class="row clearfix">
+		<div class="col-md-12 column">
+			<div ravo="rainbow_fx_layout_panel" class="panel panel-default">
+				<div class="panel-body" contenteditable="false">
+					<div class="clearfix">
+					</div>
+					<form id="listForm" ravo="rainbow_fx_layout_bd" class="form-horizontal breadcrumb">
+						<div ravo="rainbow_fx_layout" class="row clearfix" style="margin-top:10px;">
+							<div class="col-md-12 column">
+							<#assign colIdx = 0>
+							<#list table.columnList as c>
+							<#if c.qryFlg?? && c.qryFlg == "1">
+							<#if colIdx%2==0>
+							<div ravo="rainbow_fx_layout" class="row clearfix">
+							</#if>
+								<div class="col-md-6 column">
+									<div ravo="rainbow_fx" class="form-group">
+										<#if c.dpyTp != "dateselect" || (c.dpyTp == "dateselect" && c.qryTp != "between")>
+										<label for="inputEmail3" class="col-sm-3 control-label">
+											${c.tabDesc}
+										</label>
+										</#if>
+										<#if c.dpyTp == "input">
+										<div class="col-sm-4">
+											<input id="${c.javaFieldId}" name="${c.javaFieldId}" class="form-control <#if c.javaTp == "Long" || c.javaTp == "Integer"> digits</#if><#if c.javaTp == "Double"> number</#if>" <#if c.dataLength != "0"> maxlength="${c.dataLength}"</#if> >
+											</input>
+										</div>
+										<#elseif c.dpyTp == "textarea">
+										<div class="col-sm-4">
+											<textarea id="${c.javaFieldId}" name="${c.javaFieldId}" rows="3" <#if c.dataLength != "0"> maxlength="${c.dataLength}"</#if> class="form-control ">
+											</textarea>
+										</div>
+										<#elseif c.dpyTp == "select">
+										<div class="col-sm-4">
+											<select id="${c.javaFieldId}" name="${c.javaFieldId}" data-role="multiselect" data-url="${r"${ctx}"}/sys/dict/selectData?type=${c.dictTp}" blank-item="true" blank-text="--请选择--">
+											</select>
+										</div>
+										<#elseif c.dpyTp == "checkbox">
+										<div class="col-sm-4">
+											<div class="checkbox checkbox-info checkbox-inline">
+												<input id="${c.javaFieldId}0" name="${c.javaFieldId}" type="checkbox" class="" value="java">
+												<label for="${c.javaFieldId}0" class="">
+													java
+												</label>
+											</div>
+										</div>
+										<#elseif c.dpyTp == "radiobox">
+										<div class="col-sm-4">
+											<div class="radio radio-info radio-inline">
+												<input id="${c.javaFieldId}0" name="${c.javaFieldId}" type="radio" class="" value="15989143887">
+												<label for="${c.javaFieldId}0">
+													15989143887
+												</label>
+											</div>
+											<div class="radio radio-info radio-inline">
+												<input id="${c.javaFieldId}1" name="${c.javaFieldId}" type="radio" class="" value="18124255081">
+												<label for="${c.javaFieldId}1">
+													18124255081
+												</label>
+											</div>
+										</div>
+										<#elseif c.dpyTp == "dateselect" && c.qryTp == "between">
+										<label for="inputEmail3" class="col-sm-3 control-label">
+											${c.tabDesc}开始
+										</label>
+										<div class="input-group-sm col-sm-4">
+											<input type="text" readonly="readonly" maxlength="20" class="form-control input-mini Wdate"
+												value="" datetime-skin="twoer" datetime-date-fmt="yyyy-MM-dd HH:mm:ss"
+												datetime-min-date="" datetime-max-date="" datetime-is-show-clear="true"
+												datetime-is-show-week="true" datetime-is-show-today="true" datetime-default-value=""
+												datetime-value-fmt="yyyyMMddHHmmss" data-link-field="val_${c.simpleJavaField}Begin"
+												id="${c.simpleJavaField}Begin" onclick="WdatePicker({skin: 'twoer',dateFmt: 'yyyy-MM-dd HH:mm:ss',minDate: '1900-01-01 00:00:00',maxDate: '2099-12-31 23:59:59',isShowClear: true,isShowWeek: true,isShowToday: true,onpicked:function(dp){	var newVal = dp.cal.getNewDateStr();  console.info(newVal);	writeDateValue('${c.simpleJavaField}Begin');}});"
+												onchange="writeDateValue('${c.simpleJavaField}Begin');">
+											<input type="hidden" id="val_${c.simpleJavaField}Begin" value="" name="${c.simpleJavaField}Begin">
+										</div>
+									</div>
+								</div>
+									<#assign colIdx = colIdx+1>
+									<#if colIdx%2==0>
+							</div>
+							<div ravo="rainbow_fx_layout" class="row clearfix">
+									</#if>
+									
+								<div class="col-md-6 column">
+									<div ravo="rainbow_fx" class="form-group">
+										<label for="inputEmail3" class="col-sm-3 control-label">
+											${c.tabDesc}结束
+										</label>
+										<div class="input-group-sm col-sm-4">
+											<input type="text" readonly="readonly" maxlength="20" class="form-control input-mini Wdate"
+												value="" datetime-skin="twoer" datetime-date-fmt="yyyy-MM-dd HH:mm:ss"
+												datetime-min-date="" datetime-max-date="" datetime-is-show-clear="true"
+												datetime-is-show-week="true" datetime-is-show-today="true" datetime-default-value=""
+												datetime-value-fmt="yyyyMMddHHmmss" data-link-field="val_${c.simpleJavaField}End"
+												id="${c.simpleJavaField}End" onclick="WdatePicker({skin: 'twoer',dateFmt: 'yyyy-MM-dd HH:mm:ss',minDate: '1900-01-01 00:00:00',maxDate: '2099-12-31 23:59:59',isShowClear: true,isShowWeek: true,isShowToday: true,onpicked:function(dp){	var newVal = dp.cal.getNewDateStr();  console.info(newVal);	writeDateValue('${c.simpleJavaField}End');}});"
+												onchange="writeDateValue('${c.simpleJavaField}End');">
+											<input type="hidden" id="val_${c.simpleJavaField}End" value="" name="${c.simpleJavaField}End">
+										</div>
+										
+										
+										<#elseif c.dpyTp == "dateselect">
+										<div class="input-group-sm col-sm-4">
+											<input type="text" readonly="readonly" maxlength="20" class="form-control input-mini Wdate"
+												value="" datetime-skin="twoer" datetime-date-fmt="yyyy-MM-dd HH:mm:ss"
+												datetime-min-date="" datetime-max-date="" datetime-is-show-clear="true"
+												datetime-is-show-week="true" datetime-is-show-today="true" datetime-default-value=""
+												datetime-value-fmt="yyyyMMddHHmmss" data-link-field="val_${c.simpleJavaField}"
+												id="${c.simpleJavaField}" onclick="WdatePicker({skin: 'twoer',dateFmt: 'yyyy-MM-dd HH:mm:ss',minDate: '1900-01-01 00:00:00',maxDate: '2099-12-31 23:59:59',isShowClear: true,isShowWeek: true,isShowToday: true,onpicked:function(dp){	var newVal = dp.cal.getNewDateStr();  console.info(newVal);	writeDateValue('${c.simpleJavaField}');}});"
+												onchange="writeDateValue('${c.simpleJavaField}');">
+											<input type="hidden" id="val_${c.simpleJavaField}" value="" name="${c.simpleJavaField}">
+										</div>
+										<#elseif c.dpyTp == "userselect">
+										<div class="col-sm-4">
+											<sys:treeselect id="${c.simpleJavaField}" name="${c.javaFieldId}" value="" label_name="${procClssName}.${c.javaFieldId}" label_value=""
+												title="用户" url="/sys/office/treeData?type=3" css_class="form-control input-small" allow_clear="true" not_allow_select_root="true" not_allow_select_parent="true">
+											</sys:treeselect>
+										</div>
+										<#elseif c.dpyTp == "officeselect">
+										<div class="col-sm-4">
+											<sys:treeselect id="${c.simpleJavaField}" name="${c.javaFieldId}" value="" label_name="${procClssName}.${c.javaFieldId}" label_value=""
+												title="机构" url="/sys/office/treeData?type=2" css_class="form-control input-small" allow_clear="true" not_allow_select_root="false" not_allow_select_parent="false">
+											</sys:treeselect>
+										</div>
+										<#elseif c.dpyTp == "areaselect">
+										<div class="col-sm-4">
+											<sys:treeselect readOnly="true" id="${c.simpleJavaField}" name="${c.javaFieldId}" value="" label_name="${procClssName}.${c.javaFieldId}" label_value=""
+												title="区域" url="/sys/area/treeData" css_class="form-control input-small" allow_clear="true"  not_allow_select_root="false" not_allow_select_parent="false">
+											</sys:treeselect>
+										</div>	
+										<#elseif c.dpyTp == "roleselect">
+										<div class="col-sm-4">
+											<sys:treeselect id="${c.simpleJavaField}" name="${c.javaFieldId}" value="" label_name="${procClssName}.${c.javaFieldId}" label_value=""
+												title="角色" url="/sys/office/treeData?type=4" css_class="form-control input-small" allow_clear="true" not_allow_select_root="true" not_allow_select_parent="true">
+											</sys:treeselect>
+										</div>
+										<#elseif c.dpyTp == "iconselect">
+										<div class=" col-sm-4" id="iconselect">
+											<sys:iconselect id="${c.javaFieldId}" name="${c.javaFieldId}" value="" url="${ctx}/tag/iconselect"
+												icon_css="iconfont" icon_required="false">
+											</sys:iconselect>
+										</div>
+										<#elseif c.dpyTp == "fileselect">
+										<div class=" col-sm-4" id="ckfinder">
+											<sys:ckfinder input="${c.javaFieldId}" name="${c.javaFieldId}" value="" type="file" upload_path="/"
+												is_all_user="true" ckfinder_required="false" select_multiple="false" readonly="readonly"
+												max_width="500" max_height="200">
+											</sys:ckfinder>
+										</div>
+										<#elseif c.dpyTp == "ueditor">
+										<div class="col-sm-6" id="ueditor">
+											<script type="text/plain" id="${c.javaFieldId}" name="${c.javaFieldId}" style="height:300px;">
+											</script>
+										</div>											
+										</#if>
+									</div>
+								</div>
+							<#assign colIdx = colIdx+1>					
+							<#if colIdx%2==0>
+							</div>
+							</#if>
+							</#if>
+							</#list>
+							<#if colIdx%2!=0>
+							<#assign loop = 2-colIdx%2>
+							<#list 1..2 as t>
+							<#if (t>loop)>
+							<#break>
+							<#else>
+								<div class="col-md-6 column"></div>
+							</#if>
+							</#list>
+							</div>
+							</#if>
+							</div>
+						</div>						
+						
+						<div ravo="rainbow_fx_layout" class="row clearfix">
+							<div class="col-md-3 column">
+
+							</div>
+							<div class="col-md-3 column">
+						
+							</div>
+							<div class="col-md-3 column">
+								
+							</div>
+							<div class="col-md-3 column">
+								<div ravo="rainbow_fx_layout" class="row clearfix">
+									<div class="col-md-3 column">
+							
+									</div>
+									<div class="column col-md-3">
+										<shiro:haspermission name="anno">
+											<button id="listBtn" ravo="rainbow_fx" type="button" class="btn btn-info" data-original-title="" title="">
+												查询
+											</button>
+										</shiro:haspermission>
+									</div>
+									<div class="column col-md-3">
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+					<table class="table table-hover" id="${procClssName}Table" data-side-pagination="server"
+						data-toggle="table" data-url="${r"${ctx}"}/${urlPrefix}/list" ravo="rainbow_fx_bj"
+						data-height="" data-undefined-text="" data-pagination="true" data-striped="true"
+						data-single-select="true" data-query-params="queryParams" data-first-load="true">
+						<thead>
+							<tr>
+							<#assign firstListField = true>
+							<#list table.columnList as c>
+							<#if c.listFlg?? && c.listFlg == "1">
+							<#if firstListField>
+								<th data-field="id" data-title="唯一主键ID" data-visible="false" data-switchable="false">唯一主键ID</th>
+							</#if>
+							<#if c.dpyTp == "select" || c.dpyTp == "checkbox" || c.dpyTp == "radiobox">
+								<th data-field="${c.javaFieldId}" data-title="${c.tabDesc}" data-visible="false" data-switchable="false">${c.tabDesc}的值</th>
+								<th data-field="${c.javaFieldId}Str" data-title="${c.tabDesc}">${c.tabDesc}</th>
+							<#elseif c.dpyTp == "userselect" || c.dpyTp == "officeselect" || c.dpyTp == "areaselect" || c.dpyTp == "roleselect">
+								<th data-field="${c.javaFieldId}" data-title="${c.tabDesc}" data-visible="false" data-switchable="false">${c.tabDesc}的值</th>
+								<th data-field="${c.javaFieldId}Name" data-title="${c.tabDesc}">${c.tabDesc}</th>
+							<#else>
+								<th data-field="${c.javaFieldId}" data-title="${c.tabDesc}">${c.tabDesc}</th>
+							</#if>
+							<#assign firstListField = false>						
+							</#if>
+							</#list>
+								<th data-field="action" data-title="操作">
+									操作
+								</th>
+							</tr>
+						</thead>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--customer_code_beg-->
+
+<!--customer_code_end-->
+
+${JSPEND}
+]]>
+	</content>
+</template>

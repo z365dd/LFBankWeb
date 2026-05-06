@@ -1,0 +1,17 @@
+{"total":1,"rows":[
+	{"name":"id","value":"","group":"基本属性","editor":"text"},
+	{"name":"margin","value":"","group":"边框及背景","editor":"text"},
+	{"name":"background","value":"","group":"边框及背景","editor":"text"},
+	{"name":"边框样式","group":"边框及背景","editor":{
+		"type":"combobox",
+		"options":{
+			   "data":
+		   		[{"value":"","text":"默认"},
+		   		{"value":"solid","text":"实线边框"},		   		
+		   		{"value":"dashed","text":"虚线边框"}],
+       	   		"panelHeight":"auto"
+		}
+	}},
+	{"name":"边框宽度","value":"","group":"边框及背景","editor":"text"},
+	{"name":"边框颜色","value":"","group":"边框及背景","editor":"text"}
+]}

@@ -1,0 +1,100 @@
+/**
+ * 系统名称: 中间业务云平台
+ * 模块名称: 报文格式
+ * 功能描述: 响应应用头
+ * 类 名 称  : MBC_REQ_APP_HEAD.java
+ * 软件版权: 北京先进数通信息技术股份公司
+ * 开发人员: chenyl <br>
+ * 开发时间: 2017年4月17日 下午6:24:15<br>
+ * 系统版本: V1.0.0<br>
+ ** 修改记录:
+ * 修改日期                            修改人员          修改说明 <br>
+ * ========     ======  ============================================
+ * 
+ * ========     ======  ============================================
+ */
+package com.adtec.comm.dto.head;
+
+/**
+ * @author chenyl
+ *
+ */
+public class MBC_RES_APP_HEAD {
+	/*服务处理返回流水号*/
+	private String RES_SEQ_NO;
+	/*本次返回查询结果记录总数*/
+	private String RES_REC_NUM;
+	/*符合查询条件的记录总数*/
+	private String TOT_NUM;
+	/*是否结束(记录状态)*/
+	private String END_STAT;
+	/**
+	 * 
+	 */
+	public MBC_RES_APP_HEAD() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	/**
+	 * @param rES_SEQ_NO
+	 * @param rES_REC_NUM
+	 * @param tOT_NUM
+	 * @param eND_STAT
+	 */
+	public MBC_RES_APP_HEAD(String rES_SEQ_NO, String rES_REC_NUM, String tOT_NUM, String eND_STAT) {
+		super();
+		RES_SEQ_NO = rES_SEQ_NO;
+		RES_REC_NUM = rES_REC_NUM;
+		TOT_NUM = tOT_NUM;
+		END_STAT = eND_STAT;
+	}
+	/**
+	 * @return the rES_SEQ_NO
+	 */
+	public String getRES_SEQ_NO() {
+		return RES_SEQ_NO;
+	}
+	/**
+	 * @param rES_SEQ_NO the rES_SEQ_NO to set
+	 */
+	public void setRES_SEQ_NO(String rES_SEQ_NO) {
+		RES_SEQ_NO = rES_SEQ_NO;
+	}
+	/**
+	 * @return the rES_REC_NUM
+	 */
+	public String getRES_REC_NUM() {
+		return RES_REC_NUM;
+	}
+	/**
+	 * @param rES_REC_NUM the rES_REC_NUM to set
+	 */
+	public void setRES_REC_NUM(String rES_REC_NUM) {
+		RES_REC_NUM = rES_REC_NUM;
+	}
+	/**
+	 * @return the tOT_NUM
+	 */
+	public String getTOT_NUM() {
+		return TOT_NUM;
+	}
+	/**
+	 * @param tOT_NUM the tOT_NUM to set
+	 */
+	public void setTOT_NUM(String tOT_NUM) {
+		TOT_NUM = tOT_NUM;
+	}
+	/**
+	 * @return the eND_STAT
+	 */
+	public String getEND_STAT() {
+		return END_STAT;
+	}
+	/**
+	 * @param eND_STAT the eND_STAT to set
+	 */
+	public void setEND_STAT(String eND_STAT) {
+		END_STAT = eND_STAT;
+	}
+	
+}

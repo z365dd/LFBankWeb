@@ -1,0 +1,139 @@
+/**
+ * 
+ */
+package com.adtec.sys.modules.gen.web;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import com.adtec.framework.common.util.DataUtil;
+import com.adtec.framework.common.util.StringUtil;
+import com.adtec.sys.common.persistence.Page;
+import com.adtec.sys.common.web.BaseController;
+import com.adtec.sys.modules.gen.entity.GenTable;
+import com.adtec.sys.modules.gen.service.GenTableService;
+import com.adtec.sys.modules.gen.util.GenUtils;
+import com.adtec.sys.modules.sys.entity.Dict;
+import com.adtec.sys.modules.sys.entity.User;
+import com.adtec.sys.modules.sys.utils.UserUtils;
+
+/**
+ * 业务表Controller
+ * 
+ * @version 2016-3-15
+ */
+@Controller
+@RequestMapping(value = "${adminPath}/gen/genTable")
+public class GenTableController extends BaseController {
+
+	@Autowired
+	private GenTableService genTableService;
+	
+	@ModelAttribute
+	public GenTable get(@RequestParam(required=false) String id) {
+		if (StringUtil.isNotBlank(id)){
+			return genTableService.get(id);
+		}else{
+			return new GenTable();
+		}
+	}
+	
+	// @RequiresPermissions("gen:genTable:view")
+	@RequestMapping(value = {"list", ""})
+	public String list(GenTable genTable, HttpServletRequest request, HttpServletResponse response, Model model) {
+		User user = UserUtils.getUser();
+		if (!user.isAdmin()){
+			genTable.setCrtr(user.getId());
+		}
+        Page<GenTable> page = genTableService.find(new Page<GenTable>(request, response), genTable); 
+        model.addAttribute("page", page);
+		return "modules/gen/genTableList";
+	}
+
+	// @RequiresPermissions("gen:genTable:view")
+	@RequestMapping(value = "form")
+	public String form(GenTable genTable, Model model) {
+		// 验证表是否存在
+		if (StringUtil.isBlank(genTable.getId()) && !genTableService.checkTableName(genTable.getName())){
+			addMessage(model, "下一步失败！" + genTable.getName() + " 表已经添加！");
+			genTable.setName("");
+		}
+		// 获取物理表字段
+		else{
+			genTable = genTableService.getTableFormDb(genTable);
+		}
+		model.addAttribute("genTable", genTable);
+		model.addAttribute("config", GenUtils.getConfig());
+		return "modules/gen/genTableForm";
+	}
+
+	@RequiresPermissions("gen:genTable:edit")
+	@RequestMapping(value = "save")
+	public String save(GenTable genTable, Model model, RedirectAttributes redirectAttributes) {
+		if (!beanValidator(model, genTable)){
+			return form(genTable, model);
+		}
+		// 验证表是否已经存在
+		if (StringUtil.isBlank(genTable.getId()) && !genTableService.checkTableName(genTable.getName())){
+			addMessage(model, "保存失败！" + genTable.getName() + " 表已经存在！");
+			genTable.setName("");
+			return form(genTable, model);
+		}
+		genTableService.save(genTable);
+		addMessage(redirectAttributes, "保存业务表'" + genTable.getName() + "'成功");
+		return "redirect:" + adminPath + "/gen/genTable/?repage";
+	}
+	
+	@RequiresPermissions("gen:genTable:edit")
+	@RequestMapping(value = "delete")
+	public String delete(GenTable genTable, RedirectAttributes redirectAttributes) {
+		genTableService.delete(genTable);
+		addMessage(redirectAttributes, "删除业务表成功");
+		return "redirect:" + adminPath + "/gen/genTable/?repage";
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "selectData")
+	public void getSelectJson(@RequestParam(required=false) String type,@RequestParam(required=false) String isblank,@RequestParam(required=false) String blankText,@RequestParam(required=false) String blankValue, HttpServletResponse response) {
+		/*前台接收value、label、title、selected、disabled*/
+		logger.info("getSelectJson");
+		List<Dict> list = new ArrayList<Dict>();
+		if(!DataUtil.isNullStr(isblank) && "true".equals(isblank)){
+			//单选下拉框需要添加空选项
+			Dict d = new Dict();
+			d.setDictTp(type);
+			d.setLabel(blankText);
+			d.setValue(blankValue);
+			list.add(d);
+		}
+		if("Table".equals(type)){
+			// 获取物理表列表
+			List<GenTable> tableList = genTableService.findTableListFormDb(new GenTable());
+			if(null!=tableList && !tableList.isEmpty()){
+				for(GenTable table:tableList){
+					Dict d = new Dict();
+					d.setDictTp(type);
+					d.setLabel(table.getNameAndComments());
+					d.setValue(table.getName());
+					list.add(d);
+				}
+			}
+		}
+		Map<String, Object> m = new HashMap<String, Object>();
+		m.put("retCode", "0000");
+		m.put("list", list);
+		renderString(response, m);
+	}
+}

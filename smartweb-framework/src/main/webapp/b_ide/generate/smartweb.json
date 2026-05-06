@@ -1,0 +1,34 @@
+[
+    {
+      "ID": "1",
+      "a_data_name": "tcNo",
+      "a_data_type": "varchar",
+      "a_data_length": 64,
+      "a_data_dictionary":"dictionary",
+      "c_label":"体彩账户号"
+    },
+    {
+      "ID": "2",
+      "a_data_name": "tcName",
+      "a_data_type": "varchar",
+      "a_data_length": 64,
+      "a_data_dictionary":"dictionary",
+      "c_label":"账户名"
+    },
+    {
+      "ID": "3",
+      "a_data_name": "tcAmt",
+      "a_data_type": "varchar",
+      "a_data_length": 64,
+      "a_data_dictionary":"dictionary",
+      "c_label":"账户余额"
+    },
+    {
+      "ID": "4",
+      "a_data_name": "czAmt",
+      "a_data_type": "varchar",
+      "a_data_length": 64,
+      "a_data_dictionary":"dictionary",
+      "c_label":"充值金额"
+    }
+  ]

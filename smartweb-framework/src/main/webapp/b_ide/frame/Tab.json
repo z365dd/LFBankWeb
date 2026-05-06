@@ -1,0 +1,47 @@
+{"total":3,"rows":[
+	{"name":"样式","group":"选项卡属性","editor":{
+		"type":"combobox",
+		"options":{
+			   "data":
+		   		[{"value":"nav nav-tabs","text":"标签样式"},
+		   		{"value":"nav nav-pills","text":"胶囊样式"},
+		   		{"value":"nav nav-pills nav-stacked","text":"垂直胶囊式"},
+		   		{"value":"nav nav-pills nav-justified","text":"两端对齐"}],
+       	   		"panelHeight":"auto"
+		}
+	}},
+	{"name":"禁止渐变","group":"选项卡属性","editor":{
+	    "type":"checkbox",
+		 "options":{
+             "on":"tab-pane",
+             "off":"tab-pane fade"
+         }
+	}},
+	{"name":"编辑","group":"选项卡属性","editor":"textarea"},
+		{"name":"显示标题","value":"true","group":"选项卡属性","editor":{
+	    "type":"checkbox",
+		 "options":{
+             "on":"true",
+             "off":"false"
+         }
+	}},
+	{"name":"显示关闭按钮","value":"true","group":"选项卡属性","editor":{
+	    "type":"checkbox",
+		 "options":{
+             "on":"true",
+             "off":"false"
+         }
+	}},
+	{"name":"宽度","value":"0","group":"选项卡属性","editor":"numberbox"},
+	{"name":"高度","value":"0","group":"选项卡属性","editor":"numberbox"},
+	{"name":"默认选中页","value":"0","group":"选项卡属性","editor":"numberbox"},
+	{"name":"自适应","value":"false","group":"自适应","editor":{
+	    "type":"checkbox",
+		 "options":{
+             "on":"true",
+             "off":"false"
+         }
+	}},
+	{"name":"底部填充","value":"","group":"自适应","editor":"text"}
+	
+]}

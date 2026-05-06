@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans>
+	<!-- package：生成的后台类的包路径的前缀(控制类存放在web、请求/响应报文实体类存放在entity下),页面名称为name的全小写 -->
+	<table name="ctrlbusichnl" desc="业务渠道开通" package="com.adtec.sys.modules.demo.ctrlmulti">
+		<!-- 页面用到的字段域 -->
+	    <field ID="1" c_label="业务编号" a_data_name="BUSI_NO" a_data_type="varchar" a_data_length="64" />
+	    <field ID="2" c_label="业务名称" a_data_name="BUSI_NAME" a_data_type="varchar" a_data_length="64" />
+		<field ID="3" c_label="渠道编号" a_data_name="CHNL_NO" a_data_type="varchar" a_data_length="64" />
+		<field ID="4" c_label="渠道名称" a_data_name="CHNL_NAME" a_data_type="varchar" a_data_length="64" />
+		<field ID="5" c_label="开通状态" a_data_name="OPEN_STAT" a_data_type="varchar" a_data_length="64" />
+		<field ID="6" c_label="提示信息" a_data_name="ALERT_MSG" a_data_type="varchar" a_data_length="64" />
+		<field ID="7" c_label="说明" a_data_name="RMRK" a_data_type="varchar" a_data_length="64" />
+	
+		<!-- 页面用到的接口 -->
+		<interface id="add" name="新增交易" url="/ctrlmulti/add">
+			<!-- 请求报文体 -->
+			<request>
+				<!-- data_type属性为java的基础类型String、int、long、float、double、character、byte、boolean -->
+				<!-- 如果isconstant为true,表示该字段为常量且固定送default_value的值,且在界面上不做接口映射 -->
+				<element id="CHK_NO" name="检查项编号" data_type="String" required="true" default_value="000001000210400" isconstant="true" />
+				<element id="BIZ_NO" name="业务编号" data_type="String" required="true"/>
+				<element id="CHNL_NO" name="渠道编号" data_type="String" required="true"/>
+				<element id="OPEN_STAT" name="开通状态" data_type="String" required="true"/>
+				<element id="ALERT_MSG" name="提示信息" data_type="String" required="false"/>
+				<element id="RMRK" name="说明" data_type="String" required="false"/>
+			</request>
+			<!-- 响应报文体 -->
+			<response>
+			</response>
+		</interface>
+		<interface id="update" name="修改交易" url="/ctrlmulti/update">
+			<!-- 请求报文体 -->
+			<request>
+				<element id="CHK_NO" name="检查项编号" data_type="String" required="true" default_value="000001000210400" isconstant="true" />
+				<element id="BIZ_NO" name="业务编号" data_type="String" required="true"/>
+				<element id="CHNL_NO" name="渠道编号" data_type="String" required="true"/>
+				<element id="OPEN_STAT" name="开通状态" data_type="String" required="true"/>
+				<element id="ALERT_MSG" name="提示信息" data_type="String" required="false"/>
+				<element id="RMRK" name="说明" data_type="String" required="false"/>
+			</request>
+			<!-- 响应报文体 -->
+			<response>
+			</response>
+		</interface>
+		<interface id="delete" name="删除交易" url="/ctrlmulti/delete">
+			<request>
+				<element id="CHK_NO" name="检查项编号" data_type="String" required="true" default_value="000001000210400" isconstant="true" />
+				<element id="BIZ_NO" name="业务编号" data_type="String" required="true" />
+				<element id="CHNL_NO" name="渠道编号" data_type="String" required="true" />
+			</request>
+			<response>
+			</response>
+		</interface>
+		<interface id="query" name="列表查询交易" url="/ctrlmulti/qry">
+			<request>
+				<element id="CHK_NO" name="检查项编号" data_type="String" required="true" default_value="000001000210400" isconstant="true" />
+				<element id="BIZ_NO" name="业务编号" data_type="String" required="false" />
+				<element id="CHNL_NO" name="渠道编号" data_type="String" required="false" />
+				<element id="OPEN_STAT" name="开通状态" data_type="String" required="true" />
+			</request>
+			<response>
+				<!-- list标签为循环体,id为对应这循环体的一个属性名称 -->
+				<list id="LIST" name="业务渠道开通综合查询结果列表">
+					<element id="BIZ_NO" name="业务编号" data_type="String" />
+	    			<element id="CHNL_NO" name="渠道编号" data_type="String" />
+					<element id="OPEN_STAT" name="开通状态" data_type="String" />
+					<element id="ALERT_MSG" name="提示信息" data_type="String" />
+					<element id="RMRK" name="说明" data_type="String" />
+				</list>
+			</response>
+		</interface>
+		<interface id="detail" name="明细查询交易" url="/ctrlmulti/detail">
+			<request>
+				<element id="CHK_NO" name="检查项编号" data_type="String" required="true" default_value="000001000210400" isconstant="true" />
+				<element id="BIZ_NO" name="业务编号" data_type="String" required="true" />
+				<element id="CHNL_NO" name="渠道编号" data_type="String" required="true" />
+			</request>
+			<response>
+				<element id="BIZ_NO" name="业务编号" data_type="String" />
+				<element id="BIZ_NME" name="业务名称" data_type="String" />
+	    		<element id="CHNL_NO" name="渠道编号" data_type="String" />
+				<element id="CHNL_NME" name="渠道名称" data_type="String" />
+				<element id="OPEN_STAT" name="开通状态" data_type="String" />
+				<element id="ALERT_MSG" name="提示信息" data_type="String" />
+				<element id="RMRK" name="说明" data_type="String" />
+			</response>
+		</interface>
+	</table>
+</trans>
+
+

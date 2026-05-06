@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+    <!-- 设置控制台日志 -->
+    <appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+        <layout class="com.adtec.framework.log.ExPatternLayout">
+            <param name="ConversionPattern"
+                   value="%-d{yyyy-MM-dd HH:mm:ss.SSS} - %p - %#{GlobalSeq} - [%t] - %C.%M(%L) - %m%n"/>
+        </layout>
+    </appender>
+
+    <!-- 设置文件输出日志 -->
+    <appender name="File" class="com.adtec.framework.log.MyDailyRollingFileAppender">
+        <param name="file" value="smartweb.log"/>
+        <param name="append" value="true"/>
+        <param name="immediateFlush" value="true"/>
+        <param name="encoding" value="UTF-8"/>
+        <param name="datePattern" value="'.'yyyy-MM-dd" />
+        <layout class="com.adtec.framework.log.ExPatternLayout">
+            <param name="ConversionPattern" value="%-d{yyyy-MM-dd HH:mm:ss.SSS} - %p - %#{GlobalSeq} - [%t] - %C.%M(%L) - %m%n" />
+        </layout>
+    </appender>
+
+    <!-- 设置通讯文件输出日志 -->
+    <appender name="CFile" class="com.adtec.framework.log.MyDailyRollingFileAppender">
+        <param name="file" value="comm.log"/>
+        <param name="append" value="true"/>
+        <param name="immediateFlush" value="true"/>
+        <param name="encoding" value="UTF-8"/>
+        <param name="datePattern" value="'.'yyyy-MM-dd" />
+        <layout class="com.adtec.framework.log.ExPatternLayout">
+            <param name="ConversionPattern" value="%-d{yyyy-MM-dd HH:mm:ss.SSS} - %p - %#{GlobalSeq} - [%t] - %C.%M(%L) - %m%n" />
+        </layout>
+    </appender>
+
+    <!-- 设置任务管理输出日志 -->
+    <appender name="Task" class="com.adtec.framework.log.MyDailyRollingFileAppender">
+        <param name="file" value="task.log"/>
+        <param name="append" value="true"/>
+        <param name="immediateFlush" value="true"/>
+        <param name="encoding" value="UTF-8"/>
+        <param name="datePattern" value="'.'yyyy-MM-dd" />
+        <layout class="com.adtec.framework.log.ExPatternLayout">
+            <param name="ConversionPattern" value="%-d{yyyy-MM-dd HH:mm:ss.SSS} - %p - %#{GlobalSeq} - [%t] - %C.%M(%L) - %m%n" />
+        </layout>
+    </appender>
+
+    <!-- 设置MSAgent文件输出日志 -->
+    <appender name="MSAgentFile" class="com.adtec.framework.log.MyDailyRollingFileAppender">
+        <param name="file" value="MSAgent.log"/>
+        <param name="append" value="true"/>
+        <param name="immediateFlush" value="true"/>
+        <param name="encoding" value="UTF-8"/>
+        <param name="datePattern" value="'.'yyyy-MM-dd" />
+        <layout class="com.adtec.framework.log.ExPatternLayout">
+            <param name="ConversionPattern" value="%-d{yyyy-MM-dd HH:mm:ss.SSS} - %p - %#{GlobalSeq} - [%t] - %C.%M(%L) - %m%n" />
+        </layout>
+    </appender>
+
+    <!-- 设置CacheAgent文件输出日志 -->
+    <appender name="CacheAgentFile" class="com.adtec.framework.log.MyDailyRollingFileAppender">
+        <param name="file" value="CacheAgent.log"/>
+        <param name="append" value="true"/>
+        <param name="immediateFlush" value="true"/>
+        <param name="encoding" value="UTF-8"/>
+        <param name="datePattern" value="'.'yyyy-MM-dd" />
+        <layout class="com.adtec.framework.log.ExPatternLayout">
+            <param name="ConversionPattern" value="%-d{yyyy-MM-dd HH:mm:ss.SSS} - %p - %#{GlobalSeq} - [%t] - %C.%M(%L) - %m%n" />
+        </layout>
+    </appender>
+
+    <!-- 设置数据库操作日志输出 -->
+    <appender name="Dblog" class="com.adtec.framework.log.MyDailyRollingFileAppender">
+        <param name="file" value="dataset_db.log"/>
+        <param name="append" value="true"/>
+        <param name="immediateFlush" value="true"/>
+        <param name="encoding" value="UTF-8"/>
+        <param name="datePattern" value="'.'yyyy-MM-dd" />
+        <layout class="com.adtec.framework.log.ExPatternLayout">
+            <param name="ConversionPattern" value="%-d{yyyy-MM-dd HH:mm:ss.SSS} - %p - %#{GlobalSeq} - [%t] - %C.%M(%L) - %m%n" />
+        </layout>
+    </appender>
+
+    <!-- 设置Dataset操作输出 -->
+    <appender name="Datasetlog" class="com.adtec.framework.log.MyDailyRollingFileAppender">
+        <param name="file" value="dataset.log"/>
+        <param name="append" value="true"/>
+        <param name="immediateFlush" value="true"/>
+        <param name="encoding" value="UTF-8"/>
+        <param name="datePattern" value="'.'yyyy-MM-dd" />
+        <layout class="com.adtec.framework.log.ExPatternLayout">
+            <param name="ConversionPattern" value="%-d{yyyy-MM-dd HH:mm:ss.SSS} - %p - %#{GlobalSeq} - [%t] - %C.%M(%L) - %m%n" />
+        </layout>
+    </appender>
+
+    <!-- 设置esclient通讯日志输出 -->
+    <appender name="Esclientlog" class="com.adtec.framework.log.MyDailyRollingFileAppender">
+        <param name="file" value="esclient.log"/>
+        <param name="append" value="true"/>
+        <param name="immediateFlush" value="true"/>
+        <param name="encoding" value="UTF-8"/>
+        <param name="datePattern" value="'.'yyyy-MM-dd" />
+        <layout class="com.adtec.framework.log.ExPatternLayout">
+            <param name="ConversionPattern"
+                   value="%-d{yyyy-MM-dd HH:mm:ss.SSS} - %p - %#{GlobalSeq} - [%t] - %C.%M(%L) - %m%n"/>
+        </layout>
+    </appender>
+
+    <!-- 调度任务日志 -->
+    <appender name="Scheduler" class="com.adtec.framework.log.MyDailyRollingFileAppender">
+        <param name="file" value="scheduler.log"/>
+        <param name="append" value="true"/>
+        <param name="immediateFlush" value="true"/>
+        <param name="encoding" value="UTF-8"/>
+        <param name="datePattern" value="'.'yyyy-MM-dd"/>
+        <layout class="com.adtec.framework.log.ExPatternLayout">
+            <param name="ConversionPattern"
+                   value="%-d{yyyy-MM-dd HH:mm:ss.SSS} - %p - %#{GlobalSeq} - [%t] - %C.%M(%L) - %m%n"/>
+        </layout>
+    </appender>
+
+
+    <!-- 设置日志级别 -->
+    <logger name="com.adtec.framework">
+        <level value="INFO"/>
+    </logger>
+
+    <logger name="com.adtec.sys">
+        <level value="DEBUG" />
+    </logger>
+
+    <logger name="com.adtec.commp">
+        <level value="DEBUG" />
+    </logger>
+
+    <logger name="com.adtec.icp">
+        <level value="DEBUG" />
+    </logger>
+
+    <logger name="com.adtec.ocp">
+        <level value="DEBUG" />
+    </logger>
+
+    <logger name="com.adtec.mbc">
+        <level value="DEBUG" />
+    </logger>
+
+    <logger name="com.adtec.pub">
+        <level value="DEBUG" />
+    </logger>
+
+    <logger name="com.adtec.ms.msagent">
+        <level value="ERROR" />
+    </logger>
+
+    <logger name="com.adtec.msmall">
+        <level value="DEBUG"/>
+    </logger>
+
+    <logger name="com.adtec.sys.security.shiro">
+        <level value="WARN"/>
+    </logger>
+
+    <logger name="com.adtec.sys.modules.sys.web.LoginController">
+        <level value="WARN"/>
+    </logger>
+
+    <!-- 设置接收任务日志输出的通道 -->
+    <logger name="com.adtec.ms.msagent.task">
+        <level value="ERROR"/>
+        <appender-ref ref="Task"/>
+    </logger>
+
+    <!-- 设置接收任务日志输出的通道 -->
+    <logger name="com.adtec.ms.quartz">
+        <level value="INFO"/>
+        <appender-ref ref="Task"/>
+    </logger>
+
+    <!-- 设置接收任务日志输出的通道 -->
+    <logger name="com.adtec.msmall.quartz">
+        <level value="INFO" />
+        <appender-ref ref="Task"/>
+    </logger>
+
+    <logger name="com.adtec.ms.msagent">
+        <level value="WARN"/>
+        <appender-ref ref="MSAgentFile"/>
+    </logger>
+
+    <logger name="com.adtec.cache.cacheagent">
+        <level value="WARN"/>
+        <appender-ref ref="CacheAgentFile"/>
+    </logger>
+    <!-- 设置接收通讯日志输出的通道 -->
+    <logger name="com.adtec.comm">
+        <level value="DEBUG"/>
+        <appender-ref ref="CFile"/>
+    </logger>
+
+    <!-- 设置接收任务日志输出的通道 -->
+    <logger name="com.adtec.quartz">
+        <level value="INFO"/>
+        <appender-ref ref="Task"/>
+    </logger>
+
+    <!-- 设置数据库输出的日志等级 -->
+    <logger name="com.adtec.framework.impl">
+        <level value="INFO"/>
+        <appender-ref ref="Dblog"/>
+    </logger>
+
+    <!-- 设置Dataset的日志等级 -->
+    <logger name="com.adtec.framework.share">
+        <level value="DEBUG"/>
+        <appender-ref ref="Datasetlog"/>
+    </logger>
+
+    <logger name="com.adtec.sys.modules.flow">
+        <level value="INFO" />
+    </logger>
+    <logger name="com.adtec.sys.modules.sys.service.RedisService">
+        <level value="WARN" />
+    </logger>
+
+    <logger name="com.adtec.scheduler">
+        <level value="DEBUG" />
+    </logger>
+
+    <logger name="com.adtec.schedule.LOG">
+        <level value="INFO" />
+        <appender-ref ref="Scheduler"/>
+    </logger>
+
+    <logger name="com.adtec.monman.esclient.client.WIRE">
+        <level value="INFO" />
+        <appender-ref ref="Esclientlog"/>
+    </logger>
+
+    <logger name="com.adtec.monman">
+        <level value="INFO"/>
+    </logger>
+
+    <logger name="com.adtec.oa">
+        <level value="INFO"/>
+    </logger>
+
+    <!-- 设置接收所有日志输出的通道 -->
+    <root>
+        <level value="WARN"/>
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="File"/>
+    </root>
+
+</log4j:configuration>

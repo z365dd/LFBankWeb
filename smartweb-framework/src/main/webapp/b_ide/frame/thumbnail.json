@@ -1,0 +1,6 @@
+{"total":11,"rows":[
+	{"name":"id","value":"","group":"基本属性","editor":"text"},
+	{"name":"name","value":"","group":"基本属性","editor":"text"},
+	{"name":"style","value":"","group":"基本属性","editor":"text"},
+	{"name":"设置","value":"","group":"特有属性","editor":"textarea"}
+]}

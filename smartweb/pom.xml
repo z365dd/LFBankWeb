@@ -1,0 +1,277 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.adtec</groupId>
+  <artifactId>smartweb</artifactId>
+  <packaging>war</packaging>
+  <name>smartweb</name>
+  <description>smartweb</description>
+  <version>3.0.0.RELEASE</version>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+        <framework-version>3.1.0.RELEASE</framework-version>
+        <gpm-version>3.1.0.RELEASE</gpm-version>
+        <pay-version>3.1.0.RELEASE</pay-version>
+        <prod-version>3.1.0.RELEASE</prod-version>
+		<comp-version>3.1.0-SNAPSHOT</comp-version>
+<!--		<comp-version>3.1.0.RELEASE</comp-version>-->
+        <!--		<agent-version>0.0.1-SNAPSHOT</agent-version>-->
+        <!--		<comp-version>0.0.1-SNAPSHOT</comp-version>-->
+        <!--		<icp-version>0.0.1-SNAPSHOT</icp-version>-->
+        <!--		<ocp-version>0.0.1-SNAPSHOT</ocp-version>-->
+        <ms-version>3.1.0.RELEASE</ms-version>
+        <!--		<test-version>0.0.1-SNAPSHOT</test-version>-->
+        <!--		<sim-version>0.0.1-SNAPSHOT</sim-version>-->
+        <msmall-version>3.0.0.RELEASE</msmall-version>
+    </properties>
+
+    <dependencies>
+        <!-- 如果smartweb-test的中有对smartweb-framework的依赖,这个配置是不可少的-->
+        <dependency>
+            <groupId>com.adtec</groupId>
+            <artifactId>smartweb-framework</artifactId>
+            <version>${framework-version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+		<!-- 子工程war包依赖,下面的这个配置，在集成其他war的时候，是必不可少的 -->
+		<dependency>
+			<groupId>com.adtec</groupId>
+			<artifactId>smartweb-framework</artifactId>
+			<version>${framework-version}</version>
+			<type>war</type>
+		</dependency>
+
+		<!-- ctrl控制中心 -->
+		<dependency>
+		    <groupId>com.adtec</groupId>
+		    <artifactId>smartweb-ctrl</artifactId>
+		    <version>${pay-version}</version>
+		    <scope>provided</scope>
+		</dependency>
+		<dependency>
+		    <groupId>com.adtec</groupId>
+		    <artifactId>smartweb-ctrl</artifactId>
+		    <version>${pay-version}</version>
+		    <type>war</type>
+		</dependency>
+
+		<!-- fbat批量元件 -->
+		<!--
+		<dependency>
+		    <groupId>com.adtec</groupId>
+		    <artifactId>smartweb-fbat</artifactId>
+		    <version>${pay-version}</version>
+		    <scope>provided</scope>
+		</dependency>
+		<dependency>
+		    <groupId>com.adtec</groupId>
+		    <artifactId>smartweb-fbat</artifactId>
+		    <version>${pay-version}</version>
+		    <type>war</type>
+		</dependency>
+		-->
+		<!-- fccs清算元件 -->
+		<!--
+		<dependency>
+		    <groupId>com.adtec</groupId>
+		    <artifactId>smartweb-fccs</artifactId>
+		    <version>${pay-version}</version>
+		    <scope>provided</scope>
+		</dependency>
+		<dependency>
+		    <groupId>com.adtec</groupId>
+		    <artifactId>smartweb-fccs</artifactId>
+		    <version>${pay-version}</version>
+		    <type>war</type>
+		</dependency>
+		-->
+		<!-- fchk对账元件 -->
+		<!--
+		<dependency>
+		    <groupId>com.adtec</groupId>
+		    <artifactId>smartweb-fchk</artifactId>
+		    <version>${pay-version}</version>
+		    <scope>provided</scope>
+		</dependency>
+		<dependency>
+		    <groupId>com.adtec</groupId>
+		    <artifactId>smartweb-fchk</artifactId>
+		    <version>${pay-version}</version>
+		    <type>war</type>
+		</dependency>
+		-->
+		<!-- fsvr文件传输 -->
+		<dependency>
+		    <groupId>com.adtec</groupId>
+		    <artifactId>smartweb-fsvr</artifactId>
+		    <version>${pay-version}</version>
+		    <scope>provided</scope>
+		</dependency>
+		<dependency>
+		    <groupId>com.adtec</groupId>
+		    <artifactId>smartweb-fsvr</artifactId>
+		    <version>${pay-version}</version>
+		    <type>war</type>
+		</dependency>
+
+		<!-- gpm通用缴费模型 -->
+		<!--
+		<dependency>
+		    <groupId>com.adtec</groupId>
+		    <artifactId>smartweb-gpm</artifactId>
+		    <version>${pay-version}</version>
+		    <scope>provided</scope>
+		</dependency>
+		<dependency>
+		    <groupId>com.adtec</groupId>
+		    <artifactId>smartweb-gpm</artifactId>
+		    <version>${pay-version}</version>
+		    <type>war</type>
+		</dependency>
+		-->
+		<!-- para参数中心 -->
+	    <dependency>
+		    <groupId>com.adtec</groupId>
+		    <artifactId>smartweb-para</artifactId>
+		    <version>${pay-version}</version>
+		    <scope>provided</scope>
+		</dependency>
+		<dependency>
+		    <groupId>com.adtec</groupId>
+		    <artifactId>smartweb-para</artifactId>
+		    <version>${pay-version}</version>
+		    <type>war</type>
+		</dependency>
+
+
+		<!--      pay-->
+        <dependency>
+            <groupId>com.adtec</groupId>
+            <artifactId>smartweb-pay</artifactId>
+            <version>${pay-version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.adtec</groupId>
+            <artifactId>smartweb-pay</artifactId>
+            <version>${pay-version}</version>
+            <type>war</type>
+        </dependency>
+
+		<!-- prod产品创新 -->
+		<dependency>
+		    <groupId>com.adtec</groupId>
+		    <artifactId>smartweb-prod</artifactId>
+		    <version>${prod-version}</version>
+		    <scope>provided</scope>
+		</dependency>
+		<dependency>
+		    <groupId>com.adtec</groupId>
+		    <artifactId>smartweb-prod</artifactId>
+			<version>${prod-version}</version>
+		    <type>war</type>
+		</dependency>
+
+		<!-- sign签约元件 -->
+		<dependency>
+		    <groupId>com.adtec</groupId>
+		    <artifactId>smartweb-sign</artifactId>
+		    <version>${pay-version}</version>
+		    <scope>provided</scope>
+		</dependency>
+		<dependency>
+		    <groupId>com.adtec</groupId>
+		    <artifactId>smartweb-sign</artifactId>
+		    <version>${pay-version}</version>
+		    <type>war</type>
+		</dependency>
+
+		<!-- tseq流水号中心 -->
+		<dependency>
+		    <groupId>com.adtec</groupId>
+		    <artifactId>smartweb-tseq</artifactId>
+		    <version>${pay-version}</version>
+		    <scope>provided</scope>
+		</dependency>
+		<dependency>
+		    <groupId>com.adtec</groupId>
+		    <artifactId>smartweb-tseq</artifactId>
+		    <version>${pay-version}</version>
+		    <type>war</type>
+		</dependency>
+
+		<!-- ms-微服务框架 -->
+<!--		<dependency>-->
+<!--			<groupId>com.adtec</groupId>-->
+<!--			<artifactId>smartweb-ms</artifactId>-->
+<!--			<version>${ms-version}</version>-->
+<!--			<scope>provided</scope>-->
+<!--		</dependency>-->
+		<dependency>
+			<groupId>com.adtec</groupId>
+			<artifactId>smartweb-ms</artifactId>
+			<version>${ms-version}</version>
+			<type>war</type>
+		</dependency>
+
+		<!-- 批量模型 -->
+		<!--
+		<dependency>
+		    <groupId>com.adtec</groupId>
+		    <artifactId>smartweb-mbat</artifactId>
+		    <version>${pay-version}</version>
+		    <type>war</type>
+		</dependency>
+		-->
+		<!-- 银税模型 -->
+		<!--
+		<dependency>
+		    <groupId>com.adtec</groupId>
+		    <artifactId>smartweb-mbtax</artifactId>
+		    <version>${pay-version}</version>
+		    <type>war</type>
+		</dependency>
+		-->
+		<!-- 住建部公积金模型 -->
+		<!--
+		<dependency>
+		    <groupId>com.adtec</groupId>
+		    <artifactId>smartweb-mhur</artifactId>
+		    <version>${pay-version}</version>
+		    <type>war</type>
+		</dependency>
+		-->
+		<!-- 预售房监管模型 -->
+		<!--
+		<dependency>
+		    <groupId>com.adtec</groupId>
+		    <artifactId>smartweb-pshs</artifactId>
+		    <version>${pay-version}</version>
+		    <type>war</type>
+		</dependency>
+		-->
+	</dependencies>
+
+  <!-- 被合并的子web项目中，如果没有web.xml，则需要在pom.xml中声明 -->
+  <build>
+  		<finalName>smartweb</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<packagingExcludes>WEB-INF/web.xml</packagingExcludes>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <overlays>
+                        <overlay>
+                        </overlay>
+                    </overlays>
+				</configuration>
+			</plugin>
+		</plugins>
+</build>
+
+</project>

@@ -1,0 +1,154 @@
+{"total":7,"rows":[
+    {"name":"左占","value":"","group":"控件属性","editor":{
+		"type":"combobox",
+		"options":{
+			   "data":
+		   		[{"value":"col-sm-1 control-label","text":"col-sm-1"},
+		   		{"value":"col-sm-2 control-label","text":"col-sm-2"},
+		   		{"value":"col-sm-3 control-label","text":"col-sm-3"},
+		   		{"value":"col-sm-4 control-label","text":"col-sm-4"},
+		   		{"value":"col-sm-5 control-label","text":"col-sm-5"},
+		   		{"value":"col-sm-6 control-label","text":"col-sm-6"},
+		   		{"value":"col-sm-7 control-label","text":"col-sm-7"},
+		   		{"value":"col-sm-8 control-label","text":"col-sm-8"},
+		   		{"value":"col-sm-9 control-label","text":"col-sm-9"},
+		   		{"value":"col-sm-10 control-label","text":"col-sm-10"},
+		   		{"value":"col-sm-11 control-label","text":"col-sm-11"},
+		   		{"value":"col-sm-12 control-label","text":"col-sm-12"}],
+		   		"panelHeight":"auto"
+		}
+	}},
+	{"name":"右占","value":"","group":"控件属性","editor": {
+		"type":"combobox",
+		"options":{
+			   "data":
+		   		[{"value":"col-sm-1","text":"col-sm-1"},
+		   		{"value":"col-sm-2","text":"col-sm-2"},
+		   		{"value":"col-sm-3","text":"col-sm-3"},
+		   		{"value":"col-sm-4","text":"col-sm-4"},
+		   		{"value":"col-sm-5","text":"col-sm-5"},
+		   		{"value":"col-sm-6","text":"col-sm-6"},
+		   		{"value":"col-sm-7","text":"col-sm-7"},
+		   		{"value":"col-sm-8","text":"col-sm-8"},
+		   		{"value":"col-sm-9","text":"col-sm-9"},
+		   		{"value":"col-sm-10","text":"col-sm-10"},
+		   		{"value":"col-sm-11","text":"col-sm-11"},
+		   		{"value":"col-sm-12","text":"col-sm-12"}],
+		   		"panelHeight":"auto"
+		}
+	}},
+	{"name":"尺寸","value":"","group":"控件属性","editor": {
+		"type":"combobox",
+		"options":{
+			   "data":
+		   		[{"value":"","text":"默认"},
+		   		{"value":"form-group-lg","text":"大"},
+		   		{"value":"form-group-sm","text":"小"}],
+		   		"panelHeight":"auto"
+		}
+	}},
+	{"name":"隐藏label","value":"","group":"控件属性","editor":{
+         "type":"checkbox",
+		 "options":{
+             "on":"visibility:hidden",
+             "off":"visibility:visible"
+         }
+	}},
+	{"name":"id","value":"","group":"时间选择器属性","editor":"text"},
+	{"name":"name","value":"","group":"时间选择器属性","editor":{
+		"type":"combobox",
+			"options":{
+				   "data":
+			   		[],
+			   		"panelHeight":"auto"
+			}
+	}},
+	{"name":"style","value":"","group":"时间选择器属性","editor":"text"},
+	{"name":"控件皮肤","value":"","group":"时间选择器属性","editor":{    
+        "type":"combobox",    
+        "options":{    
+            "data":
+             [
+             {"value":"default","text":"default"},
+             {"value":"twoer","text":"twoer"},
+             {"value":"ext","text":"ext"},
+             {"value":"blueFresh","text":"blueFresh"},
+             {"value":"blue","text":"blue"},
+             {"value":"green","text":"green"},
+             {"value":"simple","text":"simple"},
+             {"value":"YcloudRed","text":"YcloudRed"},
+             {"value":"whyGreen","text":"whyGreen"}],
+            "panelHeight":"auto"   
+        }    
+    }},
+    {"name":"日期显示格式","value":"","group":"时间选择器属性","editor":"text"},
+    {"name":"日期值格式","value":"","group":"时间选择器属性","editor":"text"},
+    {"name":"初始日期","value":"","group":"时间选择器属性","editor":"text"},
+    {"name":"最小日期","value":"","group":"时间选择器属性","editor":"text"},
+    {"name":"最大日期","value":"","group":"时间选择器属性","editor":"text"},
+    {"name":"显示清除按钮","value":"","group":"时间选择器属性","editor":{
+         "type":"checkbox",
+		 "options":{
+             "on":"true",
+             "off":"false"
+         }
+	}},
+	{"name":"显示星期","value":"","group":"时间选择器属性","editor":{
+         "type":"checkbox",
+		 "options":{
+             "on":"true",
+             "off":"false"
+         }
+	}},
+	{"name":"显示今天按钮","value":"","group":"时间选择器属性","editor":{
+         "type":"checkbox",
+		 "options":{
+             "on":"true",
+             "off":"false"
+         }
+	}},
+	
+	{"name":"校验","value":"","group":"选择框属性校验","editor":{
+		"type":"combobox",
+			"options":{
+				   "data":
+			   		[],
+			   		"panelHeight":"auto"
+			}
+	}},
+	{"name":"不为空","value":"","group":"新校验","inputCheck":"check-time-empty","effect":"check","editor":{    
+         "type":"checkbox",
+		 "options":{
+             "on":"true",
+             "off":"false"
+         }
+	}},
+	{"name":"正常开始时间","value":"","group":"新校验","inputCheck":"check-startTime-one","effect":"check","editor":{    
+         "type":"checkbox",
+		 "options":{	
+             "on":"true",
+             "off":"false"
+         }
+	}},
+	{"name":"结束开始时间","value":"","group":"新校验","inputCheck":"check-endTime-one","effect":"check","editor":{    
+         "type":"checkbox",
+		 "options":{
+             "on":"true",
+             "off":"false"
+         }
+	}},
+	{"name":"修改页面开始时间","value":"","group":"新校验","inputCheck":"check-startTime-two","effect":"check","editor":{    
+         "type":"checkbox",
+		 "options":{	
+             "on":"true",
+             "off":"false"
+         }
+	}},
+	{"name":"修改页面结束时间","value":"","group":"新校验","inputCheck":"check-endTime-two","effect":"check","editor":{    
+         "type":"checkbox",
+		 "options":{	
+             "on":"true",
+             "off":"false"
+         }
+	}}
+]}

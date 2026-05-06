@@ -1,0 +1,30 @@
+# Java
+target/
+*.class
+*.jar
+*.war
+*.ear
+
+# Node / Vue
+node_modules/
+dist/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+.classpath
+.project
+.settings/
+*.zip
+
+# SVN
+.svn/
+
+# Logs
+logs/
+*.log
+
+# Temp
+*.tmp
+*.bak

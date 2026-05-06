@@ -1,0 +1,30 @@
+{"total":11,"rows":[
+	{"name":"id","value":"","group":"基本属性","editor":"text"},
+	{"name":"name","value":"","group":"基本属性","editor":"text"},
+	{"name":"style","value":"","group":"基本属性","editor":"text"},
+	{"name":"浮动","group":"基本属性","editor":{
+		"type":"combobox",
+		"options":{
+			   "data":
+		   		[{"value":"","text":"默认"},
+		   		{"value":"pull-left","text":"靠左"},
+		   		{"value":"pull-right","text":"靠右"}],
+       	   		"panelHeight":"auto"
+		}
+	}},
+	{"name":"样式","group":"特有属性","editor":{
+		"type":"combobox",
+		"options":{
+			   "data":
+		   		[{"value":"btn-default","text":"默认"},		   		
+		   		{"value":"btn-primary","text":"原生"},
+		   		{"value":"btn-info","text":"信息"},
+		   		{"value":"btn-success","text":"成功"},
+		   		{"value":"btn-warning","text":"提醒"},
+		   		{"value":"btn-danger","text":"危险"},
+		   		{"value":"btn-link","text":"链接"}],
+       	   		"panelHeight":"auto"
+		}
+	}},
+	{"name":"编辑","value":"","group":"特有属性","editor":"textarea"}
+]}
